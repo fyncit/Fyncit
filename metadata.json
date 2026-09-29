@@ -1,0 +1,8 @@
+{
+  "name": "FLUX Motion & Brand Studio",
+  "description": "FyncIt executive financial advisory and FP&A studio website featuring Fractional CFO, Financial Planning & Analysis services, About Us practice overview, and interactive consultation inquiries.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

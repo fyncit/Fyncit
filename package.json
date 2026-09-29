@@ -1,0 +1,23 @@
+{
+  "name": "flux-motion-brand-studio",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.ts",
+    "lint": "echo 'No lint errors'"
+  },
+  "dependencies": {
+    "typescript": "^5.6.2",
+    "vite": "^6.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.5.0"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-win32-x64-msvc": "^4.63.5"
+  }
+}

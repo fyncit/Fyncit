@@ -1,0 +1,3580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FyncIt</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans, Inter, IBM Plex Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Horizontal Slider Structure */
+    .viewport-slider {
+      position: relative;
+      width: 100vw;
+      height: calc(100vh - 70px);
+      overflow: hidden;
+      z-index: 2;
+    }
+
+    .horizontal-track {
+      display: flex;
+      width: 400vw;
+      height: 100%;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform;
+    }
+
+    .horizontal-panel {
+      width: 100vw;
+      height: 100%;
+      flex-shrink: 0;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .panel-scrollable {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 40px clamp(20px, 4vw, 48px) 80px;
+    }
+
+    /* Custom Sleek Scrollbars */
+    .panel-scrollable::-webkit-scrollbar {
+      width: 6px;
+    }
+    .panel-scrollable::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .panel-scrollable::-webkit-scrollbar-thumb {
+      background: rgba(11, 22, 40, 0.16);
+      border-radius: 99px;
+    }
+    .panel-scrollable::-webkit-scrollbar-thumb:hover {
+      background: rgba(65, 105, 225, 0.45);
+    }
+
+    /* Section End Continue Banners */
+    .section-continue-banner {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 48px auto 20px;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .btn-continue-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      color: #F7F6F3;
+      background: var(--ink);
+      padding: 13px 26px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 24px rgba(11, 22, 40, 0.12);
+    }
+
+    .btn-continue-next:hover {
+      background: var(--brand);
+      transform: translateX(4px);
+      box-shadow: 0 10px 28px rgba(65, 105, 225, 0.28);
+    }
+
+
+    /* Sticky Global Navigation Bar */
+    .global-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      background: rgba(247, 246, 243, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(11, 22, 40, 0.08);
+      padding: 14px clamp(20px, 4vw, 60px);
+      transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+    }
+
+    .global-header.scrolled {
+      background: rgba(247, 246, 243, 0.96);
+      box-shadow: 0 6px 28px rgba(11, 22, 40, 0.06);
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    /* Scroll Cue Indicator */
+    .scroll-cue {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      cursor: pointer;
+      margin: 20px auto 0;
+      padding: 7px 16px;
+      border-radius: 999px;
+      background: rgba(11, 22, 40, 0.04);
+      border: 1px solid rgba(11, 22, 40, 0.06);
+      transition: all 0.25s ease;
+      text-decoration: none;
+    }
+
+    .scroll-cue:hover {
+      background: rgba(65, 105, 225, 0.1);
+      color: var(--violet);
+      border-color: rgba(65, 105, 225, 0.25);
+      transform: translateY(2px);
+    }
+
+    .scroll-cue svg {
+      animation: bounceDown 1.8s infinite ease-in-out;
+    }
+
+    @keyframes bounceDown {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* Section divider line */
+    .section-divider {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(11, 22, 40, 0.08) 20%, rgba(11, 22, 40, 0.08) 80%, transparent);
+    }
+
+    :root {
+      --bg: #F7F6F3;
+      --ink: #0B1628;
+      --muted: #0B1628;
+      --faint: #0B1628;
+      --brand: #4169E1;
+      --violet: #4169E1;
+      --violet-dark: #0B1628;
+      --violet-grad: #4169E1;
+      --navy: #0B1628;
+      --blue: #4169E1;
+      --slate: #D9E1EC;
+      --cream: #F7F6F3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      scroll-behavior: smooth;
+      text-rendering: optimizeLegibility;
+      -webkit-tap-highlight-color: transparent;
+      background-color: var(--bg);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+
+    body {
+      background-color: var(--bg);
+      width: 100%;
+      min-height: 100vh;
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    /* Background Video (Hardware-Accelerated, zero filter lag) */
+    #bg-video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      z-index: 0;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      will-change: transform;
+      pointer-events: none;
+      backface-visibility: hidden;
+    }
+
+    /* Scrim overlays */
+    .scrim {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        linear-gradient(to bottom, rgba(247,246,243,0.85) 0%, transparent 18%, transparent 82%, rgba(247,246,243,0.90) 100%),
+        radial-gradient(circle at 50% 44%, rgba(247,246,243,0.94) 0%, rgba(247,246,243,0.80) 30%, rgba(247,246,243,0.46) 58%, rgba(247,246,243,0.20) 100%);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .scrim::after {
+      content: "";
+      position: absolute;
+      top: 46%;
+      left: 50%;
+      width: 640px;
+      height: 640px;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(65,105,225,0.10) 0%, transparent 62%);
+      pointer-events: none;
+    }
+
+    /* Page Views with smooth fade-slide transition */
+    
+    /* Continuous Page Sections */
+    .page-section,
+    .page-view {
+      display: flex !important;
+      flex-direction: column;
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      scroll-margin-top: 74px;
+    }
+
+
+    
+    .page-section.active,
+    .page-view.active {
+      display: flex !important;
+    }
+
+
+    @keyframes pageViewFadeIn {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 10px, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    /* Home Specific Layout */
+    
+    #view-home,
+    #home {
+      min-height: calc(100vh - 74px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 36px clamp(24px, 4vw, 60px) 28px;
+    }
+
+
+    /* Inner Pages Layout */
+    
+    .inner-page-content {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 50px clamp(20px, 4vw, 48px) 70px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+
+    /* Top Nav */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 10;
+    }
+
+    .nav-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .nav-left-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      color: var(--ink);
+      text-decoration: none;
+    }
+
+    .nav-left-brand .badge-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: rgba(65,105,225,0.12);
+      color: var(--violet);
+      padding: 3px 8px;
+      border-radius: 999px;
+      font-weight: 500;
+    }
+
+    .nav-center {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .nav-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+    }
+
+    .nav-link {
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 14px;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+      position: relative;
+      padding: 4px 0;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: var(--ink);
+    }
+
+    .nav-link.active::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--violet);
+      border-radius: 99px;
+    }
+
+    .nav-cta {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      color: #F7F6F3;
+      background-color: var(--ink);
+      padding: 10px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      box-shadow: 0 4px 14px rgba(11, 22, 40, 0.12);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      background-color: #4169E1;
+      box-shadow: 0 6px 18px rgba(65, 105, 225, 0.25);
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      background: #F7F6F3;
+      border: 1px solid rgba(11,22,40,0.08);
+      padding: 8px 16px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
+      text-decoration: none;
+      will-change: transform;
+    }
+
+    .back-btn:active {
+      transform: translateX(0) scale(0.97);
+    }
+
+    .back-btn:hover {
+      color: var(--ink);
+      border-color: rgba(65,105,225,0.3);
+      background: #F7F6F3;
+      transform: translateX(-2px);
+    }
+
+    /* Hero Section (Home) */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .kicker {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.20em;
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .kicker::before,
+    .kicker::after {
+      content: "";
+      display: block;
+      width: 26px;
+      height: 1px;
+      background-color: var(--violet);
+    }
+
+    h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(52px, 8vw, 120px);
+      line-height: 0.94;
+      letter-spacing: -0.045em;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .dot {
+      color: #4169E1;
+    }
+
+    .sub-line {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(14px, 1.35vw, 16px);
+      color: var(--muted);
+      max-width: none;
+      white-space: nowrap;
+      margin-bottom: 34px;
+      line-height: 1.6;
+    }
+
+    .cta-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+    }
+
+    .btn-primary {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      color: #F7F6F3;
+      background-color: #4169E1;
+      padding: 15px 30px;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(65, 105, 225, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary .arrow {
+      transition: transform 0.2s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(11, 22, 40, 0.24);
+      background-color: #0B1628;
+    }
+
+    .btn-primary:hover .arrow {
+      transform: translateX(4px);
+    }
+
+    .btn-text {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s ease;
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+
+    .btn-text::after {
+      content: "";
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-right: 1.5px solid var(--ink);
+      border-bottom: 1.5px solid var(--ink);
+      transform: rotate(-45deg);
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .btn-text:hover {
+      color: var(--violet);
+    }
+
+    .btn-text:hover::after {
+      border-color: var(--violet);
+      transform: rotate(-45deg) translate(2px, 2px);
+    }
+
+    /* Footer Meta Row */
+    .meta-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 600;
+      font-size: 11.5px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--faint);
+    }
+
+    .meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background-color: var(--violet);
+    }
+
+    /* ============================================================
+       SERVICES PAGE STYLES
+       ============================================================ */
+    .page-header-block {
+      text-align: center;
+      margin: 48px auto 44px;
+      max-width: 780px;
+    }
+
+    .page-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--violet);
+      background: rgba(65, 105, 225, 0.08);
+      border: 1px solid rgba(65, 105, 225, 0.2);
+      padding: 6px 16px;
+      border-radius: 999px;
+      margin-bottom: 18px;
+    }
+
+    .page-heading {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 4.5vw, 56px);
+      line-height: 1.05;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      margin-bottom: 16px;
+    }
+
+    .page-subheading {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: clamp(15px, 1.6vw, 18px);
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    /* Services Grid */
+    .services-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      margin-bottom: 50px;
+      align-items: stretch;
+    }
+
+    @media (min-width: 860px) {
+      .services-stack {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+      }
+    }
+
+    .service-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 20px;
+      padding: clamp(24px, 3.2vw, 36px);
+      box-shadow: 0 8px 32px rgba(11, 22, 40, 0.04);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .service-card:hover {
+      transform: translate3d(0, -4px, 0);
+      box-shadow: 0 16px 48px rgba(65, 105, 225, 0.12);
+      border-color: rgba(65, 105, 225, 0.35);
+    }
+
+    .service-card-top {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(11,22,40,0.06);
+      padding-bottom: 18px;
+    }
+
+    .service-num-badge {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--violet);
+      background: rgba(65, 105, 225, 0.1);
+      padding: 4px 10px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+
+    .service-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(22px, 2.2vw, 28px);
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    .service-tagline {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: var(--muted);
+      margin-top: 6px;
+      max-width: 100%;
+      line-height: 1.5;
+    }
+
+    .service-meta-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      color: var(--ink);
+      background: #D9E1EC;
+      border: 1px solid rgba(11,22,40,0.06);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .service-body-grid {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .service-deliverables-col {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .service-deliverables-col h4,
+    .service-outcomes-col h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .service-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .service-list-item {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: #0B1628;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+
+    .check-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: rgba(65, 105, 225, 0.12);
+      color: var(--violet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .outcome-box {
+      background: #D9E1EC;
+      border: 1px solid rgba(65, 105, 225, 0.15);
+      border-radius: 14px;
+      padding: 18px 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .outcome-stat {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 26px;
+      color: var(--violet);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .outcome-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .service-action-row {
+      margin-top: 24px;
+      display: flex;
+      justify-content: stretch;
+      align-items: center;
+      width: 100%;
+    }
+
+    .btn-service-inquire {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #F7F6F3;
+      background: var(--ink);
+      padding: 12px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-service-inquire:hover {
+      background: #4169E1;
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(65, 105, 225, 0.25);
+    }
+
+    /* Comparison / Highlights Banner */
+    .services-cta-banner {
+      background: linear-gradient(135deg, #0B1628 0%, #0B1628 100%);
+      border-radius: 24px;
+      padding: clamp(32px, 5vw, 48px);
+      color: #F7F6F3;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+
+    .services-cta-banner::before {
+      content: "";
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(65,105,225,0.25) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .banner-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(24px, 3.5vw, 36px);
+      letter-spacing: -0.025em;
+      margin-bottom: 12px;
+    }
+
+    .banner-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: rgba(247, 246, 243, 0.7);
+      max-width: 540px;
+      margin: 0 auto 28px;
+      line-height: 1.5;
+    }
+
+    /* ============================================================
+       ABOUT US PAGE STYLES
+       ============================================================ */
+    .about-container {
+      max-width: 1200px;
+      margin: 0 auto 60px;
+      width: 100%;
+    }
+
+    .about-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (min-width: 992px) {
+      .about-layout-grid {
+        grid-template-columns: 1.25fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    .about-hero-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 24px;
+      padding: clamp(28px, 4vw, 44px);
+      box-shadow: 0 12px 48px rgba(11, 22, 40, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .about-story-text p {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: #0B1628;
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .about-story-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Team Member Side-by-Side Grid */
+    .about-team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .about-team-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .about-team-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .team-member-card {
+      background: #0B1628;
+      border: 1px solid rgba(11, 22, 40, 0.12);
+      border-radius: 24px;
+      aspect-ratio: 1 / 1.05;
+      width: 100%;
+      box-shadow: 0 14px 44px rgba(11, 22, 40, 0.1);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .team-member-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 50px rgba(11, 22, 40, 0.16);
+      border-color: rgba(65, 105, 225, 0.4);
+    }
+
+    .team-photo-surface {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 35%, #0B1628 0%, #0B1628 65%, #0B1628 100%);
+    }
+
+    .team-photo-surface img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .team-photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: rgba(247, 246, 243, 0.85);
+      text-align: center;
+      padding-bottom: 60px;
+    }
+
+    .team-photo-monogram {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: rgba(247, 246, 243, 0.08);
+      border: 1.5px solid rgba(247, 246, 243, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #F7F6F3;
+      margin-bottom: 12px;
+      box-shadow: 0 8px 24px rgba(11, 22, 40, 0.3);
+    }
+
+    /* Bottom Black Gradient Overlay with White Text */
+    .team-gradient-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 52%;
+      background: linear-gradient(to top, rgba(11, 22, 40, 0.95) 0%, rgba(11, 22, 40, 0.72) 45%, rgba(11, 22, 40, 0.25) 75%, rgba(11, 22, 40, 0) 100%);
+      display: flex;
+      align-items: flex-end;
+      padding: 22px 20px;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .team-info-row {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px 8px;
+      width: 100%;
+    }
+
+    .team-info-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: clamp(16px, 1.6vw, 19px);
+      color: #F7F6F3;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .team-info-sep {
+      color: rgba(247, 246, 243, 0.5);
+      font-size: 13px;
+      line-height: 1;
+    }
+
+    .team-info-role {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(12px, 1.2vw, 13.5px);
+      font-weight: 500;
+      color: rgba(247, 246, 243, 0.9);
+      background: rgba(247, 246, 243, 0.14);
+      border: 1px solid rgba(247, 246, 243, 0.2);
+      padding: 3px 9px;
+      border-radius: 12px;
+      line-height: 1.2;
+    }
+
+    .about-stat-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      border-bottom: 1px solid rgba(247,246,243,0.08);
+      padding-bottom: 18px;
+    }
+
+    .about-stat-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .about-stat-num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: -0.03em;
+      color: #F7F6F3;
+      line-height: 1;
+    }
+
+    .about-stat-num span {
+      color: var(--violet);
+    }
+
+    .about-stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(247,246,243,0.65);
+    }
+
+    .about-pillars-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (min-width: 768px) {
+      .about-pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .about-pillar-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 32px rgba(11, 22, 40, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .about-pillar-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(11, 22, 40, 0.08);
+      border-color: rgba(65, 105, 225, 0.3);
+    }
+
+    .pillar-icon-badge {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: rgba(65, 105, 225, 0.1);
+      color: var(--violet);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+
+    .pillar-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .pillar-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* Structured Section Headings & Layouts in About View */
+    .about-section-block {
+      margin-bottom: 48px;
+      width: 100%;
+    }
+
+    .about-section-header {
+      margin-bottom: 24px;
+    }
+
+    .about-section-tag {
+      display: inline-block;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--violet);
+      background: rgba(65, 105, 225, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    .about-section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(22px, 2.4vw, 30px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      line-height: 1.25;
+    }
+
+    .about-section-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--muted);
+      margin-top: 6px;
+      line-height: 1.6;
+      max-width: 680px;
+    }
+
+    /* 1 & 2: Feature Card Box for About FyncIt & Parent Company */
+    .about-content-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 24px;
+      padding: clamp(28px, 4vw, 40px);
+      box-shadow: 0 12px 48px rgba(11, 22, 40, 0.05);
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Redesigned About FyncIt Layout */
+    .fyncit-redesign-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .fyncit-redesign-grid {
+        grid-template-columns: 1.25fr 1fr;
+        gap: 40px;
+      }
+    }
+
+    .fyncit-narrative-col {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fyncit-headline {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(17px, 1.4vw, 20px);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.45;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .fyncit-body {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #0B1628;
+      line-height: 1.7;
+      margin-bottom: 14px;
+    }
+
+    .fyncit-tenets-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(11, 22, 40, 0.07);
+    }
+
+    .fyncit-tenet-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: #0B1628;
+      line-height: 1.55;
+    }
+
+    .fyncit-tenet-bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+      margin-top: 8px;
+      flex-shrink: 0;
+    }
+
+    .fyncit-tenet-content strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    /* Right Strategic Matrix Card */
+    .fyncit-matrix-card {
+      background: linear-gradient(165deg, #0B1628 0%, #0B1628 100%);
+      border-radius: 20px;
+      padding: 26px 24px;
+      color: #F7F6F3;
+      box-shadow: 0 16px 40px rgba(11, 22, 40, 0.16);
+      border: 1px solid rgba(247, 246, 243, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .fyncit-matrix-header {
+      margin-bottom: 18px;
+    }
+
+    .fyncit-matrix-tag {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(65, 105, 225, 0.9);
+      margin-bottom: 4px;
+    }
+
+    .fyncit-matrix-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #F7F6F3;
+      letter-spacing: -0.01em;
+    }
+
+    .fyncit-matrix-rows {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .fyncit-matrix-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 12px 14px;
+      background: rgba(247, 246, 243, 0.04);
+      border-radius: 12px;
+      border: 1px solid rgba(247, 246, 243, 0.06);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .fyncit-matrix-row:hover {
+      background: rgba(247, 246, 243, 0.08);
+      border-color: rgba(65, 105, 225, 0.35);
+      transform: translateX(2px);
+    }
+
+    .fyncit-row-index {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 12px;
+      font-weight: 600;
+      color: #4169E1;
+      padding-top: 1px;
+      flex-shrink: 0;
+    }
+
+    .fyncit-row-info {
+      flex: 1;
+    }
+
+    .fyncit-row-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #F7F6F3;
+      letter-spacing: -0.01em;
+      margin-bottom: 2px;
+    }
+
+    .fyncit-row-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(217, 225, 236, 0.68);
+      line-height: 1.45;
+    }
+
+    .fyncit-matrix-footer {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(247, 246, 243, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .fyncit-footer-badge {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: #4169E1;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .fyncit-footer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: rgba(247, 246, 243, 0.65);
+    }
+
+    .about-parent-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    @media (min-width: 860px) {
+      .about-parent-grid {
+        grid-template-columns: 1.5fr 1fr;
+      }
+    }
+
+    .parent-stats-box {
+      background: linear-gradient(145deg, #0B1628 0%, #0B1628 100%);
+      border-radius: 20px;
+      padding: 28px 24px;
+      color: #F7F6F3;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      box-shadow: 0 12px 32px rgba(11, 22, 40, 0.15);
+    }
+
+    /* 4: Work Process Steps */
+    .process-timeline-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 640px) {
+      .process-timeline-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 900px) {
+      .process-timeline-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .process-step-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 20px;
+      padding: 26px 22px;
+      box-shadow: 0 8px 28px rgba(11, 22, 40, 0.04);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .process-step-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(11, 22, 40, 0.08);
+      border-color: rgba(65, 105, 225, 0.35);
+    }
+
+    .process-step-number {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--violet);
+      opacity: 0.85;
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .process-step-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 8px;
+    }
+
+    .process-step-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* 5: Vision and Mission Dual Grid */
+    .vision-mission-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .vision-mission-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .vm-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 24px;
+      padding: clamp(28px, 3.5vw, 36px);
+      box-shadow: 0 10px 36px rgba(11, 22, 40, 0.04);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .vm-card.highlight {
+      background: linear-gradient(145deg, #0B1628 0%, #0B1628 100%);
+      color: #F7F6F3;
+      border-color: rgba(247, 246, 243, 0.1);
+    }
+
+    .vm-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--violet);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .vm-card.highlight .vm-badge {
+      color: #4169E1;
+    }
+
+    .vm-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .vm-card:not(.highlight) .vm-title {
+      color: var(--ink);
+    }
+
+    .vm-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .vm-card:not(.highlight) .vm-desc {
+      color: #0B1628;
+    }
+
+    .vm-card.highlight .vm-desc {
+      color: rgba(247, 246, 243, 0.84);
+    }
+
+    /* 6: FAQ Accordion Styles */
+    .faq-container {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .faq-item {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(11, 22, 40, 0.03);
+      transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translate3d(0, 0, 0);
+    }
+
+    .faq-item.active {
+      border-color: rgba(65, 105, 225, 0.35);
+      box-shadow: 0 8px 30px rgba(65, 105, 225, 0.08);
+    }
+
+    .faq-question-btn {
+      width: 100%;
+      text-align: left;
+      padding: 20px 24px;
+      background: transparent;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16.5px;
+      font-weight: 700;
+      color: var(--ink);
+      transition: color 0.2s ease;
+    }
+
+    .faq-question-btn:hover {
+      color: var(--brand);
+    }
+
+    .faq-icon-toggle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(65, 105, 225, 0.1);
+      color: var(--violet);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: transform 0.25s ease, background 0.2s ease, color 0.2s ease;
+    }
+
+    .faq-item.active .faq-icon-toggle {
+      transform: rotate(45deg);
+      background: var(--brand);
+      color: #F7F6F3;
+    }
+
+    .faq-answer-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.32s cubic-bezier(0.16, 1, 0.3, 1), padding 0.28s ease, opacity 0.25s ease;
+      padding: 0 24px;
+      opacity: 0;
+    }
+
+    .faq-item.active .faq-answer-content {
+      max-height: 320px;
+      padding: 0 24px 20px 24px;
+      opacity: 1;
+    }
+
+    .faq-answer-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #0B1628;
+      line-height: 1.7;
+    }
+
+    /* 7: Testimonials Grid */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    @media (min-width: 768px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .testimonial-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 22px;
+      padding: 28px 24px;
+      box-shadow: 0 8px 30px rgba(11, 22, 40, 0.04);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      will-change: transform;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 44px rgba(11, 22, 40, 0.08);
+      border-color: rgba(65, 105, 225, 0.25);
+    }
+
+    .testimonial-stars {
+      color: #4169E1;
+      font-size: 14px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+
+    .testimonial-quote {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: #0B1628;
+      line-height: 1.7;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+
+    .testimonial-author-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-top: 1px solid rgba(11, 22, 40, 0.06);
+      padding-top: 16px;
+    }
+
+    .author-avatar-monogram {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(65, 105, 225, 0.12);
+      color: var(--violet);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .author-info-meta {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .author-name {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .author-org {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      color: var(--muted);
+    }
+
+    /* ============================================================
+       GET IN TOUCH / INQUIRY FORM PAGE STYLES
+       ============================================================ */
+    .form-container-card {
+      background: rgba(247, 246, 243, 0.96);
+      border: 1px solid rgba(11, 22, 40, 0.08);
+      border-radius: 24px;
+      padding: clamp(28px, 5vw, 48px);
+      box-shadow: 0 12px 48px rgba(11, 22, 40, 0.06);
+      max-width: 860px;
+      margin: 0 auto 60px;
+      width: 100%;
+      transform: translate3d(0, 0, 0);
+    }
+
+    .form-section {
+      margin-bottom: 36px;
+    }
+
+    .form-section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .form-section-step {
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: rgba(65, 105, 225, 0.12);
+      color: var(--violet);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .form-section-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* Interactive Chips / Multi-Select */
+    .chip-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .chip-option {
+      cursor: pointer;
+      position: relative;
+    }
+
+    .chip-option input[type="checkbox"],
+    .chip-option input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .chip-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--ink);
+      background: #D9E1EC;
+      border: 1px solid rgba(11, 22, 40, 0.07);
+      padding: 9px 16px;
+      border-radius: 12px;
+      transition: all 0.2s ease;
+      user-select: none;
+    }
+
+    .chip-option input:checked + .chip-label {
+      background: rgba(65, 105, 225, 0.1);
+      border-color: var(--violet);
+      color: #4169E1;
+      font-weight: 600;
+      box-shadow: 0 2px 8px rgba(65, 105, 225, 0.15);
+    }
+
+    .chip-label:hover {
+      background: #D9E1EC;
+      border-color: rgba(65, 105, 225, 0.3);
+    }
+
+    /* Form Fields Grid */
+    .form-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid-2 {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 16px;
+    }
+
+    .form-group label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .form-group label .req {
+      color: var(--violet);
+      margin-left: 2px;
+    }
+
+    .form-control {
+      font-family: 'Inter', sans-serif;
+      font-size: 14.5px;
+      color: var(--ink);
+      background: #F7F6F3;
+      border: 1px solid rgba(11, 22, 40, 0.12);
+      border-radius: 12px;
+      padding: 12px 16px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      width: 100%;
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--violet);
+      box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.18);
+    }
+
+    .form-control::placeholder {
+      color: var(--faint);
+    }
+
+    select.form-control {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%234169E1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+    }
+
+    textarea.form-control {
+      min-height: 110px;
+      resize: vertical;
+      line-height: 1.5;
+    }
+
+    .form-help-hint {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .btn-submit-form {
+      width: 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      color: #F7F6F3;
+      background: #4169E1;
+      border: none;
+      padding: 16px 28px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow: 0 10px 28px rgba(65, 105, 225, 0.28);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .btn-submit-form:hover {
+      background: #0B1628;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 34px rgba(11, 22, 40, 0.24);
+    }
+
+    /* Success Confirmation Screen */
+    .success-receipt-card {
+      display: none;
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    .success-icon-badge {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(65, 105, 225, 0.12);
+      color: var(--violet);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .receipt-summary-box {
+      background: #D9E1EC;
+      border: 1px solid rgba(65, 105, 225, 0.15);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+      margin: 24px auto;
+      max-width: 580px;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px dashed rgba(11,22,40,0.08);
+      font-size: 13.5px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .receipt-row:last-child {
+      border-bottom: none;
+    }
+
+    .receipt-label {
+      color: var(--muted);
+    }
+
+    .receipt-val {
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    /* Top Global Scroll Reading Progress Bar */
+    .scroll-progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, #4169E1 0%, #4169E1 50%, #4169E1 100%);
+      transform-origin: left;
+      transform: scaleX(0);
+      z-index: 1000;
+      pointer-events: none;
+      transition: transform 0.08s ease-out;
+    }
+
+    /* Bottom-Left Floating Scroll-To-Top Button with Circular Progress Ring */
+    .scroll-to-top-btn {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #F7F6F3;
+      border: 1px solid rgba(11, 22, 40, 0.1);
+      box-shadow: 0 10px 30px rgba(11, 22, 40, 0.12), 0 2px 8px rgba(65, 105, 225, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transform: translate3d(0, 16px, 0) scale(0.92);
+      transition: opacity 0.25s ease, transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      padding: 0;
+      will-change: transform, opacity;
+    }
+
+    .scroll-to-top-btn.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    .scroll-to-top-btn:hover {
+      transform: translateY(-3px) scale(1.06);
+      box-shadow: 0 14px 36px rgba(65, 105, 225, 0.22), 0 4px 12px rgba(11, 22, 40, 0.08);
+      border-color: rgba(65, 105, 225, 0.4);
+    }
+
+    .scroll-to-top-btn:active {
+      transform: translateY(0) scale(0.94);
+    }
+
+    .progress-ring-svg {
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      transform: rotate(-90deg);
+      pointer-events: none;
+      width: 46px;
+      height: 46px;
+    }
+
+    .progress-ring-bg {
+      stroke: rgba(65, 105, 225, 0.14);
+    }
+
+    .progress-ring-indicator {
+      stroke: var(--brand);
+      stroke-linecap: round;
+      stroke-dasharray: 125.66;
+      stroke-dashoffset: 125.66;
+      transition: stroke-dashoffset 0.08s ease-out;
+    }
+
+    .scroll-top-icon {
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s ease, color 0.2s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    .scroll-to-top-btn:hover .scroll-top-icon {
+      color: var(--brand);
+      transform: translateY(-2px);
+    }
+
+    /* Hardware-Accelerated Smooth Animations */
+    @keyframes smoothRise {
+      0% {
+        opacity: 0;
+        transform: translate3d(0, 18px, 0);
+      }
+      100% {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    .rise {
+      opacity: 0;
+      animation: smoothRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Silky Smooth Scroll Reveal for Cards & Sections */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translate3d(0, 22px, 0);
+      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+      backface-visibility: hidden;
+    }
+
+    .scroll-reveal.in-view {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-center {
+        display: none;
+      }
+    }
+
+    /* Dedicated Mobile-Only Alignment & Hierarchy (<= 640px) */
+    @media (max-width: 640px) {
+      /* Navigation Bar */
+      .nav {
+        gap: 8px;
+      }
+      .nav-left-brand {
+        font-size: 17px;
+      }
+      .nav-cta {
+        padding: 8px 14px;
+        font-size: 12.5px;
+        white-space: nowrap;
+      }
+      .back-btn {
+        padding: 7px 12px;
+        font-size: 12px;
+        white-space: nowrap;
+      }
+
+      /* Home View Layout & Symmetry */
+      #view-home.active {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: auto;
+        padding: 20px 18px 28px;
+        display: flex !important;
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .hero {
+        padding: 40px 0 28px;
+        width: 100%;
+      }
+      .kicker {
+        font-size: 9.5px;
+        letter-spacing: 0.14em;
+        gap: 8px;
+        margin-bottom: 18px;
+        justify-content: center;
+        text-align: center;
+      }
+      .kicker::before,
+      .kicker::after {
+        width: 14px;
+      }
+      h1 {
+        font-size: clamp(38px, 9.5vw, 48px);
+        line-height: 1.02;
+        margin-bottom: 16px;
+        word-break: break-word;
+      }
+      .sub-line {
+        font-size: 12.5px;
+        line-height: 1.55;
+        max-width: 310px;
+        white-space: normal;
+        margin-bottom: 26px;
+      }
+      .cta-row {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+        align-items: stretch;
+      }
+      .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 13px 20px;
+        font-size: 14px;
+      }
+      .btn-text {
+        width: 100%;
+        justify-content: center;
+        font-size: 14px;
+        padding: 8px 0;
+      }
+      .meta-row {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px 10px;
+        text-align: center;
+        font-size: 9.5px;
+        letter-spacing: 0.08em;
+        line-height: 1.4;
+        padding-top: 16px;
+      }
+
+      /* Inner Pages (Services & Contact) */
+      .inner-page-content {
+        padding: 14px 12px 40px;
+      }
+      .page-header-block {
+        margin: 14px auto 20px;
+        text-align: center;
+      }
+      .page-heading {
+        font-size: clamp(20px, 5.8vw, 24px);
+        line-height: 1.15;
+        letter-spacing: -0.025em;
+        margin-bottom: 8px;
+      }
+      .page-subheading {
+        font-size: 12px;
+        line-height: 1.5;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      /* Services Page ("See our work") */
+      .services-stack {
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+      .service-card {
+        padding: 16px 14px;
+        border-radius: 14px;
+      }
+      .service-card-top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        margin-bottom: 12px;
+        padding-bottom: 12px;
+      }
+      .service-title {
+        font-size: 16px;
+        line-height: 1.25;
+        margin-bottom: 4px;
+      }
+      .service-tagline {
+        font-size: 11.5px;
+        line-height: 1.45;
+      }
+      .service-meta-pill {
+        font-size: 10px;
+        padding: 3px 8px;
+        border-radius: 6px;
+        align-self: flex-start;
+      }
+      .service-body-grid {
+        gap: 12px;
+      }
+      .service-deliverables-col h4,
+      .service-outcomes-col h4 {
+        font-size: 10.5px;
+        letter-spacing: 0.1em;
+        margin-bottom: 8px;
+      }
+      .service-list {
+        gap: 7px;
+      }
+      .service-list-item {
+        font-size: 11.5px;
+        line-height: 1.4;
+        gap: 7px;
+        align-items: flex-start;
+      }
+      .check-icon {
+        width: 14px;
+        height: 14px;
+        font-size: 9px;
+        min-width: 14px;
+        margin-top: 2px;
+      }
+      .outcome-box {
+        padding: 10px 12px;
+        border-radius: 10px;
+        gap: 3px;
+      }
+      .outcome-stat {
+        font-size: 16px;
+      }
+      .outcome-desc {
+        font-size: 11px;
+        line-height: 1.35;
+      }
+      .service-action-row {
+        margin-top: 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+      }
+      .btn-service-inquire {
+        width: 100%;
+        justify-content: center;
+        padding: 9px 14px;
+        font-size: 11.5px;
+        border-radius: 8px;
+      }
+
+      /* Services CTA Banner */
+      .services-cta-banner {
+        padding: 20px 14px;
+        border-radius: 14px;
+        margin-bottom: 24px;
+      }
+      .banner-title {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+      .banner-sub {
+        font-size: 11.5px;
+        line-height: 1.45;
+        margin-bottom: 14px;
+        max-width: 290px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .services-cta-banner .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 16px;
+        font-size: 12px;
+        border-radius: 8px;
+      }
+
+      /* Contact / Consultation Form ("Get in touch") */
+      .form-container-card {
+        padding: 16px 14px;
+        border-radius: 14px;
+        margin-bottom: 30px;
+      }
+      .form-section {
+        margin-bottom: 18px;
+      }
+      .form-section-title {
+        font-size: 13px;
+        gap: 6px;
+        margin-bottom: 2px;
+      }
+      .form-section-subtitle {
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
+      .chip-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+      .chip-option {
+        width: 100%;
+      }
+      .chip-label {
+        width: 100%;
+        padding: 8px 10px;
+        font-size: 11.5px;
+        border-radius: 8px;
+        justify-content: flex-start;
+      }
+      .form-grid-2 {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+      .form-group {
+        margin-bottom: 8px;
+      }
+      .form-group label {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+      .form-control {
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 8px;
+        height: 38px;
+      }
+      textarea.form-control {
+        height: auto;
+        min-height: 70px;
+      }
+      .btn-submit-form {
+        padding: 11px 16px;
+        font-size: 12.5px;
+        border-radius: 8px;
+        margin-top: 6px;
+      }
+      .receipt-summary-box {
+        padding: 12px 10px;
+        border-radius: 10px;
+        margin-top: 12px;
+      }
+      .receipt-summary-box h4 {
+        font-size: 11px;
+        margin-bottom: 6px;
+      }
+      .receipt-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 6px 0;
+      }
+      .receipt-row span:first-child {
+        font-size: 10px;
+      }
+      .receipt-row span:last-child {
+        font-size: 11px;
+      }
+      .success-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        margin-bottom: 12px;
+      }
+      .success-title {
+        font-size: 18px;
+        margin-bottom: 6px;
+      }
+      .success-desc {
+        font-size: 11.5px;
+        line-height: 1.45;
+      }
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Ambient Video Wash -->
+  <video id="bg-video" src="https://zxdefgavgwfxastwmmjm.supabase.co/storage/v1/object/public/assets/flux.mp4" autoplay muted loop playsinline></video>
+  <div class="scrim"></div>
+
+
+
+  <!-- Top Global Sticky Navigation Bar -->
+  <header id="global-header" class="global-header">
+    <div class="nav-container">
+      <div class="nav-left rise" style="animation-delay: 0ms;">
+        <a href="#home" class="nav-left-brand" onclick="window.goToPanel(0); return false;">
+          <span>FyncIt</span>
+        </a>
+      </div>
+      <nav class="nav-center" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active" data-target="0" onclick="window.goToPanel(0); return false;">Home</a>
+        <a href="#about" class="nav-link" data-target="1" onclick="window.goToPanel(1); return false;">About Us</a>
+        <a href="#services" class="nav-link" data-target="2" onclick="window.goToPanel(2); return false;">Our Services</a>
+        <a href="#contact" class="nav-link" data-target="3" onclick="window.goToPanel(3); return false;">Get in Touch</a>
+      </nav>
+      <div class="nav-right rise" style="animation-delay: 220ms;">
+        <a href="#contact" class="nav-cta" onclick="window.goToPanel(3); return false;">
+          <span>Start a project</span>
+          <span style="font-size: 14px;">→</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Viewport Horizontal Slider Container -->
+  <div class="viewport-slider" id="viewport-slider">
+    <div class="horizontal-track" id="horizontal-track">
+      
+      <!-- PANEL 0: HOME -->
+      <section class="horizontal-panel" id="panel-home" data-panel="0">
+        <div class="panel-scrollable" id="scroll-home" style="display: flex; flex-direction: column; justify-content: space-between; padding: 32px clamp(24px, 4vw, 60px) 24px;">
+          <main class="hero">
+      <div class="kicker rise" style="animation-delay: 300ms;">
+        FINANCIAL ADVISORY & STRATEGY
+      </div>
+      
+      <h1 class="rise" style="animation-delay: 380ms;">
+        Financial clarity
+      </h1>
+      
+      <p class="sub-line rise" style="animation-delay: 490ms;">
+        Fractional CFO leadership and FP&A precision for high-growth ventures.
+      </p>
+      
+      <div class="cta-row rise" style="animation-delay: 600ms;">
+        <button type="button" id="btn-see-our-work" class="btn-primary">
+          <span>Our Services</span>
+          <span class="arrow">→</span>
+        </button>
+        <button type="button" id="btn-get-in-touch" class="btn-text">
+          <span>Get in touch</span>
+        </button>
+      </div>
+      
+      <a href="#about" class="scroll-cue rise" id="hero-scroll-cue" style="animation-delay: 680ms;" title="Scroll down to About Us">
+        <span>Explore FyncIt</span>
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
+        </svg>
+      </a>
+    </main>
+
+    
+    <footer class="meta-row rise" style="animation-delay: 720ms;">
+      <span>Financial Planning & Analysis</span>
+      <span class="meta-dot"></span>
+      <span>Fractional CFO</span>
+    </footer>
+  </div>
+</section>
+
+      <!-- PANEL 1: ABOUT US -->
+      <section class="horizontal-panel" id="panel-about" data-panel="1">
+        <div class="panel-scrollable" id="scroll-about">
+          <div class="inner-page-content">
+      
+      
+
+      
+      <div class="page-header-block rise" style="animation-delay: 100ms;">
+        <h2 class="page-heading">About Us</h2>
+        <p class="page-subheading">
+          Insight. Strategy. Financial confidence.
+        </p>
+      </div>
+
+      <div class="about-container">
+        
+        <section id="about-fyncit" class="about-section-block rise" style="animation-delay: 150ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Corporate Profile</span>
+            <h3 class="about-section-title">About FyncIt</h3>
+            <p class="about-section-desc">
+              Next-generation corporate finance, strategic FP&A, and Fractional CFO advisory for high-growth enterprises.
+            </p>
+          </div>
+          <div class="about-content-card">
+            <div class="fyncit-redesign-grid">
+              
+              <div class="fyncit-narrative-col">
+                <h4 class="fyncit-headline">
+                  Bridging the critical divide between raw financial data and decisive executive execution.
+                </h4>
+                <p class="fyncit-body">
+                  <strong>FyncIt</strong> is a specialized financial advisory firm delivering institutional-grade financial strategy, forward-looking forecasting, and fractional executive leadership to businesses navigating pivotal stages of scale, capital allocation, and transformation.
+                </p>
+                <p class="fyncit-body">
+                  Where traditional accounting focuses primarily on retroactive compliance, FyncIt equips leadership teams with forward-looking commercial foresight. We synthesize complex financial datasets into dynamic 3-statement models, scenario forecasts, and unit-economic benchmarks that drive tangible enterprise valuation.
+                </p>
+
+                
+                <div class="fyncit-tenets-list">
+                  <div class="fyncit-tenet-item">
+                    <div class="fyncit-tenet-bullet"></div>
+                    <div class="fyncit-tenet-content">
+                      <strong>Forward-Looking FP&A:</strong> Dynamic multi-scenario forecasting & 13-week liquidity governance.
+                    </div>
+                  </div>
+                  <div class="fyncit-tenet-item">
+                    <div class="fyncit-tenet-bullet"></div>
+                    <div class="fyncit-tenet-content">
+                      <strong>Fractional Executive Stewardship:</strong> Boardroom-level CFO leadership without full-time executive payroll overhead.
+                    </div>
+                  </div>
+                  <div class="fyncit-tenet-item">
+                    <div class="fyncit-tenet-bullet"></div>
+                    <div class="fyncit-tenet-content">
+                      <strong>Institutional Investment Readiness:</strong> Audit-grade data rooms and financial narratives for fundraising.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="fyncit-matrix-card scroll-reveal">
+                <div class="fyncit-matrix-header">
+                  <div class="fyncit-matrix-tag">Advisory Scope</div>
+                  <h5 class="fyncit-matrix-title">Strategic Value Drivers</h5>
+                </div>
+
+                <div class="fyncit-matrix-rows">
+                  <div class="fyncit-matrix-row">
+                    <div class="fyncit-row-index">01</div>
+                    <div class="fyncit-row-info">
+                      <div class="fyncit-row-title">Fractional CFO Leadership</div>
+                      <div class="fyncit-row-desc">Executive financial governance, treasury oversight & board advisory</div>
+                    </div>
+                  </div>
+
+                  <div class="fyncit-matrix-row">
+                    <div class="fyncit-row-index">02</div>
+                    <div class="fyncit-row-info">
+                      <div class="fyncit-row-title">Strategic FP&A & Forecasting</div>
+                      <div class="fyncit-row-desc">Rolling budgets, 3-statement modeling & runway forecasting</div>
+                    </div>
+                  </div>
+
+                  <div class="fyncit-matrix-row">
+                    <div class="fyncit-row-index">03</div>
+                    <div class="fyncit-row-info">
+                      <div class="fyncit-row-title">Unit Economics & Margins</div>
+                      <div class="fyncit-row-desc">Cohort contribution, LTV/CAC diagnostics & pricing models</div>
+                    </div>
+                  </div>
+
+                  <div class="fyncit-matrix-row">
+                    <div class="fyncit-row-index">04</div>
+                    <div class="fyncit-row-info">
+                      <div class="fyncit-row-title">Capital & Investor Readiness</div>
+                      <div class="fyncit-row-desc">Due diligence data rooms, cap tables & investor presentations</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="fyncit-matrix-footer">
+                  <div class="fyncit-footer-badge">✦ Institutional Pedigree</div>
+                  <div class="fyncit-footer-text">Backed by 25+ years advisory heritage of P. Bhatia & Associates</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-parent-company" class="about-section-block rise" style="animation-delay: 200ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Heritage & Legacy</span>
+            <h3 class="about-section-title">About Parent Company</h3>
+            <p class="about-section-desc">
+              Built on a foundation of trust, compliance excellence, and quarter-century advisory pedigree.
+            </p>
+          </div>
+          <div class="about-content-card">
+            <div class="about-parent-grid">
+              <div class="about-story-text">
+                <p>
+                  <strong>FyncIt is proud to be a company of P. Bhatia & Associates</strong>, carrying forward a legacy backed by <strong>25+ years of distinguished experience</strong> in audit, accounting, taxation, corporate finance, and strategic business consulting.
+                </p>
+                <p>
+                  By marrying the regulatory rigor, audit-readiness, and institutional wisdom of P. Bhatia & Associates with FyncIt’s modern analytical toolsets, automated financial models, and strategic forecasting frameworks, our clients receive an unmatched blend of dependable stability and forward-looking financial momentum.
+                </p>
+              </div>
+              <div class="parent-stats-box">
+                <div class="about-stat-item">
+                  <div class="about-stat-num">25<span>+</span></div>
+                  <div class="about-stat-label">Years of Industry Heritage & Advisory Pedigree</div>
+                </div>
+                <div class="about-stat-item">
+                  <div class="about-stat-num">500<span>+</span></div>
+                  <div class="about-stat-label">Businesses & Enterprises Advised Successfully</div>
+                </div>
+                <div class="about-stat-item">
+                  <div class="about-stat-num">100<span>%</span></div>
+                  <div class="about-stat-label">Commitment to Integrity, Precision & Compliance</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-team" class="about-section-block rise" style="animation-delay: 250ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Leadership</span>
+            <h3 class="about-section-title">Executive Team</h3>
+            <p class="about-section-desc">
+              Meet the minds driving financial strategy, analytical rigor, and technology innovation.
+            </p>
+          </div>
+          <div class="about-team-grid">
+            
+            <div class="team-member-card" id="team-member-anurag">
+              <div class="team-photo-surface">
+                <div class="team-photo-placeholder">
+                  <div class="team-photo-monogram">AB</div>
+                </div>
+              </div>
+              <div class="team-gradient-overlay">
+                <div class="team-info-row">
+                  <span class="team-info-name">Anurag S Bhatia</span>
+                  <span class="team-info-sep">•</span>
+                  <span class="team-info-role">Founder & CEO</span>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="team-member-card" id="team-member-deep">
+              <div class="team-photo-surface">
+                <div class="team-photo-placeholder">
+                  <div class="team-photo-monogram">DD</div>
+                </div>
+              </div>
+              <div class="team-gradient-overlay">
+                <div class="team-info-row">
+                  <span class="team-info-name">Deep Dalal</span>
+                  <span class="team-info-sep">•</span>
+                  <span class="team-info-role">Co-Founder & CTO</span>
+                </div>
+              </div>
+            </div>
+
+            
+            <div class="team-member-card" id="team-member-bhaumik">
+              <div class="team-photo-surface">
+                <div class="team-photo-placeholder">
+                  <div class="team-photo-monogram">BB</div>
+                </div>
+              </div>
+              <div class="team-gradient-overlay">
+                <div class="team-info-row">
+                  <span class="team-info-name">Bhaumik Bhatt</span>
+                  <span class="team-info-sep">•</span>
+                  <span class="team-info-role">COO</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-process" class="about-section-block rise" style="animation-delay: 300ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Methodology</span>
+            <h3 class="about-section-title">Work Process</h3>
+            <p class="about-section-desc">
+              A structured, collaborative 3-step framework designed for precision, clarity, and rapid execution.
+            </p>
+          </div>
+          <div class="process-timeline-grid">
+            <div class="process-step-card scroll-reveal">
+              <span class="process-step-number">01</span>
+              <h4 class="process-step-title">Diagnostic & Discovery</h4>
+              <p class="process-step-desc">
+                We analyze your historical financials, unit economics, revenue streams, and cost drivers to uncover hidden bottlenecks and opportunities.
+              </p>
+            </div>
+            <div class="process-step-card scroll-reveal">
+              <span class="process-step-number">02</span>
+              <h4 class="process-step-title">Financial Modeling & Strategy</h4>
+              <p class="process-step-desc">
+                We architect customized 3-statement models, rolling forecasts, cash flow runway projections, and dynamic scenario plans.
+              </p>
+            </div>
+            <div class="process-step-card scroll-reveal">
+              <span class="process-step-number">03</span>
+              <h4 class="process-step-title">Implementation & KPI Dashboards</h4>
+              <p class="process-step-desc">
+                We integrate live reporting dashboards, define critical SaaS/business KPIs, and align budget allocations with leadership milestones.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-vision-mission" class="about-section-block rise" style="animation-delay: 350ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Guiding Principles</span>
+            <h3 class="about-section-title">Vision and Mission</h3>
+            <p class="about-section-desc">
+              Our anchor purpose and the future we are building for businesses worldwide.
+            </p>
+          </div>
+          <div class="vision-mission-grid">
+            <div class="vm-card scroll-reveal">
+              <div class="vm-badge">Our Mission</div>
+              <h4 class="vm-title">Democratizing Tier-1 Financial Strategy</h4>
+              <p class="vm-desc">
+                To empower high-growth startups and established enterprises with high-caliber financial leadership, data-driven foresight, and precision modeling—turning complex numbers into clear catalysts for profitability and sustained valuation growth.
+              </p>
+            </div>
+            <div class="vm-card highlight scroll-reveal">
+              <div class="vm-badge">Our Vision</div>
+              <h4 class="vm-title">The Global Standard for Modern Finance</h4>
+              <p class="vm-desc">
+                To be the most trusted strategic financial partner for modern businesses globally, recognized for marrying deep accounting heritage with bleeding-edge analytical technology to create resilient, high-value enterprises.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-faq" class="about-section-block rise" style="animation-delay: 400ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Frequently Asked Questions</span>
+            <h3 class="about-section-title">FAQ</h3>
+            <p class="about-section-desc">
+              Common questions about partnering with FyncIt for strategic financial management.
+            </p>
+          </div>
+          <div class="faq-container">
+            <div class="faq-item active scroll-reveal">
+              <button type="button" class="faq-question-btn" aria-expanded="true">
+                <span>What is the difference between an accountant and a Fractional CFO?</span>
+                <span class="faq-icon-toggle">+</span>
+              </button>
+              <div class="faq-answer-content">
+                <p class="faq-answer-text">
+                  While accountants and bookkeepers focus on recording historical data and compliance, a Fractional CFO is forward-looking. We design growth strategies, forecast cash flow runway, model scenario outcomes, prepare investor decks, and guide strategic capital allocation.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item scroll-reveal">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span>How does FyncIt leverage the heritage of P. Bhatia & Associates?</span>
+                <span class="faq-icon-toggle">+</span>
+              </button>
+              <div class="faq-answer-content">
+                <p class="faq-answer-text">
+                  Our parent firm P. Bhatia & Associates brings over 25 years of mastery in taxation, statutory compliance, audit, and commercial consulting. FyncIt infuses this bedrock of reliability with modern FP&A, tech-enabled financial modeling, and proactive fractional leadership.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item scroll-reveal">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span>What stages of companies do you typically work with?</span>
+                <span class="faq-icon-toggle">+</span>
+              </button>
+              <div class="faq-answer-content">
+                <p class="faq-answer-text">
+                  We partner with early-stage founders seeking seed/Series A modeling, venture-backed scaleups needing ongoing FP&A and unit economics optimization, as well as mature SMBs looking to improve operating margins and plan strategic exits.
+                </p>
+              </div>
+            </div>
+
+            <div class="faq-item scroll-reveal">
+              <button type="button" class="faq-question-btn" aria-expanded="false">
+                <span>How quickly can we get started and see results?</span>
+                <span class="faq-icon-toggle">+</span>
+              </button>
+              <div class="faq-answer-content">
+                <p class="faq-answer-text">
+                  Our onboarding and diagnostic audit typically takes 5 to 7 business days. Within the first two weeks, you receive an initial diagnostic scorecard, foundational financial model, and clear roadmap of high-impact strategic recommendations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        
+        <section id="about-testimonials" class="about-section-block rise" style="animation-delay: 450ms;">
+          <div class="about-section-header">
+            <span class="about-section-tag">Client Voices</span>
+            <h3 class="about-section-title">Testimonials</h3>
+            <p class="about-section-desc">
+              Here is what founders, CEOs, and business leaders say about working with FyncIt.
+            </p>
+          </div>
+          <div class="testimonials-grid">
+            <div class="testimonial-card scroll-reveal">
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">
+                  "FyncIt completely transformed how we view our cash flow. Their dynamic forecasting model helped us extend our runway by 8 months and gave our board immense confidence."
+                </p>
+              </div>
+              <div class="testimonial-author-box">
+                <div class="author-avatar-monogram">RS</div>
+                <div class="author-info-meta">
+                  <span class="author-name">Rohan Sharma</span>
+                  <span class="author-org">CEO, NexaTech Solutions</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">
+                  "Having Fractional CFO expertise from FyncIt backed by the 25-year institutional wisdom of P. Bhatia & Associates gives us the exact high-level strategy we needed without hiring full-time."
+                </p>
+              </div>
+              <div class="testimonial-author-box">
+                <div class="author-avatar-monogram">PK</div>
+                <div class="author-info-meta">
+                  <span class="author-name">Priya Kapoor</span>
+                  <span class="author-org">Co-Founder, Omnify Retail</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="testimonial-card scroll-reveal">
+              <div>
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-quote">
+                  "Their unit economics analysis and financial modeling directly enabled us to secure our latest funding round. Their rigor and speed of execution are second to none."
+                </p>
+              </div>
+              <div class="testimonial-author-box">
+                <div class="author-avatar-monogram">AM</div>
+                <div class="author-info-meta">
+                  <span class="author-name">Arun Mehta</span>
+                  <span class="author-org">Managing Director, Horizon Logistics</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="section-continue-banner">
+      <button type="button" class="btn-continue-next" onclick="window.goToPanel(2)">
+        <span>Explore Our Services</span>
+        <span style="font-size: 16px;">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+      <!-- PANEL 2: OUR SERVICES -->
+      <section class="horizontal-panel" id="panel-services" data-panel="2">
+        <div class="panel-scrollable" id="scroll-services">
+          <div class="inner-page-content">
+      
+      
+
+      
+      <div class="page-header-block rise" style="animation-delay: 100ms;">
+        <h2 class="page-heading">Executive Finance & Planning</h2>
+        <p class="page-subheading">
+          Financial clarity and strategic insight to help businesses perform and grow.
+        </p>
+      </div>
+
+      
+      <div class="services-stack">
+        
+        
+        <article class="service-card scroll-reveal" id="service-fpa">
+          <div class="service-card-top">
+            <div>
+              <h3 class="service-title">Financial Planning & Analysis (FP&A)</h3>
+              <p class="service-tagline">
+                Institutional-grade 3-statement models, rolling forecasts, sensitivity matrices, and operational budget architectures.
+              </p>
+            </div>
+            <div class="service-meta-pill">
+              <span style="color: var(--violet);">●</span> Dynamic Modeling & Forecasting
+            </div>
+          </div>
+
+          <div class="service-body-grid">
+            <div class="service-deliverables-col">
+              <h4>What We Deliver</h4>
+              <ul class="service-list">
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>3-Statement Financial Models:</strong> Fully dynamic Income Statement, Balance Sheet, and Cash Flow interconnected models.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Scenario & Sensitivity Analysis:</strong> Best-case, base-case, and downside stress-testing for revenue and hiring plans.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Budget vs. Actual (BvA) Cadence:</strong> Monthly variance analysis by department to pinpoint overspending and opportunities.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>SaaS & Unit Economics Metrics:</strong> CAC, LTV, Magic Number, Net Revenue Retention (NRR), and Payback Periods.</span>
+                </li>
+              </ul>
+              <div class="service-action-row" style="margin-top: 24px;">
+                <button type="button" class="btn-service-inquire" data-service="Financial Planning & Analysis">
+                  <span>Inquire for FP&A</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        
+        <article class="service-card scroll-reveal" id="service-fractional-cfo">
+          <div class="service-card-top">
+            <div>
+              <h3 class="service-title">Fractional CFO</h3>
+              <p class="service-tagline">
+                Executive-level financial stewardship and strategic roadmap direction without the commitment of a full-time executive salary.
+              </p>
+            </div>
+            <div class="service-meta-pill">
+              <span style="color: var(--violet);">●</span> Executive Advisory Retainer
+            </div>
+          </div>
+
+          <div class="service-body-grid">
+            <div class="service-deliverables-col">
+              <h4>What We Deliver</h4>
+              <ul class="service-list">
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Fundraising & Investor Readiness:</strong> Data room construction, cap table modeling, deck financial slides, and board deck preparation.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Runway & Cash Optimization:</strong> Dynamic 13-week cash flow forecasting and burn rate governance.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Strategic Capital Allocation:</strong> M&A advisory, debt vs. equity structuring, and unit economics validation.</span>
+                </li>
+                <li class="service-list-item">
+                  <span class="check-icon">✓</span>
+                  <span><strong>Executive & Board Meetings:</strong> Regular partner-level attendance in leadership meetings and board discussions.</span>
+                </li>
+              </ul>
+              <div class="service-action-row" style="margin-top: 24px;">
+                <button type="button" class="btn-service-inquire" data-service="Fractional CFO">
+                  <span>Inquire for Fractional CFO</span>
+                  <span>→</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <div class="section-continue-banner">
+      <button type="button" class="btn-continue-next" onclick="window.goToPanel(3)">
+        <span>Start a Project / Get in Touch</span>
+        <span style="font-size: 16px;">→</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+      <!-- PANEL 3: GET IN TOUCH / CONTACT -->
+      <section class="horizontal-panel" id="panel-contact" data-panel="3">
+        <div class="panel-scrollable" id="scroll-contact">
+          <div class="inner-page-content">
+      
+      
+
+      
+      <div class="page-header-block rise" style="animation-delay: 100ms;">
+        <h2 class="page-heading">Start a Conversation</h2>
+        <p class="page-subheading">
+          Tell us about your business, current financial stack, and requirements. We'll assemble the right scope and team for you.
+        </p>
+      </div>
+
+      
+      <div class="form-container-card rise" style="animation-delay: 200ms;">
+        
+        
+        <form id="financial-inquiry-form" novalidate>
+          
+          
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>Which services do you need?<span class="req">*</span></span>
+            </div>
+            <p class="form-section-subtitle">Select all services applicable to your current roadmap.</p>
+            
+            <div class="chip-grid">
+              <label class="chip-option">
+                <input type="checkbox" name="services" value="Fractional CFO" id="chk-cfo" checked>
+                <span class="chip-label">
+                  <span>Fractional CFO</span>
+                </span>
+              </label>
+
+              <label class="chip-option">
+                <input type="checkbox" name="services" value="Financial Planning & Analysis" id="chk-fpa">
+                <span class="chip-label">
+                  <span>Financial Planning & Analysis (FP&A)</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>Contact & Company Details</span>
+            </div>
+            <p class="form-section-subtitle">Who should we contact regarding this engagement?</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-fullname">Full Name <span class="req">*</span></label>
+                <input type="text" id="input-fullname" class="form-control" placeholder="e.g. Sarah Jenkins" required>
+              </div>
+
+              <div class="form-group">
+                <label for="input-email">Work Email <span class="req">*</span></label>
+                <input type="email" id="input-email" class="form-control" placeholder="sarah@company.com" required>
+              </div>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="input-company">Company Name <span class="req">*</span></label>
+                <input type="text" id="input-company" class="form-control" placeholder="e.g. Acme Technologies" required>
+              </div>
+
+              <div class="form-group">
+                <label for="input-website">Website or LinkedIn URL</label>
+                <input type="url" id="input-website" class="form-control" placeholder="https://acme.io">
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>Scale & Financial Profile</span>
+            </div>
+            <p class="form-section-subtitle">Helps us gauge the model complexity and data volume.</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="select-stage">Current Company Stage <span class="req">*</span></label>
+                <select id="select-stage" class="form-control" required>
+                  <option value="" disabled selected>Select company stage</option>
+                  <option value="Pre-Seed / Seed ($500k-$2M raised)">Pre-Seed / Seed Stage</option>
+                  <option value="Series A ($2M-$10M raised)">Series A</option>
+                  <option value="Series B+ ($10M+ raised)">Series B or Later</option>
+                  <option value="Bootstrapped / Profitable">Bootstrapped & Profitable</option>
+                  <option value="Established Mid-Market / Enterprise">Established Mid-Market</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="select-revenue">Annual Revenue / ARR <span class="req">*</span></label>
+                <select id="select-revenue" class="form-control" required>
+                  <option value="" disabled selected>Select ARR range</option>
+                  <option value="Pre-revenue / Under $500K">Under $500K</option>
+                  <option value="$500K – $2M">$500K – $2M</option>
+                  <option value="$2M – $10M">$2M – $10M</option>
+                  <option value="$10M – $50M">$10M – $50M</option>
+                  <option value="$50M+">$50M+</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="form-section">
+            <div class="form-section-title">
+              <span>Engagement Scope & Timeline</span>
+            </div>
+            <p class="form-section-subtitle">Tell us what you want to accomplish and when you want to start.</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="select-timeline">Target Start Date</label>
+                <select id="select-timeline" class="form-control">
+                  <option value="Immediately (Within 1-2 weeks)">Immediately (Within 1-2 weeks)</option>
+                  <option value="Next month">Next month</option>
+                  <option value="Next quarter">Next quarter</option>
+                  <option value="Exploratory discussion">Exploratory / Comparing options</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="select-engagement">Preferred Engagement Model</label>
+                <select id="select-engagement" class="form-control">
+                  <option value="Monthly Retainer (Fractional)">Monthly Retainer (Fractional)</option>
+                  <option value="Project-Based (Model Build / Audit)">Project-Based (Model Build / Audit)</option>
+                  <option value="Full-Time Advisory Sprint">Full-Time Advisory Sprint</option>
+                  <option value="Flexible / Needs Recommendation">Flexible / Needs Recommendation</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="input-notes">Primary Financial Challenges / Project Objectives</label>
+              <textarea id="input-notes" class="form-control" placeholder="Describe your current financial situation, key milestones (e.g. upcoming Series A in Q3, need 3-statement model and runway forecasting), and any specific pain points..."></textarea>
+              <span class="form-help-hint">Include any deadlines or specific board meeting targets if applicable.</span>
+            </div>
+          </div>
+
+          
+          <div id="form-error-msg" style="display: none; background: #D9E1EC; border: 1px solid #4169E1; color: #0B1628; padding: 12px 16px; border-radius: 12px; font-size: 13.5px; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
+            Please complete the required fields (Full Name, Work Email, Company Name, Stage, and at least one service).
+          </div>
+
+          
+          <button type="submit" class="btn-submit-form" id="btn-submit-inquiry">
+            <span>Submit Financial Services Inquiry</span>
+            <span style="font-size: 18px;">→</span>
+          </button>
+        </form>
+
+        
+        <div id="form-success-receipt" class="success-receipt-card">
+          <div class="success-icon-badge">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 6L9 17l-5-5"/>
+            </svg>
+          </div>
+
+          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 8px;">
+            Inquiry Successfully Received
+          </h3>
+          <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto 20px;">
+            Thank you, <strong id="receipt-user-name" style="color: var(--ink);">there</strong>. One of our Senior Financial Partners will review your company profile and respond within 24 business hours.
+          </p>
+
+          <div class="receipt-summary-box">
+            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px;">
+              Engagement Request Summary
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Reference ID:</span>
+              <span class="receipt-val" id="receipt-ref-id">#FYN-84920</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Company:</span>
+              <span class="receipt-val" id="receipt-company-name">Acme Corp</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Requested Services:</span>
+              <span class="receipt-val" id="receipt-services-list">Fractional CFO</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Company Stage:</span>
+              <span class="receipt-val" id="receipt-stage-val">Series A</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Target Timeline:</span>
+              <span class="receipt-val" id="receipt-timeline-val">Immediately</span>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
+            <a href="#home" class="btn-primary" style="display: inline-flex;">
+              <span>Return to Home</span>
+            </a>
+            <button type="button" id="btn-reset-form" class="back-btn">
+              <span>Submit Another Request</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. High-Performance Ambient Video Handling
+      const video = document.getElementById("bg-video");
+      if (video) {
+        video.muted = true;
+        video.defaultMuted = true;
+        const playVideo = () => { video.play().catch(() => {}); };
+        video.addEventListener('canplay', playVideo, { once: true });
+        window.addEventListener('load', playVideo, { once: true });
+        playVideo();
+      }
+
+      // 2. Horizontal Slider Core Engine
+      const track = document.getElementById('horizontal-track');
+      const totalPanels = 4;
+      let currentPanel = 0;
+      let isTransitioning = false;
+      const panelHashes = ['#home', '#about', '#services', '#contact'];
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      window.goToPanel = function(index, smooth = true) {
+        if (index < 0) index = 0;
+        if (index >= totalPanels) index = totalPanels - 1;
+        if (index === currentPanel && isTransitioning) return;
+
+        isTransitioning = true;
+        currentPanel = index;
+
+        // Apply hardware-accelerated horizontal translation
+        track.style.transition = smooth ? 'transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+        track.style.transform = `translate3d(-${currentPanel * 100}vw, 0, 0)`;
+
+        // Update URL hash without jump
+        if (panelHashes[currentPanel]) {
+          history.replaceState(null, '', panelHashes[currentPanel]);
+        }
+
+        // Update Nav links
+        navLinks.forEach(link => {
+          const target = parseInt(link.getAttribute('data-target'), 10);
+          if (target === currentPanel) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+
+        // Reset scroll position of target panel to top
+        const scrollContainers = [
+          document.getElementById('scroll-home'),
+          document.getElementById('scroll-about'),
+          document.getElementById('scroll-services'),
+          document.getElementById('scroll-contact')
+        ];
+        const targetContainer = scrollContainers[currentPanel];
+        if (targetContainer && targetContainer.scrollTop > 0) {
+          targetContainer.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        // Trigger in-view animations for newly active panel
+        setTimeout(() => {
+          isTransitioning = false;
+          triggerPanelReveals(currentPanel);
+        }, 750);
+      };
+
+      // 3. Wheel & Scroll Detection on Section Boundaries
+      let wheelCooldown = false;
+
+      function handleWheelEvent(e) {
+        if (isTransitioning || wheelCooldown) return;
+
+        const scrollContainers = [
+          document.getElementById('scroll-home'),
+          document.getElementById('scroll-about'),
+          document.getElementById('scroll-services'),
+          document.getElementById('scroll-contact')
+        ];
+        const container = scrollContainers[currentPanel];
+        if (!container) return;
+
+        const isAtTop = container.scrollTop <= 2;
+        const isAtBottom = (container.scrollTop + container.clientHeight) >= (container.scrollHeight - 4);
+
+        // Delta threshold to ignore minor trackpad inertia
+        const delta = e.deltaY;
+        if (Math.abs(delta) < 18) return;
+
+        if (delta > 0 && isAtBottom && currentPanel < totalPanels - 1) {
+          // Scrolling down at the end of section -> transition horizontally to next panel
+          e.preventDefault();
+          wheelCooldown = true;
+          window.goToPanel(currentPanel + 1);
+          setTimeout(() => { wheelCooldown = false; }, 850);
+        } else if (delta < 0 && isAtTop && currentPanel > 0) {
+          // Scrolling up at the top of section -> transition horizontally to prev panel
+          e.preventDefault();
+          wheelCooldown = true;
+          window.goToPanel(currentPanel - 1);
+          setTimeout(() => { wheelCooldown = false; }, 850);
+        }
+      }
+
+      window.addEventListener('wheel', handleWheelEvent, { passive: false });
+
+      // 4. Touch Swipe Gestures for Mobile & Trackpad
+      let touchStartX = 0;
+      let touchStartY = 0;
+      let touchStartTime = 0;
+
+      window.addEventListener('touchstart', (e) => {
+        if (e.touches.length === 1) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+          touchStartTime = Date.now();
+        }
+      }, { passive: true });
+
+      window.addEventListener('touchend', (e) => {
+        if (isTransitioning || e.changedTouches.length === 0) return;
+        const touchEndX = e.changedTouches[0].clientX;
+        const touchEndY = e.changedTouches[0].clientY;
+        const diffX = touchStartX - touchEndX;
+        const diffY = touchStartY - touchEndY;
+        const timeDiff = Date.now() - touchStartTime;
+
+        // Horizontal swipe gesture detection (Fast swipe left/right)
+        if (timeDiff < 400 && Math.abs(diffX) > 60 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+          if (diffX > 0 && currentPanel < totalPanels - 1) {
+            window.goToPanel(currentPanel + 1);
+          } else if (diffX < 0 && currentPanel > 0) {
+            window.goToPanel(currentPanel - 1);
+          }
+        }
+      }, { passive: true });
+
+      // 5. Keyboard Navigation (Arrow Keys & Page Up/Down)
+      window.addEventListener('keydown', (e) => {
+        if (['input', 'textarea', 'select'].includes(document.activeElement.tagName.toLowerCase())) {
+          return;
+        }
+        if (e.key === 'ArrowRight') {
+          if (currentPanel < totalPanels - 1) window.goToPanel(currentPanel + 1);
+        } else if (e.key === 'ArrowLeft') {
+          if (currentPanel > 0) window.goToPanel(currentPanel - 1);
+        }
+      });
+
+      // 6. Scroll Reveal Observer for inside panels
+      function triggerPanelReveals(panelIdx) {
+        const panels = [
+          document.getElementById('panel-home'),
+          document.getElementById('panel-about'),
+          document.getElementById('panel-services'),
+          document.getElementById('panel-contact')
+        ];
+        const panel = panels[panelIdx];
+        if (!panel) return;
+
+        const reveals = panel.querySelectorAll('.scroll-reveal');
+        reveals.forEach((el, i) => {
+          setTimeout(() => {
+            el.classList.add('in-view');
+          }, Math.min(i * 45, 220));
+        });
+      }
+
+      // Initial Reveal on load
+      triggerPanelReveals(0);
+
+      // 7. Home Action Buttons
+      const btnSeeOurWork = document.getElementById('btn-see-our-work');
+      if (btnSeeOurWork) {
+        btnSeeOurWork.addEventListener('click', () => {
+          window.goToPanel(2); // Services
+        });
+      }
+
+      const btnGetInTouch = document.getElementById('btn-get-in-touch');
+      if (btnGetInTouch) {
+        btnGetInTouch.addEventListener('click', () => {
+          window.goToPanel(3); // Contact
+        });
+      }
+
+      const heroScrollCue = document.getElementById('hero-scroll-cue');
+      if (heroScrollCue) {
+        heroScrollCue.addEventListener('click', (e) => {
+          e.preventDefault();
+          window.goToPanel(1); // About Us
+        });
+      }
+
+      // 8. Direct Service Inquiry Buttons (in Services Section)
+      document.querySelectorAll('.btn-service-inquire').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const serviceName = btn.getAttribute('data-service');
+          window.goToPanel(3); // Contact
+
+          setTimeout(() => {
+            if (serviceName && serviceName.includes('CFO')) {
+              const el = document.getElementById('chk-cfo');
+              if (el) el.checked = true;
+            } else if (serviceName && (serviceName.includes('FP&A') || serviceName.includes('Planning'))) {
+              const el = document.getElementById('chk-fpa');
+              if (el) el.checked = true;
+            }
+          }, 80);
+        });
+      });
+
+      // 9. Inquiry Form Handler
+      const inquiryForm = document.getElementById('financial-inquiry-form');
+      const formSuccessReceipt = document.getElementById('form-success-receipt');
+      const formErrorMsg = document.getElementById('form-error-msg');
+
+      if (inquiryForm) {
+        inquiryForm.addEventListener('submit', (e) => {
+          e.preventDefault();
+
+          const name = document.getElementById('input-fullname').value.trim();
+          const email = document.getElementById('input-email').value.trim();
+          const company = document.getElementById('input-company').value.trim();
+          const stage = document.getElementById('select-stage').value;
+          const revenue = document.getElementById('select-revenue').value;
+          const timeline = document.getElementById('select-timeline').value;
+
+          const checkedServices = [];
+          document.querySelectorAll('input[name="services"]:checked').forEach(c => {
+            checkedServices.push(c.value);
+          });
+
+          if (!name || !email || !company || !stage || !revenue || checkedServices.length === 0) {
+            formErrorMsg.style.display = 'block';
+            formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return;
+          }
+
+          formErrorMsg.style.display = 'none';
+          const refCode = '#FYN-' + Math.floor(10000 + Math.random() * 90000);
+
+          document.getElementById('receipt-user-name').textContent = name;
+          document.getElementById('receipt-company-name').textContent = company;
+          document.getElementById('receipt-services-list').textContent = checkedServices.join(', ');
+          document.getElementById('receipt-stage-val').textContent = stage;
+          document.getElementById('receipt-timeline-val').textContent = timeline;
+          document.getElementById('receipt-ref-id').textContent = refCode;
+
+          inquiryForm.style.display = 'none';
+          formSuccessReceipt.style.display = 'block';
+          formSuccessReceipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      const btnResetForm = document.getElementById('btn-reset-form');
+      if (btnResetForm) {
+        btnResetForm.addEventListener('click', () => {
+          inquiryForm.reset();
+          inquiryForm.style.display = 'block';
+          formSuccessReceipt.style.display = 'none';
+        });
+      }
+
+      // 10. FAQ Accordion Interaction
+      const faqItems = document.querySelectorAll('.faq-item');
+      faqItems.forEach(item => {
+        const btn = item.querySelector('.faq-question-btn');
+        if (btn) {
+          btn.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(otherItem => {
+              otherItem.classList.remove('active');
+              const otherBtn = otherItem.querySelector('.faq-question-btn');
+              if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+            });
+
+            if (!isActive) {
+              item.classList.add('active');
+              btn.setAttribute('aria-expanded', 'true');
+            }
+          });
+        }
+      });
+
+      // 11. Initial Hash Route Support
+      const initialHash = window.location.hash;
+      if (initialHash === '#about' || initialHash === '#about-us') {
+        window.goToPanel(1, false);
+      } else if (initialHash === '#services' || initialHash === '#work') {
+        window.goToPanel(2, false);
+      } else if (initialHash === '#contact' || initialHash === '#touch') {
+        window.goToPanel(3, false);
+      } else {
+        window.goToPanel(0, false);
+      }
+    });
+  </script>
+
+
+</body>
+</html>
