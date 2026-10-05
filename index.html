@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FyncIt</title>
+  <link rel="icon" type="image/png" href="/Fynclt-logo.png">
   
   <!-- Google Fonts: Plus Jakarta Sans, Inter, IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,7 +23,7 @@
 
     .horizontal-track {
       display: flex;
-      width: 400vw;
+      width: 1000vw;
       height: 100%;
       transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
@@ -45,7 +46,9 @@
       overflow-x: hidden;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
-      padding: 40px clamp(20px, 4vw, 48px) 80px;
+      padding: 24px clamp(20px, 4vw, 48px);
+      display: flex;
+      flex-direction: column;
     }
 
     /* Custom Sleek Scrollbars */
@@ -108,7 +111,7 @@
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(11, 22, 40, 0.08);
-      padding: 14px clamp(20px, 4vw, 60px);
+      padding: 10px clamp(20px, 4vw, 60px);
       transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
     }
 
@@ -314,11 +317,12 @@
     .inner-page-content {
       width: 100%;
       max-width: 1200px;
-      margin: 0 auto;
-      padding: 50px clamp(20px, 4vw, 48px) 70px;
+      margin: auto;
+      padding: 16px clamp(20px, 4vw, 48px) 20px;
       flex: 1;
       display: flex;
       flex-direction: column;
+      justify-content: center;
     }
 
 
@@ -344,23 +348,22 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-weight: 800;
-      font-size: 19px;
-      color: var(--ink);
       text-decoration: none;
+      cursor: pointer;
     }
 
-    .nav-left-brand .badge-tag {
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      background: rgba(65,105,225,0.12);
-      color: var(--violet);
-      padding: 3px 8px;
-      border-radius: 999px;
-      font-weight: 500;
+    .nav-logo-img {
+      height: clamp(38px, 4.5vw, 48px);
+      width: auto;
+      max-height: 50px;
+      object-fit: contain;
+      display: block;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .nav-left-brand:hover .nav-logo-img {
+      transform: scale(1.03);
+      opacity: 0.92;
     }
 
     .nav-center {
@@ -613,43 +616,26 @@
        ============================================================ */
     .page-header-block {
       text-align: center;
-      margin: 48px auto 44px;
+      margin: 0 auto 36px;
       max-width: 780px;
-    }
-
-    .page-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--violet);
-      background: rgba(65, 105, 225, 0.08);
-      border: 1px solid rgba(65, 105, 225, 0.2);
-      padding: 6px 16px;
-      border-radius: 999px;
-      margin-bottom: 18px;
     }
 
     .page-heading {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      font-size: clamp(34px, 4.5vw, 56px);
-      line-height: 1.05;
+      font-size: clamp(30px, 3.8vw, 48px);
+      line-height: 1.08;
       letter-spacing: -0.035em;
       color: var(--ink);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .page-subheading {
       font-family: 'Inter', sans-serif;
       font-weight: 400;
-      font-size: clamp(15px, 1.6vw, 18px);
+      font-size: clamp(14px, 1.4vw, 16px);
       color: var(--muted);
-      line-height: 1.6;
+      line-height: 1.55;
       max-width: 820px;
       margin: 0 auto;
     }
@@ -658,15 +644,15 @@
     .services-stack {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 28px;
-      margin-bottom: 50px;
+      gap: 24px;
+      margin-bottom: 0;
       align-items: stretch;
     }
 
     @media (min-width: 860px) {
       .services-stack {
         grid-template-columns: repeat(2, 1fr);
-        gap: 28px;
+        gap: 24px;
       }
     }
 
@@ -674,7 +660,7 @@
       background: rgba(247, 246, 243, 0.96);
       border: 1px solid rgba(11, 22, 40, 0.08);
       border-radius: 20px;
-      padding: clamp(24px, 3.2vw, 36px);
+      padding: clamp(18px, 2.2vw, 26px);
       box-shadow: 0 8px 32px rgba(11, 22, 40, 0.04);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
       position: relative;
@@ -697,10 +683,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 8px;
+      margin-bottom: 12px;
       border-bottom: 1px solid rgba(11,22,40,0.06);
-      padding-bottom: 18px;
+      padding-bottom: 12px;
     }
 
     .service-num-badge {
@@ -718,7 +704,7 @@
     .service-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
       font-weight: 700;
-      font-size: clamp(22px, 2.2vw, 28px);
+      font-size: clamp(20px, 1.8vw, 25px);
       letter-spacing: -0.025em;
       color: var(--ink);
       line-height: 1.2;
@@ -726,11 +712,11 @@
 
     .service-tagline {
       font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
+      font-size: 13.5px;
       color: var(--muted);
-      margin-top: 6px;
+      margin-top: 4px;
       max-width: 100%;
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .service-meta-pill {
@@ -916,7 +902,7 @@
        ============================================================ */
     .about-container {
       max-width: 1200px;
-      margin: 0 auto 60px;
+      margin: 0 auto;
       width: 100%;
     }
 
@@ -1189,7 +1175,7 @@
 
     /* Structured Section Headings & Layouts in About View */
     .about-section-block {
-      margin-bottom: 48px;
+      margin-bottom: 0;
       width: 100%;
     }
 
@@ -1234,7 +1220,7 @@
       background: rgba(247, 246, 243, 0.96);
       border: 1px solid rgba(11, 22, 40, 0.08);
       border-radius: 24px;
-      padding: clamp(28px, 4vw, 40px);
+      padding: clamp(18px, 2.4vw, 26px);
       box-shadow: 0 12px 48px rgba(11, 22, 40, 0.05);
       transform: translate3d(0, 0, 0);
     }
@@ -1243,14 +1229,14 @@
     .fyncit-redesign-grid {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 32px;
+      gap: 24px;
       align-items: start;
     }
 
     @media (min-width: 900px) {
       .fyncit-redesign-grid {
         grid-template-columns: 1.25fr 1fr;
-        gap: 40px;
+        gap: 28px;
       }
     }
 
@@ -1261,47 +1247,47 @@
 
     .fyncit-headline {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(17px, 1.4vw, 20px);
+      font-size: clamp(15px, 1.25vw, 17.5px);
       font-weight: 700;
       color: var(--ink);
-      line-height: 1.45;
+      line-height: 1.4;
       letter-spacing: -0.02em;
-      margin-bottom: 16px;
+      margin-bottom: 10px;
     }
 
     .fyncit-body {
       font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
+      font-size: 13.5px;
       color: #0B1628;
-      line-height: 1.7;
-      margin-bottom: 14px;
+      line-height: 1.55;
+      margin-bottom: 8px;
     }
 
     .fyncit-tenets-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 18px;
-      padding-top: 18px;
+      gap: 8px;
+      margin-top: 10px;
+      padding-top: 10px;
       border-top: 1px solid rgba(11, 22, 40, 0.07);
     }
 
     .fyncit-tenet-item {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 12.5px;
       color: #0B1628;
-      line-height: 1.55;
+      line-height: 1.45;
     }
 
     .fyncit-tenet-bullet {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--violet);
-      margin-top: 8px;
+      margin-top: 6px;
       flex-shrink: 0;
     }
 
@@ -1314,7 +1300,7 @@
     .fyncit-matrix-card {
       background: linear-gradient(165deg, #0B1628 0%, #0B1628 100%);
       border-radius: 20px;
-      padding: 26px 24px;
+      padding: 18px 20px;
       color: #F7F6F3;
       box-shadow: 0 16px 40px rgba(11, 22, 40, 0.16);
       border: 1px solid rgba(247, 246, 243, 0.08);
@@ -1323,21 +1309,21 @@
     }
 
     .fyncit-matrix-header {
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     .fyncit-matrix-tag {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 11px;
+      font-size: 10.5px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
       color: rgba(65, 105, 225, 0.9);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .fyncit-matrix-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 17px;
+      font-size: 15px;
       font-weight: 700;
       color: #F7F6F3;
       letter-spacing: -0.01em;
@@ -1346,16 +1332,16 @@
     .fyncit-matrix-rows {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 7px;
     }
 
     .fyncit-matrix-row {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      padding: 12px 14px;
+      gap: 10px;
+      padding: 8px 12px;
       background: rgba(247, 246, 243, 0.04);
-      border-radius: 12px;
+      border-radius: 10px;
       border: 1px solid rgba(247, 246, 243, 0.06);
       transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
     }
@@ -1368,7 +1354,7 @@
 
     .fyncit-row-index {
       font-family: 'IBM Plex Mono', monospace;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       color: #4169E1;
       padding-top: 1px;
@@ -1381,32 +1367,32 @@
 
     .fyncit-row-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 13.5px;
+      font-size: 12.5px;
       font-weight: 700;
       color: #F7F6F3;
       letter-spacing: -0.01em;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
     }
 
     .fyncit-row-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(217, 225, 236, 0.68);
-      line-height: 1.45;
+      line-height: 1.35;
     }
 
     .fyncit-matrix-footer {
-      margin-top: 18px;
-      padding-top: 14px;
+      margin-top: 12px;
+      padding-top: 10px;
       border-top: 1px solid rgba(247, 246, 243, 0.08);
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 2px;
     }
 
     .fyncit-footer-badge {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11.5px;
+      font-size: 10.5px;
       font-weight: 700;
       color: #4169E1;
       text-transform: uppercase;
@@ -1415,7 +1401,7 @@
 
     .fyncit-footer-text {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       color: rgba(247, 246, 243, 0.65);
     }
 
@@ -1958,6 +1944,72 @@
       box-shadow: 0 14px 34px rgba(11, 22, 40, 0.24);
     }
 
+    /* Direct Contact Details Strip */
+    .direct-contact-strip {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      background: rgba(65, 105, 225, 0.05);
+      border: 1px solid rgba(65, 105, 225, 0.14);
+      border-radius: 14px;
+      padding: 14px 20px;
+      margin-bottom: 28px;
+    }
+
+    .direct-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .direct-contact-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(65, 105, 225, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brand);
+      flex-shrink: 0;
+    }
+
+    .direct-contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .direct-contact-label {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      opacity: 0.8;
+    }
+
+    .direct-contact-val {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .direct-contact-link {
+      color: var(--brand);
+      text-decoration: none;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+
+    .direct-contact-link:hover {
+      text-decoration: underline;
+      color: var(--ink);
+    }
+
     /* Success Confirmation Screen */
     .success-receipt-card {
       display: none;
@@ -2472,18 +2524,18 @@
   <header id="global-header" class="global-header">
     <div class="nav-container">
       <div class="nav-left rise" style="animation-delay: 0ms;">
-        <a href="#home" class="nav-left-brand" onclick="window.goToPanel(0); return false;">
-          <span>FyncIt</span>
+        <a href="#home" class="nav-left-brand" onclick="window.goToPanel(0); return false;" aria-label="FyncIt Home">
+          <img src="/Fynclt-logo.png" alt="FyncIt" class="nav-logo-img" />
         </a>
       </div>
       <nav class="nav-center" aria-label="Main Navigation">
-        <a href="#home" class="nav-link active" data-target="0" onclick="window.goToPanel(0); return false;">Home</a>
+       
         <a href="#about" class="nav-link" data-target="1" onclick="window.goToPanel(1); return false;">About Us</a>
-        <a href="#services" class="nav-link" data-target="2" onclick="window.goToPanel(2); return false;">Our Services</a>
-        <a href="#contact" class="nav-link" data-target="3" onclick="window.goToPanel(3); return false;">Get in Touch</a>
+        <a href="#services" class="nav-link" data-target="2" onclick="window.goToPanel(8); return false;">Our Services</a>
+        <a href="#contact" class="nav-link" data-target="3" onclick="window.goToPanel(9); return false;">Get in Touch</a>
       </nav>
       <div class="nav-right rise" style="animation-delay: 220ms;">
-        <a href="#contact" class="nav-cta" onclick="window.goToPanel(3); return false;">
+        <a href="#contact" class="nav-cta" onclick="window.goToPanel(9); return false;">
           <span>Start a project</span>
           <span style="font-size: 14px;">→</span>
         </a>
@@ -2538,415 +2590,429 @@
       <span>Fractional CFO</span>
     </footer>
   </div>
-</section>
-
-      <!-- PANEL 1: ABOUT US -->
-      <section class="horizontal-panel" id="panel-about" data-panel="1">
-        <div class="panel-scrollable" id="scroll-about">
+</section>      <!-- PANEL 1: ABOUT US - CORPORATE PROFILE -->
+      <section class="horizontal-panel" id="panel-about-fyncit" data-panel="1">
+        <div class="panel-scrollable" id="scroll-about-1">
           <div class="inner-page-content">
-      
-      
-
-      
-      <div class="page-header-block rise" style="animation-delay: 100ms;">
-        <h2 class="page-heading">About Us</h2>
-        <p class="page-subheading">
-          Insight. Strategy. Financial confidence.
-        </p>
-      </div>
-
-      <div class="about-container">
-        
-        <section id="about-fyncit" class="about-section-block rise" style="animation-delay: 150ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Corporate Profile</span>
-            <h3 class="about-section-title">About FyncIt</h3>
-            <p class="about-section-desc">
-              Next-generation corporate finance, strategic FP&A, and Fractional CFO advisory for high-growth enterprises.
-            </p>
-          </div>
-          <div class="about-content-card">
-            <div class="fyncit-redesign-grid">
-              
-              <div class="fyncit-narrative-col">
-                <h4 class="fyncit-headline">
-                  Bridging the critical divide between raw financial data and decisive executive execution.
-                </h4>
-                <p class="fyncit-body">
-                  <strong>FyncIt</strong> is a specialized financial advisory firm delivering institutional-grade financial strategy, forward-looking forecasting, and fractional executive leadership to businesses navigating pivotal stages of scale, capital allocation, and transformation.
-                </p>
-                <p class="fyncit-body">
-                  Where traditional accounting focuses primarily on retroactive compliance, FyncIt equips leadership teams with forward-looking commercial foresight. We synthesize complex financial datasets into dynamic 3-statement models, scenario forecasts, and unit-economic benchmarks that drive tangible enterprise valuation.
-                </p>
-
-                
-                <div class="fyncit-tenets-list">
-                  <div class="fyncit-tenet-item">
-                    <div class="fyncit-tenet-bullet"></div>
-                    <div class="fyncit-tenet-content">
-                      <strong>Forward-Looking FP&A:</strong> Dynamic multi-scenario forecasting & 13-week liquidity governance.
-                    </div>
-                  </div>
-                  <div class="fyncit-tenet-item">
-                    <div class="fyncit-tenet-bullet"></div>
-                    <div class="fyncit-tenet-content">
-                      <strong>Fractional Executive Stewardship:</strong> Boardroom-level CFO leadership without full-time executive payroll overhead.
-                    </div>
-                  </div>
-                  <div class="fyncit-tenet-item">
-                    <div class="fyncit-tenet-bullet"></div>
-                    <div class="fyncit-tenet-content">
-                      <strong>Institutional Investment Readiness:</strong> Audit-grade data rooms and financial narratives for fundraising.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              
-              <div class="fyncit-matrix-card scroll-reveal">
-                <div class="fyncit-matrix-header">
-                  <div class="fyncit-matrix-tag">Advisory Scope</div>
-                  <h5 class="fyncit-matrix-title">Strategic Value Drivers</h5>
-                </div>
-
-                <div class="fyncit-matrix-rows">
-                  <div class="fyncit-matrix-row">
-                    <div class="fyncit-row-index">01</div>
-                    <div class="fyncit-row-info">
-                      <div class="fyncit-row-title">Fractional CFO Leadership</div>
-                      <div class="fyncit-row-desc">Executive financial governance, treasury oversight & board advisory</div>
-                    </div>
-                  </div>
-
-                  <div class="fyncit-matrix-row">
-                    <div class="fyncit-row-index">02</div>
-                    <div class="fyncit-row-info">
-                      <div class="fyncit-row-title">Strategic FP&A & Forecasting</div>
-                      <div class="fyncit-row-desc">Rolling budgets, 3-statement modeling & runway forecasting</div>
-                    </div>
-                  </div>
-
-                  <div class="fyncit-matrix-row">
-                    <div class="fyncit-row-index">03</div>
-                    <div class="fyncit-row-info">
-                      <div class="fyncit-row-title">Unit Economics & Margins</div>
-                      <div class="fyncit-row-desc">Cohort contribution, LTV/CAC diagnostics & pricing models</div>
-                    </div>
-                  </div>
-
-                  <div class="fyncit-matrix-row">
-                    <div class="fyncit-row-index">04</div>
-                    <div class="fyncit-row-info">
-                      <div class="fyncit-row-title">Capital & Investor Readiness</div>
-                      <div class="fyncit-row-desc">Due diligence data rooms, cap tables & investor presentations</div>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="fyncit-matrix-footer">
-                  <div class="fyncit-footer-badge">✦ Institutional Pedigree</div>
-                  <div class="fyncit-footer-text">Backed by 25+ years advisory heritage of P. Bhatia & Associates</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        
-        <section id="about-parent-company" class="about-section-block rise" style="animation-delay: 200ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Heritage & Legacy</span>
-            <h3 class="about-section-title">About Parent Company</h3>
-            <p class="about-section-desc">
-              Built on a foundation of trust, compliance excellence, and quarter-century advisory pedigree.
-            </p>
-          </div>
-          <div class="about-content-card">
-            <div class="about-parent-grid">
-              <div class="about-story-text">
-                <p>
-                  <strong>FyncIt is proud to be a company of P. Bhatia & Associates</strong>, carrying forward a legacy backed by <strong>25+ years of distinguished experience</strong> in audit, accounting, taxation, corporate finance, and strategic business consulting.
-                </p>
-                <p>
-                  By marrying the regulatory rigor, audit-readiness, and institutional wisdom of P. Bhatia & Associates with FyncIt’s modern analytical toolsets, automated financial models, and strategic forecasting frameworks, our clients receive an unmatched blend of dependable stability and forward-looking financial momentum.
-                </p>
-              </div>
-              <div class="parent-stats-box">
-                <div class="about-stat-item">
-                  <div class="about-stat-num">25<span>+</span></div>
-                  <div class="about-stat-label">Years of Industry Heritage & Advisory Pedigree</div>
-                </div>
-                <div class="about-stat-item">
-                  <div class="about-stat-num">500<span>+</span></div>
-                  <div class="about-stat-label">Businesses & Enterprises Advised Successfully</div>
-                </div>
-                <div class="about-stat-item">
-                  <div class="about-stat-num">100<span>%</span></div>
-                  <div class="about-stat-label">Commitment to Integrity, Precision & Compliance</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        
-        <section id="about-team" class="about-section-block rise" style="animation-delay: 250ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Leadership</span>
-            <h3 class="about-section-title">Executive Team</h3>
-            <p class="about-section-desc">
-              Meet the minds driving financial strategy, analytical rigor, and technology innovation.
-            </p>
-          </div>
-          <div class="about-team-grid">
-            
-            <div class="team-member-card" id="team-member-anurag">
-              <div class="team-photo-surface">
-                <div class="team-photo-placeholder">
-                  <div class="team-photo-monogram">AB</div>
-                </div>
-              </div>
-              <div class="team-gradient-overlay">
-                <div class="team-info-row">
-                  <span class="team-info-name">Anurag S Bhatia</span>
-                  <span class="team-info-sep">•</span>
-                  <span class="team-info-role">Founder & CEO</span>
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="team-member-card" id="team-member-deep">
-              <div class="team-photo-surface">
-                <div class="team-photo-placeholder">
-                  <div class="team-photo-monogram">DD</div>
-                </div>
-              </div>
-              <div class="team-gradient-overlay">
-                <div class="team-info-row">
-                  <span class="team-info-name">Deep Dalal</span>
-                  <span class="team-info-sep">•</span>
-                  <span class="team-info-role">Co-Founder & CTO</span>
-                </div>
-              </div>
-            </div>
-
-            
-            <div class="team-member-card" id="team-member-bhaumik">
-              <div class="team-photo-surface">
-                <div class="team-photo-placeholder">
-                  <div class="team-photo-monogram">BB</div>
-                </div>
-              </div>
-              <div class="team-gradient-overlay">
-                <div class="team-info-row">
-                  <span class="team-info-name">Bhaumik Bhatt</span>
-                  <span class="team-info-sep">•</span>
-                  <span class="team-info-role">COO</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        
-        <section id="about-process" class="about-section-block rise" style="animation-delay: 300ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Methodology</span>
-            <h3 class="about-section-title">Work Process</h3>
-            <p class="about-section-desc">
-              A structured, collaborative 3-step framework designed for precision, clarity, and rapid execution.
-            </p>
-          </div>
-          <div class="process-timeline-grid">
-            <div class="process-step-card scroll-reveal">
-              <span class="process-step-number">01</span>
-              <h4 class="process-step-title">Diagnostic & Discovery</h4>
-              <p class="process-step-desc">
-                We analyze your historical financials, unit economics, revenue streams, and cost drivers to uncover hidden bottlenecks and opportunities.
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">About Us</h2>
+              <p class="page-subheading">
+                Insight. Strategy. Financial confidence.
               </p>
             </div>
-            <div class="process-step-card scroll-reveal">
-              <span class="process-step-number">02</span>
-              <h4 class="process-step-title">Financial Modeling & Strategy</h4>
-              <p class="process-step-desc">
-                We architect customized 3-statement models, rolling forecasts, cash flow runway projections, and dynamic scenario plans.
-              </p>
-            </div>
-            <div class="process-step-card scroll-reveal">
-              <span class="process-step-number">03</span>
-              <h4 class="process-step-title">Implementation & KPI Dashboards</h4>
-              <p class="process-step-desc">
-                We integrate live reporting dashboards, define critical SaaS/business KPIs, and align budget allocations with leadership milestones.
-              </p>
-            </div>
-          </div>
-        </section>
 
-        
-        <section id="about-vision-mission" class="about-section-block rise" style="animation-delay: 350ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Guiding Principles</span>
-            <h3 class="about-section-title">Vision and Mission</h3>
-            <p class="about-section-desc">
-              Our anchor purpose and the future we are building for businesses worldwide.
-            </p>
-          </div>
-          <div class="vision-mission-grid">
-            <div class="vm-card scroll-reveal">
-              <div class="vm-badge">Our Mission</div>
-              <h4 class="vm-title">Democratizing Tier-1 Financial Strategy</h4>
-              <p class="vm-desc">
-                To empower high-growth startups and established enterprises with high-caliber financial leadership, data-driven foresight, and precision modeling—turning complex numbers into clear catalysts for profitability and sustained valuation growth.
-              </p>
-            </div>
-            <div class="vm-card highlight scroll-reveal">
-              <div class="vm-badge">Our Vision</div>
-              <h4 class="vm-title">The Global Standard for Modern Finance</h4>
-              <p class="vm-desc">
-                To be the most trusted strategic financial partner for modern businesses globally, recognized for marrying deep accounting heritage with bleeding-edge analytical technology to create resilient, high-value enterprises.
-              </p>
-            </div>
-          </div>
-        </section>
+            <div class="about-container">
+              <section id="about-fyncit" class="about-section-block rise" style="animation-delay: 150ms;">
+                <div class="about-content-card">
+                  <div class="fyncit-redesign-grid">
+                    <div class="fyncit-narrative-col">
+                      <h4 class="fyncit-headline">
+                        Bridging the critical divide between raw financial data and decisive executive execution.
+                      </h4>
+                      <p class="fyncit-body">
+                        <strong>FyncIt</strong> is a specialized financial advisory firm delivering institutional-grade financial strategy, forward-looking forecasting, and fractional executive leadership to businesses navigating pivotal stages of scale, capital allocation, and transformation.
+                      </p>
+                      <p class="fyncit-body">
+                        Where traditional accounting focuses primarily on retroactive compliance, FyncIt equips leadership teams with forward-looking commercial foresight. We synthesize complex financial datasets into dynamic 3-statement models, scenario forecasts, and unit-economic benchmarks that drive tangible enterprise valuation.
+                      </p>
 
-        
-        <section id="about-faq" class="about-section-block rise" style="animation-delay: 400ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Frequently Asked Questions</span>
-            <h3 class="about-section-title">FAQ</h3>
-            <p class="about-section-desc">
-              Common questions about partnering with FyncIt for strategic financial management.
-            </p>
-          </div>
-          <div class="faq-container">
-            <div class="faq-item active scroll-reveal">
-              <button type="button" class="faq-question-btn" aria-expanded="true">
-                <span>What is the difference between an accountant and a Fractional CFO?</span>
-                <span class="faq-icon-toggle">+</span>
-              </button>
-              <div class="faq-answer-content">
-                <p class="faq-answer-text">
-                  While accountants and bookkeepers focus on recording historical data and compliance, a Fractional CFO is forward-looking. We design growth strategies, forecast cash flow runway, model scenario outcomes, prepare investor decks, and guide strategic capital allocation.
-                </p>
-              </div>
-            </div>
+                      <div class="fyncit-tenets-list">
+                        <div class="fyncit-tenet-item">
+                          <div class="fyncit-tenet-bullet"></div>
+                          <div class="fyncit-tenet-content">
+                            <strong>Forward-Looking FP&A:</strong> Dynamic multi-scenario forecasting & 13-week liquidity governance.
+                          </div>
+                        </div>
+                        <div class="fyncit-tenet-item">
+                          <div class="fyncit-tenet-bullet"></div>
+                          <div class="fyncit-tenet-content">
+                            <strong>Fractional Executive Stewardship:</strong> Boardroom-level CFO leadership without full-time executive payroll overhead.
+                          </div>
+                        </div>
+                        <div class="fyncit-tenet-item">
+                          <div class="fyncit-tenet-bullet"></div>
+                          <div class="fyncit-tenet-content">
+                            <strong>Institutional Investment Readiness:</strong> Audit-grade data rooms and financial narratives for fundraising.
+                          </div>
+                        </div>
+                      </div>
+                    </div>
 
-            <div class="faq-item scroll-reveal">
-              <button type="button" class="faq-question-btn" aria-expanded="false">
-                <span>How does FyncIt leverage the heritage of P. Bhatia & Associates?</span>
-                <span class="faq-icon-toggle">+</span>
-              </button>
-              <div class="faq-answer-content">
-                <p class="faq-answer-text">
-                  Our parent firm P. Bhatia & Associates brings over 25 years of mastery in taxation, statutory compliance, audit, and commercial consulting. FyncIt infuses this bedrock of reliability with modern FP&A, tech-enabled financial modeling, and proactive fractional leadership.
-                </p>
-              </div>
-            </div>
+                    <div class="fyncit-matrix-card scroll-reveal">
+                      <div class="fyncit-matrix-header">
+                        <div class="fyncit-matrix-tag">Advisory Scope</div>
+                        <h5 class="fyncit-matrix-title">Strategic Value Drivers</h5>
+                      </div>
 
-            <div class="faq-item scroll-reveal">
-              <button type="button" class="faq-question-btn" aria-expanded="false">
-                <span>What stages of companies do you typically work with?</span>
-                <span class="faq-icon-toggle">+</span>
-              </button>
-              <div class="faq-answer-content">
-                <p class="faq-answer-text">
-                  We partner with early-stage founders seeking seed/Series A modeling, venture-backed scaleups needing ongoing FP&A and unit economics optimization, as well as mature SMBs looking to improve operating margins and plan strategic exits.
-                </p>
-              </div>
-            </div>
+                      <div class="fyncit-matrix-rows">
+                        <div class="fyncit-matrix-row">
+                          <div class="fyncit-row-index">01</div>
+                          <div class="fyncit-row-info">
+                            <div class="fyncit-row-title">Fractional CFO Leadership</div>
+                            <div class="fyncit-row-desc">Executive financial governance, treasury oversight & board advisory</div>
+                          </div>
+                        </div>
 
-            <div class="faq-item scroll-reveal">
-              <button type="button" class="faq-question-btn" aria-expanded="false">
-                <span>How quickly can we get started and see results?</span>
-                <span class="faq-icon-toggle">+</span>
-              </button>
-              <div class="faq-answer-content">
-                <p class="faq-answer-text">
-                  Our onboarding and diagnostic audit typically takes 5 to 7 business days. Within the first two weeks, you receive an initial diagnostic scorecard, foundational financial model, and clear roadmap of high-impact strategic recommendations.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+                        <div class="fyncit-matrix-row">
+                          <div class="fyncit-row-index">02</div>
+                          <div class="fyncit-row-info">
+                            <div class="fyncit-row-title">Strategic FP&A & Forecasting</div>
+                            <div class="fyncit-row-desc">Rolling budgets, 3-statement modeling & runway forecasting</div>
+                          </div>
+                        </div>
 
-        
-        <section id="about-testimonials" class="about-section-block rise" style="animation-delay: 450ms;">
-          <div class="about-section-header">
-            <span class="about-section-tag">Client Voices</span>
-            <h3 class="about-section-title">Testimonials</h3>
-            <p class="about-section-desc">
-              Here is what founders, CEOs, and business leaders say about working with FyncIt.
-            </p>
-          </div>
-          <div class="testimonials-grid">
-            <div class="testimonial-card scroll-reveal">
-              <div>
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">
-                  "FyncIt completely transformed how we view our cash flow. Their dynamic forecasting model helped us extend our runway by 8 months and gave our board immense confidence."
-                </p>
-              </div>
-              <div class="testimonial-author-box">
-                <div class="author-avatar-monogram">RS</div>
-                <div class="author-info-meta">
-                  <span class="author-name">Rohan Sharma</span>
-                  <span class="author-org">CEO, NexaTech Solutions</span>
+                        <div class="fyncit-matrix-row">
+                          <div class="fyncit-row-index">03</div>
+                          <div class="fyncit-row-info">
+                            <div class="fyncit-row-title">Unit Economics & Margins</div>
+                            <div class="fyncit-row-desc">Cohort contribution, LTV/CAC diagnostics & pricing models</div>
+                          </div>
+                        </div>
+
+                        <div class="fyncit-matrix-row">
+                          <div class="fyncit-row-index">04</div>
+                          <div class="fyncit-row-info">
+                            <div class="fyncit-row-title">Capital & Investor Readiness</div>
+                            <div class="fyncit-row-desc">Due diligence data rooms, cap tables & investor presentations</div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="fyncit-matrix-footer">
+                        <div class="fyncit-footer-badge">✦ Institutional Pedigree</div>
+                        <div class="fyncit-footer-text">Backed by 25+ years advisory heritage of P. Bhatia & Associates</div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            <div class="testimonial-card scroll-reveal">
-              <div>
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">
-                  "Having Fractional CFO expertise from FyncIt backed by the 25-year institutional wisdom of P. Bhatia & Associates gives us the exact high-level strategy we needed without hiring full-time."
-                </p>
-              </div>
-              <div class="testimonial-author-box">
-                <div class="author-avatar-monogram">PK</div>
-                <div class="author-info-meta">
-                  <span class="author-name">Priya Kapoor</span>
-                  <span class="author-org">Co-Founder, Omnify Retail</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="testimonial-card scroll-reveal">
-              <div>
-                <div class="testimonial-stars">★★★★★</div>
-                <p class="testimonial-quote">
-                  "Their unit economics analysis and financial modeling directly enabled us to secure our latest funding round. Their rigor and speed of execution are second to none."
-                </p>
-              </div>
-              <div class="testimonial-author-box">
-                <div class="author-avatar-monogram">AM</div>
-                <div class="author-info-meta">
-                  <span class="author-name">Arun Mehta</span>
-                  <span class="author-org">Managing Director, Horizon Logistics</span>
-                </div>
-              </div>
+              </section>
             </div>
           </div>
-        </section>
-      </div>
-    </div>
-    <div class="section-continue-banner">
-      <button type="button" class="btn-continue-next" onclick="window.goToPanel(2)">
-        <span>Explore Our Services</span>
-        <span style="font-size: 16px;">→</span>
-      </button>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
-      <!-- PANEL 2: OUR SERVICES -->
-      <section class="horizontal-panel" id="panel-services" data-panel="2">
+      <!-- PANEL 2: ABOUT US - PARENT COMPANY -->
+      <section class="horizontal-panel" id="panel-about-parent" data-panel="2">
+        <div class="panel-scrollable" id="scroll-about-2">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">About Parent Company</h2>
+              <p class="page-subheading">
+                Built on a foundation of trust, compliance excellence, and quarter-century advisory pedigree.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-parent-company" class="about-section-block rise" style="animation-delay: 200ms;">
+                <div class="about-content-card">
+                  <div class="about-parent-grid">
+                    <div class="about-story-text">
+                      <p>
+                        <strong>FyncIt is proud to be a company of P. Bhatia & Associates</strong>, carrying forward a legacy backed by <strong>25+ years of distinguished experience</strong> in audit, accounting, taxation, corporate finance, and strategic business consulting.
+                      </p>
+                      <p>
+                        By marrying the regulatory rigor, audit-readiness, and institutional wisdom of P. Bhatia & Associates with FyncIt’s modern analytical toolsets, automated financial models, and strategic forecasting frameworks, our clients receive an unmatched blend of dependable stability and forward-looking financial momentum.
+                      </p>
+                    </div>
+                    <div class="parent-stats-box">
+                      <div class="about-stat-item">
+                        <div class="about-stat-num">25<span>+</span></div>
+                        <div class="about-stat-label">Years of Industry Heritage & Advisory Pedigree</div>
+                      </div>
+                      <div class="about-stat-item">
+                        <div class="about-stat-num">500<span>+</span></div>
+                        <div class="about-stat-label">Businesses & Enterprises Advised Successfully</div>
+                      </div>
+                      <div class="about-stat-item">
+                        <div class="about-stat-num">100<span>%</span></div>
+                        <div class="about-stat-label">Commitment to Integrity, Precision & Compliance</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 3: ABOUT US - EXECUTIVE TEAM -->
+      <section class="horizontal-panel" id="panel-about-team" data-panel="3">
+        <div class="panel-scrollable" id="scroll-about-3">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Executive Team</h2>
+              <p class="page-subheading">
+                Meet the minds driving financial strategy, analytical rigor, and technology innovation.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-team" class="about-section-block rise" style="animation-delay: 250ms;">
+                <div class="about-team-grid">
+                  <div class="team-member-card" id="team-member-anurag">
+                    <div class="team-photo-surface">
+                      <div class="team-photo-placeholder">
+                        <div class="team-photo-monogram">AB</div>
+                      </div>
+                    </div>
+                    <div class="team-gradient-overlay">
+                      <div class="team-info-row">
+                        <span class="team-info-name">Anurag S Bhatia</span>
+                        <span class="team-info-sep">•</span>
+                        <span class="team-info-role">Founder & CEO</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="team-member-card" id="team-member-deep">
+                    <div class="team-photo-surface">
+                      <div class="team-photo-placeholder">
+                        <div class="team-photo-monogram">DD</div>
+                      </div>
+                    </div>
+                    <div class="team-gradient-overlay">
+                      <div class="team-info-row">
+                        <span class="team-info-name">Deep Dalal</span>
+                        <span class="team-info-sep">•</span>
+                        <span class="team-info-role">Co-Founder & CTO</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="team-member-card" id="team-member-bhaumik">
+                    <div class="team-photo-surface">
+                      <div class="team-photo-placeholder">
+                        <div class="team-photo-monogram">BB</div>
+                      </div>
+                    </div>
+                    <div class="team-gradient-overlay">
+                      <div class="team-info-row">
+                        <span class="team-info-name">Bhaumik Bhatt</span>
+                        <span class="team-info-sep">•</span>
+                        <span class="team-info-role">COO</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 4: ABOUT US - WORK PROCESS -->
+      <section class="horizontal-panel" id="panel-about-process" data-panel="4">
+        <div class="panel-scrollable" id="scroll-about-4">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Work Process</h2>
+              <p class="page-subheading">
+                A structured, collaborative 3-step framework designed for precision, clarity, and rapid execution.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-process" class="about-section-block rise" style="animation-delay: 300ms;">
+                <div class="process-timeline-grid">
+                  <div class="process-step-card scroll-reveal">
+                    <span class="process-step-number">01</span>
+                    <h4 class="process-step-title">Diagnostic & Discovery</h4>
+                    <p class="process-step-desc">
+                      We analyze your historical financials, unit economics, revenue streams, and cost drivers to uncover hidden bottlenecks and opportunities.
+                    </p>
+                  </div>
+                  <div class="process-step-card scroll-reveal">
+                    <span class="process-step-number">02</span>
+                    <h4 class="process-step-title">Financial Modeling & Strategy</h4>
+                    <p class="process-step-desc">
+                      We architect customized 3-statement models, rolling forecasts, cash flow runway projections, and dynamic scenario plans.
+                    </p>
+                  </div>
+                  <div class="process-step-card scroll-reveal">
+                    <span class="process-step-number">03</span>
+                    <h4 class="process-step-title">Implementation & KPI Dashboards</h4>
+                    <p class="process-step-desc">
+                      We integrate live reporting dashboards, define critical SaaS/business KPIs, and align budget allocations with leadership milestones.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 5: ABOUT US - VISION & MISSION -->
+      <section class="horizontal-panel" id="panel-about-vision" data-panel="5">
+        <div class="panel-scrollable" id="scroll-about-5">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Vision and Mission</h2>
+              <p class="page-subheading">
+                Our anchor purpose and the future we are building for businesses worldwide.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-vision-mission" class="about-section-block rise" style="animation-delay: 350ms;">
+                <div class="vision-mission-grid">
+                  <div class="vm-card scroll-reveal">
+                    <div class="vm-badge">Our Mission</div>
+                    <h4 class="vm-title">Democratizing Tier-1 Financial Strategy</h4>
+                    <p class="vm-desc">
+                      To empower high-growth startups and established enterprises with high-caliber financial leadership, data-driven foresight, and precision modeling—turning complex numbers into clear catalysts for profitability and sustained valuation growth.
+                    </p>
+                  </div>
+                  <div class="vm-card highlight scroll-reveal">
+                    <div class="vm-badge">Our Vision</div>
+                    <h4 class="vm-title">The Global Standard for Modern Finance</h4>
+                    <p class="vm-desc">
+                      To be the most trusted strategic financial partner for modern businesses globally, recognized for marrying deep accounting heritage with bleeding-edge analytical technology to create resilient, high-value enterprises.
+                    </p>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 6: ABOUT US - FAQ -->
+      <section class="horizontal-panel" id="panel-about-faq" data-panel="6">
+        <div class="panel-scrollable" id="scroll-about-6">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">FAQ</h2>
+              <p class="page-subheading">
+                Common questions about partnering with FyncIt for strategic financial management.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-faq" class="about-section-block rise" style="animation-delay: 400ms;">
+                <div class="faq-container">
+                  <div class="faq-item active scroll-reveal">
+                    <button type="button" class="faq-question-btn" aria-expanded="true">
+                      <span>What is the difference between an accountant and a Fractional CFO?</span>
+                      <span class="faq-icon-toggle">+</span>
+                    </button>
+                    <div class="faq-answer-content">
+                      <p class="faq-answer-text">
+                        While accountants and bookkeepers focus on recording historical data and compliance, a Fractional CFO is forward-looking. We design growth strategies, forecast cash flow runway, model scenario outcomes, prepare investor decks, and guide strategic capital allocation.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item scroll-reveal">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                      <span>How does FyncIt leverage the heritage of P. Bhatia & Associates?</span>
+                      <span class="faq-icon-toggle">+</span>
+                    </button>
+                    <div class="faq-answer-content">
+                      <p class="faq-answer-text">
+                        Our parent firm P. Bhatia & Associates brings over 25 years of mastery in taxation, statutory compliance, audit, and commercial consulting. FyncIt infuses this bedrock of reliability with modern FP&A, tech-enabled financial modeling, and proactive fractional leadership.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item scroll-reveal">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                      <span>What stages of companies do you typically work with?</span>
+                      <span class="faq-icon-toggle">+</span>
+                    </button>
+                    <div class="faq-answer-content">
+                      <p class="faq-answer-text">
+                        We partner with early-stage founders seeking seed/Series A modeling, venture-backed scaleups needing ongoing FP&A and unit economics optimization, as well as mature SMBs looking to improve operating margins and plan strategic exits.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="faq-item scroll-reveal">
+                    <button type="button" class="faq-question-btn" aria-expanded="false">
+                      <span>How quickly can we get started and see results?</span>
+                      <span class="faq-icon-toggle">+</span>
+                    </button>
+                    <div class="faq-answer-content">
+                      <p class="faq-answer-text">
+                        Our onboarding and diagnostic audit typically takes 5 to 7 business days. Within the first two weeks, you receive an initial diagnostic scorecard, foundational financial model, and clear roadmap of high-impact strategic recommendations.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 7: ABOUT US - TESTIMONIALS -->
+      <section class="horizontal-panel" id="panel-about-testimonials" data-panel="7">
+        <div class="panel-scrollable" id="scroll-about-7">
+          <div class="inner-page-content">
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Testimonials</h2>
+              <p class="page-subheading">
+                Here is what founders, CEOs, and business leaders say about working with FyncIt.
+              </p>
+            </div>
+            <div class="about-container">
+              <section id="about-testimonials" class="about-section-block rise" style="animation-delay: 450ms;">
+                <div class="testimonials-grid">
+                  <div class="testimonial-card scroll-reveal">
+                    <div>
+                      <div class="testimonial-stars">★★★★★</div>
+                      <p class="testimonial-quote">
+                        "FyncIt completely transformed how we view our cash flow. Their dynamic forecasting model helped us extend our runway by 8 months and gave our board immense confidence."
+                      </p>
+                    </div>
+                    <div class="testimonial-author-box">
+                      <div class="author-avatar-monogram">RS</div>
+                      <div class="author-info-meta">
+                        <span class="author-name">Rohan Sharma</span>
+                        <span class="author-org">CEO, NexaTech Solutions</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-card scroll-reveal">
+                    <div>
+                      <div class="testimonial-stars">★★★★★</div>
+                      <p class="testimonial-quote">
+                        "Having Fractional CFO expertise from FyncIt backed by the 25-year institutional wisdom of P. Bhatia & Associates gives us the exact high-level strategy we needed without hiring full-time."
+                      </p>
+                    </div>
+                    <div class="testimonial-author-box">
+                      <div class="author-avatar-monogram">PK</div>
+                      <div class="author-info-meta">
+                        <span class="author-name">Priya Kapoor</span>
+                        <span class="author-org">Co-Founder, Omnify Retail</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="testimonial-card scroll-reveal">
+                    <div>
+                      <div class="testimonial-stars">★★★★★</div>
+                      <p class="testimonial-quote">
+                        "Their unit economics analysis and financial modeling directly enabled us to secure our latest funding round. Their rigor and speed of execution are second to none."
+                      </p>
+                    </div>
+                    <div class="testimonial-author-box">
+                      <div class="author-avatar-monogram">AM</div>
+                      <div class="author-info-meta">
+                        <span class="author-name">Arun Mehta</span>
+                        <span class="author-org">Managing Director, Horizon Logistics</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PANEL 8: OUR SERVICES -->
+      <section class="horizontal-panel" id="panel-services" data-panel="8">
         <div class="panel-scrollable" id="scroll-services">
           <div class="inner-page-content">
       
-      
-
       
       <div class="page-header-block rise" style="animation-delay: 100ms;">
         <h2 class="page-heading">Executive Finance & Planning</h2>
@@ -3049,22 +3115,14 @@
         </article>
       </div>
     </div>
-    <div class="section-continue-banner">
-      <button type="button" class="btn-continue-next" onclick="window.goToPanel(3)">
-        <span>Start a Project / Get in Touch</span>
-        <span style="font-size: 16px;">→</span>
-      </button>
-    </div>
   </div>
 </section>
 
-      <!-- PANEL 3: GET IN TOUCH / CONTACT -->
-      <section class="horizontal-panel" id="panel-contact" data-panel="3">
+      <!-- PANEL 9: GET IN TOUCH / CONTACT -->
+      <section class="horizontal-panel" id="panel-contact" data-panel="9">
         <div class="panel-scrollable" id="scroll-contact">
           <div class="inner-page-content">
       
-      
-
       
       <div class="page-header-block rise" style="animation-delay: 100ms;">
         <h2 class="page-heading">Start a Conversation</h2>
@@ -3076,6 +3134,34 @@
       
       <div class="form-container-card rise" style="animation-delay: 200ms;">
         
+        <!-- Direct Contact Details Strip -->
+        <div class="direct-contact-strip">
+          <div class="direct-contact-item">
+            <div class="direct-contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </div>
+            <div class="direct-contact-info">
+              <span class="direct-contact-label">Direct Email</span>
+              <a href="mailto:fyncit@gmail.com" class="direct-contact-val direct-contact-link">fyncit@gmail.com</a>
+            </div>
+          </div>
+
+          <div class="direct-contact-item">
+            <div class="direct-contact-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+              </svg>
+            </div>
+            <div class="direct-contact-info">
+              <span class="direct-contact-label">Business Inquiries</span>
+              <span class="direct-contact-val">Business@0510</span>
+            </div>
+          </div>
+        </div>
         
         <form id="financial-inquiry-form" novalidate>
           
@@ -3136,78 +3222,8 @@
           </div>
 
           
-          <div class="form-section">
-            <div class="form-section-title">
-              <span>Scale & Financial Profile</span>
-            </div>
-            <p class="form-section-subtitle">Helps us gauge the model complexity and data volume.</p>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="select-stage">Current Company Stage <span class="req">*</span></label>
-                <select id="select-stage" class="form-control" required>
-                  <option value="" disabled selected>Select company stage</option>
-                  <option value="Pre-Seed / Seed ($500k-$2M raised)">Pre-Seed / Seed Stage</option>
-                  <option value="Series A ($2M-$10M raised)">Series A</option>
-                  <option value="Series B+ ($10M+ raised)">Series B or Later</option>
-                  <option value="Bootstrapped / Profitable">Bootstrapped & Profitable</option>
-                  <option value="Established Mid-Market / Enterprise">Established Mid-Market</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="select-revenue">Annual Revenue / ARR <span class="req">*</span></label>
-                <select id="select-revenue" class="form-control" required>
-                  <option value="" disabled selected>Select ARR range</option>
-                  <option value="Pre-revenue / Under $500K">Under $500K</option>
-                  <option value="$500K – $2M">$500K – $2M</option>
-                  <option value="$2M – $10M">$2M – $10M</option>
-                  <option value="$10M – $50M">$10M – $50M</option>
-                  <option value="$50M+">$50M+</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          
-          <div class="form-section">
-            <div class="form-section-title">
-              <span>Engagement Scope & Timeline</span>
-            </div>
-            <p class="form-section-subtitle">Tell us what you want to accomplish and when you want to start.</p>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="select-timeline">Target Start Date</label>
-                <select id="select-timeline" class="form-control">
-                  <option value="Immediately (Within 1-2 weeks)">Immediately (Within 1-2 weeks)</option>
-                  <option value="Next month">Next month</option>
-                  <option value="Next quarter">Next quarter</option>
-                  <option value="Exploratory discussion">Exploratory / Comparing options</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="select-engagement">Preferred Engagement Model</label>
-                <select id="select-engagement" class="form-control">
-                  <option value="Monthly Retainer (Fractional)">Monthly Retainer (Fractional)</option>
-                  <option value="Project-Based (Model Build / Audit)">Project-Based (Model Build / Audit)</option>
-                  <option value="Full-Time Advisory Sprint">Full-Time Advisory Sprint</option>
-                  <option value="Flexible / Needs Recommendation">Flexible / Needs Recommendation</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="input-notes">Primary Financial Challenges / Project Objectives</label>
-              <textarea id="input-notes" class="form-control" placeholder="Describe your current financial situation, key milestones (e.g. upcoming Series A in Q3, need 3-statement model and runway forecasting), and any specific pain points..."></textarea>
-              <span class="form-help-hint">Include any deadlines or specific board meeting targets if applicable.</span>
-            </div>
-          </div>
-
-          
           <div id="form-error-msg" style="display: none; background: #D9E1EC; border: 1px solid #4169E1; color: #0B1628; padding: 12px 16px; border-radius: 12px; font-size: 13.5px; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
-            Please complete the required fields (Full Name, Work Email, Company Name, Stage, and at least one service).
+            Please complete the required fields (Full Name, Work Email, Company Name, and at least one service).
           </div>
 
           
@@ -3248,18 +3264,10 @@
               <span class="receipt-label">Requested Services:</span>
               <span class="receipt-val" id="receipt-services-list">Fractional CFO</span>
             </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Company Stage:</span>
-              <span class="receipt-val" id="receipt-stage-val">Series A</span>
-            </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Target Timeline:</span>
-              <span class="receipt-val" id="receipt-timeline-val">Immediately</span>
-            </div>
           </div>
 
           <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
-            <a href="#home" class="btn-primary" style="display: inline-flex;">
+            <a href="#home" class="btn-primary" style="display: inline-flex;" onclick="window.goToPanel(0); return false;">
               <span>Return to Home</span>
             </a>
             <button type="button" id="btn-reset-form" class="back-btn">
@@ -3289,13 +3297,52 @@
         playVideo();
       }
 
-      // 2. Horizontal Slider Core Engine
+      // 2. Horizontal Slider Core Engine (10 Panels)
+      // Panel Map: 0: Home, 1..7: About Us (7 subsections), 8: Services, 9: Contact
       const track = document.getElementById('horizontal-track');
-      const totalPanels = 4;
+      const totalPanels = 10;
       let currentPanel = 0;
       let isTransitioning = false;
-      const panelHashes = ['#home', '#about', '#services', '#contact'];
+      const panelCategoryMap = [0, 1, 1, 1, 1, 1, 1, 1, 2, 3];
+      const panelHashes = [
+        '#home',
+        '#about',
+        '#about-parent',
+        '#about-team',
+        '#about-process',
+        '#about-vision',
+        '#about-faq',
+        '#about-testimonials',
+        '#services',
+        '#contact'
+      ];
       const navLinks = document.querySelectorAll('.nav-link');
+
+      const scrollContainers = [
+        document.getElementById('scroll-home'),
+        document.getElementById('scroll-about-1'),
+        document.getElementById('scroll-about-2'),
+        document.getElementById('scroll-about-3'),
+        document.getElementById('scroll-about-4'),
+        document.getElementById('scroll-about-5'),
+        document.getElementById('scroll-about-6'),
+        document.getElementById('scroll-about-7'),
+        document.getElementById('scroll-services'),
+        document.getElementById('scroll-contact')
+      ];
+
+      const panelElements = [
+        document.getElementById('panel-home'),
+        document.getElementById('panel-about-fyncit'),
+        document.getElementById('panel-about-parent'),
+        document.getElementById('panel-about-team'),
+        document.getElementById('panel-about-process'),
+        document.getElementById('panel-about-vision'),
+        document.getElementById('panel-about-faq'),
+        document.getElementById('panel-about-testimonials'),
+        document.getElementById('panel-services'),
+        document.getElementById('panel-contact')
+      ];
 
       window.goToPanel = function(index, smooth = true) {
         if (index < 0) index = 0;
@@ -3314,10 +3361,11 @@
           history.replaceState(null, '', panelHashes[currentPanel]);
         }
 
-        // Update Nav links
+        // Update Nav links according to active category
+        const activeCategory = panelCategoryMap[currentPanel];
         navLinks.forEach(link => {
           const target = parseInt(link.getAttribute('data-target'), 10);
-          if (target === currentPanel) {
+          if (target === activeCategory) {
             link.classList.add('active');
           } else {
             link.classList.remove('active');
@@ -3325,12 +3373,6 @@
         });
 
         // Reset scroll position of target panel to top
-        const scrollContainers = [
-          document.getElementById('scroll-home'),
-          document.getElementById('scroll-about'),
-          document.getElementById('scroll-services'),
-          document.getElementById('scroll-contact')
-        ];
         const targetContainer = scrollContainers[currentPanel];
         if (targetContainer && targetContainer.scrollTop > 0) {
           targetContainer.scrollTo({ top: 0, behavior: 'instant' });
@@ -3349,30 +3391,27 @@
       function handleWheelEvent(e) {
         if (isTransitioning || wheelCooldown) return;
 
-        const scrollContainers = [
-          document.getElementById('scroll-home'),
-          document.getElementById('scroll-about'),
-          document.getElementById('scroll-services'),
-          document.getElementById('scroll-contact')
-        ];
         const container = scrollContainers[currentPanel];
         if (!container) return;
-
-        const isAtTop = container.scrollTop <= 2;
-        const isAtBottom = (container.scrollTop + container.clientHeight) >= (container.scrollHeight - 4);
 
         // Delta threshold to ignore minor trackpad inertia
         const delta = e.deltaY;
         if (Math.abs(delta) < 18) return;
 
+        const maxScroll = Math.max(0, container.scrollHeight - container.clientHeight);
+        // If panel fits on screen or has minor overflow (< 40px), transition directly on 1 scroll!
+        const isScrollable = maxScroll > 40;
+        const isAtTop = !isScrollable || container.scrollTop <= 4;
+        const isAtBottom = !isScrollable || (container.scrollTop + container.clientHeight >= container.scrollHeight - 8);
+
         if (delta > 0 && isAtBottom && currentPanel < totalPanels - 1) {
-          // Scrolling down at the end of section -> transition horizontally to next panel
+          // Scrolling down -> transition horizontally to next panel immediately
           e.preventDefault();
           wheelCooldown = true;
           window.goToPanel(currentPanel + 1);
           setTimeout(() => { wheelCooldown = false; }, 850);
         } else if (delta < 0 && isAtTop && currentPanel > 0) {
-          // Scrolling up at the top of section -> transition horizontally to prev panel
+          // Scrolling up -> transition horizontally to prev panel immediately
           e.preventDefault();
           wheelCooldown = true;
           window.goToPanel(currentPanel - 1);
@@ -3427,13 +3466,7 @@
 
       // 6. Scroll Reveal Observer for inside panels
       function triggerPanelReveals(panelIdx) {
-        const panels = [
-          document.getElementById('panel-home'),
-          document.getElementById('panel-about'),
-          document.getElementById('panel-services'),
-          document.getElementById('panel-contact')
-        ];
-        const panel = panels[panelIdx];
+        const panel = panelElements[panelIdx];
         if (!panel) return;
 
         const reveals = panel.querySelectorAll('.scroll-reveal');
@@ -3451,14 +3484,14 @@
       const btnSeeOurWork = document.getElementById('btn-see-our-work');
       if (btnSeeOurWork) {
         btnSeeOurWork.addEventListener('click', () => {
-          window.goToPanel(2); // Services
+          window.goToPanel(8); // Services
         });
       }
 
       const btnGetInTouch = document.getElementById('btn-get-in-touch');
       if (btnGetInTouch) {
         btnGetInTouch.addEventListener('click', () => {
-          window.goToPanel(3); // Contact
+          window.goToPanel(9); // Contact
         });
       }
 
@@ -3474,7 +3507,7 @@
       document.querySelectorAll('.btn-service-inquire').forEach(btn => {
         btn.addEventListener('click', () => {
           const serviceName = btn.getAttribute('data-service');
-          window.goToPanel(3); // Contact
+          window.goToPanel(9); // Contact
 
           setTimeout(() => {
             if (serviceName && serviceName.includes('CFO')) {
@@ -3500,16 +3533,13 @@
           const name = document.getElementById('input-fullname').value.trim();
           const email = document.getElementById('input-email').value.trim();
           const company = document.getElementById('input-company').value.trim();
-          const stage = document.getElementById('select-stage').value;
-          const revenue = document.getElementById('select-revenue').value;
-          const timeline = document.getElementById('select-timeline').value;
 
           const checkedServices = [];
           document.querySelectorAll('input[name="services"]:checked').forEach(c => {
             checkedServices.push(c.value);
           });
 
-          if (!name || !email || !company || !stage || !revenue || checkedServices.length === 0) {
+          if (!name || !email || !company || checkedServices.length === 0) {
             formErrorMsg.style.display = 'block';
             formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
@@ -3521,8 +3551,6 @@
           document.getElementById('receipt-user-name').textContent = name;
           document.getElementById('receipt-company-name').textContent = company;
           document.getElementById('receipt-services-list').textContent = checkedServices.join(', ');
-          document.getElementById('receipt-stage-val').textContent = stage;
-          document.getElementById('receipt-timeline-val').textContent = timeline;
           document.getElementById('receipt-ref-id').textContent = refCode;
 
           inquiryForm.style.display = 'none';
@@ -3563,18 +3591,27 @@
 
       // 11. Initial Hash Route Support
       const initialHash = window.location.hash;
-      if (initialHash === '#about' || initialHash === '#about-us') {
-        window.goToPanel(1, false);
+      if (initialHash.startsWith('#about')) {
+        const hashToPanel = {
+          '#about': 1,
+          '#about-us': 1,
+          '#about-parent': 2,
+          '#about-team': 3,
+          '#about-process': 4,
+          '#about-vision': 5,
+          '#about-faq': 6,
+          '#about-testimonials': 7
+        };
+        window.goToPanel(hashToPanel[initialHash] || 1, false);
       } else if (initialHash === '#services' || initialHash === '#work') {
-        window.goToPanel(2, false);
+        window.goToPanel(8, false);
       } else if (initialHash === '#contact' || initialHash === '#touch') {
-        window.goToPanel(3, false);
+        window.goToPanel(9, false);
       } else {
         window.goToPanel(0, false);
       }
     });
   </script>
-
 
 </body>
 </html>
