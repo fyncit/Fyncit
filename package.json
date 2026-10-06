@@ -16,8 +16,5 @@
   },
   "devDependencies": {
     "@types/node": "^26.5.0"
-  },
-  "optionalDependencies": {
-    "@rollup/rollup-win32-x64-msvc": "^4.63.5"
   }
 }
