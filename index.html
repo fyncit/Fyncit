@@ -1747,20 +1747,32 @@
     /* ============================================================
        GET IN TOUCH / INQUIRY FORM PAGE STYLES
        ============================================================ */
+    #panel-contact .panel-scrollable {
+      padding: 16px clamp(20px, 4vw, 48px);
+    }
+
+    #panel-contact .page-header-block {
+      margin: 0 auto 16px;
+    }
+
+    #panel-contact .page-heading {
+      margin-bottom: 6px;
+    }
+
     .form-container-card {
       background: rgba(247, 246, 243, 0.96);
       border: 1px solid rgba(11, 22, 40, 0.08);
       border-radius: 24px;
-      padding: clamp(28px, 5vw, 48px);
+      padding: clamp(20px, 3.2vw, 30px) clamp(24px, 4vw, 40px);
       box-shadow: 0 12px 48px rgba(11, 22, 40, 0.06);
       max-width: 860px;
-      margin: 0 auto 60px;
+      margin: 0 auto 20px;
       width: 100%;
       transform: translate3d(0, 0, 0);
     }
 
     .form-section {
-      margin-bottom: 36px;
+      margin-bottom: 18px;
     }
 
     .form-section-title {
@@ -1768,7 +1780,7 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--ink);
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -1792,7 +1804,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 13.5px;
       color: var(--muted);
-      margin-bottom: 18px;
+      margin-bottom: 12px;
     }
 
     /* Interactive Chips / Multi-Select */
@@ -1824,7 +1836,7 @@
       color: var(--ink);
       background: #D9E1EC;
       border: 1px solid rgba(11, 22, 40, 0.07);
-      padding: 9px 16px;
+      padding: 8px 16px;
       border-radius: 12px;
       transition: all 0.2s ease;
       user-select: none;
@@ -1847,7 +1859,7 @@
     .form-grid-2 {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 18px;
+      gap: 12px 18px;
     }
 
     @media (min-width: 640px) {
@@ -1859,8 +1871,8 @@
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 7px;
-      margin-bottom: 16px;
+      gap: 5px;
+      margin-bottom: 8px;
     }
 
     .form-group label {
@@ -1882,7 +1894,7 @@
       background: #F7F6F3;
       border: 1px solid rgba(11, 22, 40, 0.12);
       border-radius: 12px;
-      padding: 12px 16px;
+      padding: 10px 14px;
       transition: border-color 0.2s, box-shadow 0.2s;
       width: 100%;
     }
@@ -1906,7 +1918,7 @@
     }
 
     textarea.form-control {
-      min-height: 110px;
+      min-height: 90px;
       resize: vertical;
       line-height: 1.5;
     }
@@ -1915,7 +1927,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 12px;
       color: var(--muted);
-      margin-top: 3px;
+      margin-top: 2px;
     }
 
     .btn-submit-form {
@@ -1926,16 +1938,16 @@
       color: #F7F6F3;
       background: #4169E1;
       border: none;
-      padding: 16px 28px;
+      padding: 13px 26px;
       border-radius: 999px;
       cursor: pointer;
-      box-shadow: 0 10px 28px rgba(65, 105, 225, 0.28);
+      box-shadow: 0 8px 24px rgba(65, 105, 225, 0.25);
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-top: 10px;
+      margin-top: 6px;
     }
 
     .btn-submit-form:hover {
@@ -3016,9 +3028,7 @@
       
       <div class="page-header-block rise" style="animation-delay: 100ms;">
         <h2 class="page-heading">Executive Finance & Planning</h2>
-        <p class="page-subheading">
-          Financial clarity and strategic insight to help businesses perform and grow.
-        </p>
+        
       </div>
 
       
@@ -3127,7 +3137,7 @@
       <div class="page-header-block rise" style="animation-delay: 100ms;">
         <h2 class="page-heading">Start a Conversation</h2>
         <p class="page-subheading">
-          Tell us about your business, current financial stack, and requirements. We'll assemble the right scope and team for you.
+          Tell us about your business and requirements. We'll assemble the right team for you.
         </p>
       </div>
 
