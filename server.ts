@@ -6,8 +6,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Port 3000 is hardcoded per environment constraints
-const PORT = 3000;
+const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 5173;
 const HOST = '0.0.0.0';
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
