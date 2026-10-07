@@ -107,17 +107,20 @@
       left: 0;
       width: 100%;
       z-index: 100;
-      background: rgba(247, 246, 243, 0.88);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(11, 22, 40, 0.08);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      border-bottom: none;
+      box-shadow: none;
       padding: 10px clamp(20px, 4vw, 60px);
-      transition: background 0.3s ease, box-shadow 0.3s ease, padding 0.3s ease;
+      transition: padding 0.3s ease;
     }
 
     .global-header.scrolled {
-      background: rgba(247, 246, 243, 0.96);
-      box-shadow: 0 6px 28px rgba(11, 22, 40, 0.06);
+      background: transparent;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+      box-shadow: none;
       padding-top: 10px;
       padding-bottom: 10px;
     }
@@ -1868,6 +1871,22 @@
       }
     }
 
+    .form-grid-center {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .form-grid-center .form-group {
+      width: 100%;
+    }
+
+    @media (min-width: 640px) {
+      .form-grid-center .form-group {
+        max-width: calc(50% - 9px);
+      }
+    }
+
     .form-group {
       display: flex;
       flex-direction: column;
@@ -3195,10 +3214,17 @@
 
             <div class="form-grid-2">
               <div class="form-group">
+                <label for="input-phone">Contact Number <span class="req">*</span></label>
+                <input type="tel" id="input-phone" class="form-control" placeholder="e.g. +1 (555) 019-2834" required>
+              </div>
+
+              <div class="form-group">
                 <label for="input-company">Company Name <span class="req">*</span></label>
                 <input type="text" id="input-company" class="form-control" placeholder="e.g. Acme Technologies" required>
               </div>
+            </div>
 
+            <div class="form-grid-center">
               <div class="form-group">
                 <label for="input-website">Website or LinkedIn URL</label>
                 <input type="url" id="input-website" class="form-control" placeholder="https://acme.io">
@@ -3208,7 +3234,7 @@
 
           
           <div id="form-error-msg" style="display: none; background: #D9E1EC; border: 1px solid #4169E1; color: #0B1628; padding: 12px 16px; border-radius: 12px; font-size: 13.5px; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
-            Please complete the required fields (Full Name, Work Email, Company Name, and at least one service).
+            Please complete the required fields (Full Name, Work Email, Contact Number, Company Name, and at least one service).
           </div>
 
           
@@ -3244,6 +3270,10 @@
             <div class="receipt-row">
               <span class="receipt-label">Company:</span>
               <span class="receipt-val" id="receipt-company-name">Acme Corp</span>
+            </div>
+            <div class="receipt-row">
+              <span class="receipt-label">Contact Number:</span>
+              <span class="receipt-val" id="receipt-phone">+1 (555) 019-2834</span>
             </div>
             <div class="receipt-row">
               <span class="receipt-label">Requested Services:</span>
@@ -3517,6 +3547,7 @@
 
           const name = document.getElementById('input-fullname').value.trim();
           const email = document.getElementById('input-email').value.trim();
+          const phone = document.getElementById('input-phone') ? document.getElementById('input-phone').value.trim() : '';
           const company = document.getElementById('input-company').value.trim();
 
           const checkedServices = [];
@@ -3524,7 +3555,7 @@
             checkedServices.push(c.value);
           });
 
-          if (!name || !email || !company || checkedServices.length === 0) {
+          if (!name || !email || !phone || !company || checkedServices.length === 0) {
             formErrorMsg.style.display = 'block';
             formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
@@ -3535,6 +3566,8 @@
 
           document.getElementById('receipt-user-name').textContent = name;
           document.getElementById('receipt-company-name').textContent = company;
+          const phoneEl = document.getElementById('receipt-phone');
+          if (phoneEl) phoneEl.textContent = phone;
           document.getElementById('receipt-services-list').textContent = checkedServices.join(', ');
           document.getElementById('receipt-ref-id').textContent = refCode;
 
