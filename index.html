@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FyncIt</title>
   <link rel="icon" type="image/png" href="/Fynclt-logo.png">
-  
+
   <!-- Google Fonts: Plus Jakarta Sans, Inter, IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
   <style>
     /* Horizontal Slider Structure */
     .viewport-slider {
@@ -25,7 +28,7 @@
       display: flex;
       width: 1000vw;
       height: 100%;
-      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: transform;
     }
 
@@ -55,13 +58,16 @@
     .panel-scrollable::-webkit-scrollbar {
       width: 6px;
     }
+
     .panel-scrollable::-webkit-scrollbar-track {
       background: transparent;
     }
+
     .panel-scrollable::-webkit-scrollbar-thumb {
       background: rgba(11, 22, 40, 0.16);
       border-radius: 99px;
     }
+
     .panel-scrollable::-webkit-scrollbar-thumb:hover {
       background: rgba(65, 105, 225, 0.45);
     }
@@ -167,8 +173,15 @@
     }
 
     @keyframes bounceDown {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(4px); }
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(4px);
+      }
     }
 
     /* Section divider line */
@@ -201,8 +214,9 @@
       padding: 0;
     }
 
-    
-    html, body {
+
+    html,
+    body {
       width: 100vw;
       height: 100vh;
       margin: 0;
@@ -254,8 +268,8 @@
       z-index: 1;
       pointer-events: none;
       background:
-        linear-gradient(to bottom, rgba(247,246,243,0.85) 0%, transparent 18%, transparent 82%, rgba(247,246,243,0.90) 100%),
-        radial-gradient(circle at 50% 44%, rgba(247,246,243,0.94) 0%, rgba(247,246,243,0.80) 30%, rgba(247,246,243,0.46) 58%, rgba(247,246,243,0.20) 100%);
+        linear-gradient(to bottom, rgba(247, 246, 243, 0.85) 0%, transparent 18%, transparent 82%, rgba(247, 246, 243, 0.90) 100%),
+        radial-gradient(circle at 50% 44%, rgba(247, 246, 243, 0.94) 0%, rgba(247, 246, 243, 0.80) 30%, rgba(247, 246, 243, 0.46) 58%, rgba(247, 246, 243, 0.20) 100%);
       transform: translate3d(0, 0, 0);
     }
 
@@ -267,12 +281,12 @@
       width: 640px;
       height: 640px;
       transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(65,105,225,0.10) 0%, transparent 62%);
+      background: radial-gradient(circle, rgba(65, 105, 225, 0.10) 0%, transparent 62%);
       pointer-events: none;
     }
 
     /* Page Views with smooth fade-slide transition */
-    
+
     /* Continuous Page Sections */
     .page-section,
     .page-view {
@@ -285,7 +299,7 @@
     }
 
 
-    
+
     .page-section.active,
     .page-view.active {
       display: flex !important;
@@ -297,6 +311,7 @@
         opacity: 0;
         transform: translate3d(0, 10px, 0);
       }
+
       100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -304,7 +319,7 @@
     }
 
     /* Home Specific Layout */
-    
+
     #view-home,
     #home {
       min-height: calc(100vh - 74px);
@@ -316,7 +331,7 @@
 
 
     /* Inner Pages Layout */
-    
+
     .inner-page-content {
       width: 100%;
       max-width: 1200px;
@@ -395,7 +410,8 @@
       padding: 4px 0;
     }
 
-    .nav-link:hover, .nav-link.active {
+    .nav-link:hover,
+    .nav-link.active {
       color: var(--ink);
     }
 
@@ -442,7 +458,7 @@
       font-weight: 500;
       color: var(--muted);
       background: #F7F6F3;
-      border: 1px solid rgba(11,22,40,0.08);
+      border: 1px solid rgba(11, 22, 40, 0.08);
       padding: 8px 16px;
       border-radius: 999px;
       cursor: pointer;
@@ -457,7 +473,7 @@
 
     .back-btn:hover {
       color: var(--ink);
-      border-color: rgba(65,105,225,0.3);
+      border-color: rgba(65, 105, 225, 0.3);
       background: #F7F6F3;
       transform: translateX(-2px);
     }
@@ -688,7 +704,7 @@
       align-items: flex-start;
       gap: 8px;
       margin-bottom: 12px;
-      border-bottom: 1px solid rgba(11,22,40,0.06);
+      border-bottom: 1px solid rgba(11, 22, 40, 0.06);
       padding-bottom: 12px;
     }
 
@@ -730,7 +746,7 @@
       font-size: 12px;
       color: var(--ink);
       background: #D9E1EC;
-      border: 1px solid rgba(11,22,40,0.06);
+      border: 1px solid rgba(11, 22, 40, 0.06);
       padding: 6px 14px;
       border-radius: 999px;
       font-weight: 600;
@@ -879,7 +895,7 @@
       transform: translateX(-50%);
       width: 400px;
       height: 400px;
-      background: radial-gradient(circle, rgba(65,105,225,0.25) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(65, 105, 225, 0.25) 0%, transparent 70%);
       pointer-events: none;
     }
 
@@ -1085,7 +1101,7 @@
       display: flex;
       flex-direction: column;
       gap: 4px;
-      border-bottom: 1px solid rgba(247,246,243,0.08);
+      border-bottom: 1px solid rgba(247, 246, 243, 0.08);
       padding-bottom: 18px;
     }
 
@@ -1110,7 +1126,7 @@
     .about-stat-label {
       font-family: 'Inter', sans-serif;
       font-size: 13px;
-      color: rgba(247,246,243,0.65);
+      color: rgba(247, 246, 243, 0.65);
     }
 
     .about-pillars-grid {
@@ -1845,7 +1861,7 @@
       user-select: none;
     }
 
-    .chip-option input:checked + .chip-label {
+    .chip-option input:checked+.chip-label {
       background: rgba(65, 105, 225, 0.1);
       border-color: var(--violet);
       color: #4169E1;
@@ -2074,7 +2090,7 @@
       display: flex;
       justify-content: space-between;
       padding: 8px 0;
-      border-bottom: 1px dashed rgba(11,22,40,0.08);
+      border-bottom: 1px dashed rgba(11, 22, 40, 0.08);
       font-size: 13.5px;
       font-family: 'Inter', sans-serif;
     }
@@ -2190,6 +2206,7 @@
         opacity: 0;
         transform: translate3d(0, 18px, 0);
       }
+
       100% {
         opacity: 1;
         transform: translate3d(0, 0, 0);
@@ -2198,7 +2215,7 @@
 
     .rise {
       opacity: 0;
-      animation: smoothRise 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: smoothRise 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       will-change: opacity, transform;
       backface-visibility: hidden;
       transform: translate3d(0, 0, 0);
@@ -2207,8 +2224,8 @@
     /* Silky Smooth Scroll Reveal for Cards & Sections */
     .scroll-reveal {
       opacity: 0;
-      transform: translate3d(0, 22px, 0);
-      transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translate3d(0, 16px, 0);
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
       will-change: opacity, transform;
       backface-visibility: hidden;
     }
@@ -2227,18 +2244,22 @@
 
     /* Dedicated Mobile-Only Alignment & Hierarchy (<= 640px) */
     @media (max-width: 640px) {
+
       /* Navigation Bar */
       .nav {
         gap: 8px;
       }
+
       .nav-left-brand {
         font-size: 17px;
       }
+
       .nav-cta {
         padding: 8px 14px;
         font-size: 12.5px;
         white-space: nowrap;
       }
+
       .back-btn {
         padding: 7px 12px;
         font-size: 12px;
@@ -2255,10 +2276,12 @@
         flex-direction: column;
         justify-content: space-between;
       }
+
       .hero {
         padding: 40px 0 28px;
         width: 100%;
       }
+
       .kicker {
         font-size: 9.5px;
         letter-spacing: 0.14em;
@@ -2267,16 +2290,19 @@
         justify-content: center;
         text-align: center;
       }
+
       .kicker::before,
       .kicker::after {
         width: 14px;
       }
+
       h1 {
         font-size: clamp(38px, 9.5vw, 48px);
         line-height: 1.02;
         margin-bottom: 16px;
         word-break: break-word;
       }
+
       .sub-line {
         font-size: 12.5px;
         line-height: 1.55;
@@ -2284,6 +2310,7 @@
         white-space: normal;
         margin-bottom: 26px;
       }
+
       .cta-row {
         flex-direction: column;
         gap: 12px;
@@ -2292,18 +2319,21 @@
         margin: 0 auto;
         align-items: stretch;
       }
+
       .btn-primary {
         width: 100%;
         justify-content: center;
         padding: 13px 20px;
         font-size: 14px;
       }
+
       .btn-text {
         width: 100%;
         justify-content: center;
         font-size: 14px;
         padding: 8px 0;
       }
+
       .meta-row {
         flex-wrap: wrap;
         justify-content: center;
@@ -2319,16 +2349,19 @@
       .inner-page-content {
         padding: 14px 12px 40px;
       }
+
       .page-header-block {
         margin: 14px auto 20px;
         text-align: center;
       }
+
       .page-heading {
         font-size: clamp(20px, 5.8vw, 24px);
         line-height: 1.15;
         letter-spacing: -0.025em;
         margin-bottom: 8px;
       }
+
       .page-subheading {
         font-size: 12px;
         line-height: 1.5;
@@ -2341,10 +2374,12 @@
         gap: 14px;
         margin-bottom: 24px;
       }
+
       .service-card {
         padding: 16px 14px;
         border-radius: 14px;
       }
+
       .service-card-top {
         flex-direction: column;
         align-items: flex-start;
@@ -2352,39 +2387,47 @@
         margin-bottom: 12px;
         padding-bottom: 12px;
       }
+
       .service-title {
         font-size: 16px;
         line-height: 1.25;
         margin-bottom: 4px;
       }
+
       .service-tagline {
         font-size: 11.5px;
         line-height: 1.45;
       }
+
       .service-meta-pill {
         font-size: 10px;
         padding: 3px 8px;
         border-radius: 6px;
         align-self: flex-start;
       }
+
       .service-body-grid {
         gap: 12px;
       }
+
       .service-deliverables-col h4,
       .service-outcomes-col h4 {
         font-size: 10.5px;
         letter-spacing: 0.1em;
         margin-bottom: 8px;
       }
+
       .service-list {
         gap: 7px;
       }
+
       .service-list-item {
         font-size: 11.5px;
         line-height: 1.4;
         gap: 7px;
         align-items: flex-start;
       }
+
       .check-icon {
         width: 14px;
         height: 14px;
@@ -2392,24 +2435,29 @@
         min-width: 14px;
         margin-top: 2px;
       }
+
       .outcome-box {
         padding: 10px 12px;
         border-radius: 10px;
         gap: 3px;
       }
+
       .outcome-stat {
         font-size: 16px;
       }
+
       .outcome-desc {
         font-size: 11px;
         line-height: 1.35;
       }
+
       .service-action-row {
         margin-top: 12px;
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
       }
+
       .btn-service-inquire {
         width: 100%;
         justify-content: center;
@@ -2424,10 +2472,12 @@
         border-radius: 14px;
         margin-bottom: 24px;
       }
+
       .banner-title {
         font-size: 16px;
         margin-bottom: 6px;
       }
+
       .banner-sub {
         font-size: 11.5px;
         line-height: 1.45;
@@ -2436,6 +2486,7 @@
         margin-left: auto;
         margin-right: auto;
       }
+
       .services-cta-banner .btn-primary {
         width: 100%;
         justify-content: center;
@@ -2450,26 +2501,32 @@
         border-radius: 14px;
         margin-bottom: 30px;
       }
+
       .form-section {
         margin-bottom: 18px;
       }
+
       .form-section-title {
         font-size: 13px;
         gap: 6px;
         margin-bottom: 2px;
       }
+
       .form-section-subtitle {
         font-size: 11px;
         margin-bottom: 10px;
       }
+
       .chip-grid {
         display: flex;
         flex-direction: column;
         gap: 6px;
       }
+
       .chip-option {
         width: 100%;
       }
+
       .chip-label {
         width: 100%;
         padding: 8px 10px;
@@ -2477,64 +2534,78 @@
         border-radius: 8px;
         justify-content: flex-start;
       }
+
       .form-grid-2 {
         grid-template-columns: 1fr;
         gap: 8px;
       }
+
       .form-group {
         margin-bottom: 8px;
       }
+
       .form-group label {
         font-size: 11px;
         margin-bottom: 4px;
       }
+
       .form-control {
         padding: 8px 10px;
         font-size: 12px;
         border-radius: 8px;
         height: 38px;
       }
+
       textarea.form-control {
         height: auto;
         min-height: 70px;
       }
+
       .btn-submit-form {
         padding: 11px 16px;
         font-size: 12.5px;
         border-radius: 8px;
         margin-top: 6px;
       }
+
       .receipt-summary-box {
         padding: 12px 10px;
         border-radius: 10px;
         margin-top: 12px;
       }
+
       .receipt-summary-box h4 {
         font-size: 11px;
         margin-bottom: 6px;
       }
+
       .receipt-row {
         flex-direction: column;
         align-items: flex-start;
         gap: 2px;
         padding: 6px 0;
       }
+
       .receipt-row span:first-child {
         font-size: 10px;
       }
+
       .receipt-row span:last-child {
         font-size: 11px;
       }
+
       .success-icon {
         width: 44px;
         height: 44px;
         font-size: 18px;
         margin-bottom: 12px;
       }
+
       .success-title {
         font-size: 18px;
         margin-bottom: 6px;
       }
+
       .success-desc {
         font-size: 11.5px;
         line-height: 1.45;
@@ -2542,11 +2613,13 @@
     }
   </style>
 </head>
+
 <body>
 
 
   <!-- Ambient Video Wash -->
-  <video id="bg-video" src="https://zxdefgavgwfxastwmmjm.supabase.co/storage/v1/object/public/assets/flux.mp4" autoplay muted loop playsinline></video>
+  <video id="bg-video" src="https://zxdefgavgwfxastwmmjm.supabase.co/storage/v1/object/public/assets/flux.mp4" autoplay
+    muted loop playsinline preload="metadata"></video>
   <div class="scrim"></div>
 
 
@@ -2555,18 +2628,22 @@
   <header id="global-header" class="global-header">
     <div class="nav-container">
       <div class="nav-left rise" style="animation-delay: 0ms;">
-        <a href="#home" class="nav-left-brand" onclick="window.goToPanel(0); return false;" aria-label="FyncIt Home">
+        <a href="#home" class="nav-left-brand" onclick="window.goToPanelById('panel-home'); return false;"
+          aria-label="FyncIt Home">
           <img src="/Fynclt-logo.png" alt="FyncIt" class="nav-logo-img" />
         </a>
       </div>
       <nav class="nav-center" aria-label="Main Navigation">
-       
-        <a href="#about" class="nav-link" data-target="1" onclick="window.goToPanel(1); return false;">About Us</a>
-        <a href="#services" class="nav-link" data-target="2" onclick="window.goToPanel(8); return false;">Our Services</a>
-        <a href="#contact" class="nav-link" data-target="3" onclick="window.goToPanel(9); return false;">Get in Touch</a>
+
+        <a href="#about" class="nav-link" data-target="1"
+          onclick="window.goToPanelById('panel-about-fyncit'); return false;">About Us</a>
+        <a href="#services" class="nav-link" data-target="2"
+          onclick="window.goToPanelById('panel-services'); return false;">Our Services</a>
+        <a href="#contact" class="nav-link" data-target="3"
+          onclick="window.goToPanelById('panel-contact'); return false;">Get in Touch</a>
       </nav>
       <div class="nav-right rise" style="animation-delay: 220ms;">
-        <a href="#contact" class="nav-cta" onclick="window.goToPanel(9); return false;">
+        <a href="#contact" class="nav-cta" onclick="window.goToPanelById('panel-contact'); return false;">
           <span>Start a project</span>
           <span style="font-size: 14px;">→</span>
         </a>
@@ -2579,49 +2656,52 @@
   <!-- Viewport Horizontal Slider Container -->
   <div class="viewport-slider" id="viewport-slider">
     <div class="horizontal-track" id="horizontal-track">
-      
+
       <!-- PANEL 0: HOME -->
       <section class="horizontal-panel" id="panel-home" data-panel="0">
-        <div class="panel-scrollable" id="scroll-home" style="display: flex; flex-direction: column; justify-content: space-between; padding: 32px clamp(24px, 4vw, 60px) 24px;">
+        <div class="panel-scrollable" id="scroll-home"
+          style="display: flex; flex-direction: column; justify-content: space-between; padding: 32px clamp(24px, 4vw, 60px) 24px;">
           <main class="hero">
-      <div class="kicker rise" style="animation-delay: 300ms;">
-        FINANCIAL ADVISORY & STRATEGY
-      </div>
-      
-      <h1 class="rise" style="animation-delay: 380ms;">
-        Financial clarity
-      </h1>
-      
-      <p class="sub-line rise" style="animation-delay: 490ms;">
-        Fractional CFO leadership and FP&A precision for high-growth ventures.
-      </p>
-      
-      <div class="cta-row rise" style="animation-delay: 600ms;">
-        <button type="button" id="btn-see-our-work" class="btn-primary">
-          <span>Our Services</span>
-          <span class="arrow">→</span>
-        </button>
-        <button type="button" id="btn-get-in-touch" class="btn-text">
-          <span>Get in touch</span>
-        </button>
-      </div>
-      
-      <a href="#about" class="scroll-cue rise" id="hero-scroll-cue" style="animation-delay: 680ms;" title="Scroll down to About Us">
-        <span>Explore FyncIt</span>
-        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M7 13l5 5 5-5M7 6l5 5 5-5"/>
-        </svg>
-      </a>
-    </main>
+            <div class="kicker rise" style="animation-delay: 300ms;">
+              FINANCIAL ADVISORY & STRATEGY
+            </div>
 
-    
-    <footer class="meta-row rise" style="animation-delay: 720ms;">
-      <span>Financial Planning & Analysis</span>
-      <span class="meta-dot"></span>
-      <span>Fractional CFO</span>
-    </footer>
-  </div>
-</section>      <!-- PANEL 1: ABOUT US - CORPORATE PROFILE -->
+            <h1 class="rise" style="animation-delay: 380ms;">
+              Financial clarity
+            </h1>
+
+            <p class="sub-line rise" style="animation-delay: 490ms;">
+              Fractional CFO leadership and FP&A precision for high-growth ventures.
+            </p>
+
+            <div class="cta-row rise" style="animation-delay: 600ms;">
+              <button type="button" id="btn-see-our-work" class="btn-primary">
+                <span>Our Services</span>
+                <span class="arrow">→</span>
+              </button>
+              <button type="button" id="btn-get-in-touch" class="btn-text">
+                <span>Get in touch</span>
+              </button>
+            </div>
+
+            <a href="#about" class="scroll-cue rise" id="hero-scroll-cue" style="animation-delay: 680ms;"
+              title="Scroll down to About Us">
+              <span>Explore FyncIt</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+              </svg>
+            </a>
+          </main>
+
+
+          <footer class="meta-row rise" style="animation-delay: 720ms;">
+            <span>Financial Planning & Analysis</span>
+            <span class="meta-dot"></span>
+            <span>Fractional CFO</span>
+          </footer>
+        </div>
+      </section> <!-- PANEL 1: ABOUT US - CORPORATE PROFILE -->
       <section class="horizontal-panel" id="panel-about-fyncit" data-panel="1">
         <div class="panel-scrollable" id="scroll-about-1">
           <div class="inner-page-content">
@@ -2641,29 +2721,37 @@
                         Bridging the critical divide between raw financial data and decisive executive execution.
                       </h4>
                       <p class="fyncit-body">
-                        <strong>FyncIt</strong> is a specialized financial advisory firm delivering institutional-grade financial strategy, forward-looking forecasting, and fractional executive leadership to businesses navigating pivotal stages of scale, capital allocation, and transformation.
+                        <strong>FyncIt</strong> is a specialized financial advisory firm delivering institutional-grade
+                        financial strategy, forward-looking forecasting, and fractional executive leadership to
+                        businesses navigating pivotal stages of scale, capital allocation, and transformation.
                       </p>
                       <p class="fyncit-body">
-                        Where traditional accounting focuses primarily on retroactive compliance, FyncIt equips leadership teams with forward-looking commercial foresight. We synthesize complex financial datasets into dynamic 3-statement models, scenario forecasts, and unit-economic benchmarks that drive tangible enterprise valuation.
+                        Where traditional accounting focuses primarily on retroactive compliance, FyncIt equips
+                        leadership teams with forward-looking commercial foresight. We synthesize complex financial
+                        datasets into dynamic 3-statement models, scenario forecasts, and unit-economic benchmarks that
+                        drive tangible enterprise valuation.
                       </p>
 
                       <div class="fyncit-tenets-list">
                         <div class="fyncit-tenet-item">
                           <div class="fyncit-tenet-bullet"></div>
                           <div class="fyncit-tenet-content">
-                            <strong>Forward-Looking FP&A:</strong> Dynamic multi-scenario forecasting & 13-week liquidity governance.
+                            <strong>Forward-Looking FP&A:</strong> Dynamic multi-scenario forecasting & 13-week
+                            liquidity governance.
                           </div>
                         </div>
                         <div class="fyncit-tenet-item">
                           <div class="fyncit-tenet-bullet"></div>
                           <div class="fyncit-tenet-content">
-                            <strong>Fractional Executive Stewardship:</strong> Boardroom-level CFO leadership without full-time executive payroll overhead.
+                            <strong>Fractional Executive Stewardship:</strong> Boardroom-level CFO leadership without
+                            full-time executive payroll overhead.
                           </div>
                         </div>
                         <div class="fyncit-tenet-item">
                           <div class="fyncit-tenet-bullet"></div>
                           <div class="fyncit-tenet-content">
-                            <strong>Institutional Investment Readiness:</strong> Audit-grade data rooms and financial narratives for fundraising.
+                            <strong>Institutional Investment Readiness:</strong> Audit-grade data rooms and financial
+                            narratives for fundraising.
                           </div>
                         </div>
                       </div>
@@ -2680,7 +2768,8 @@
                           <div class="fyncit-row-index">01</div>
                           <div class="fyncit-row-info">
                             <div class="fyncit-row-title">Fractional CFO Leadership</div>
-                            <div class="fyncit-row-desc">Executive financial governance, treasury oversight & board advisory</div>
+                            <div class="fyncit-row-desc">Executive financial governance, treasury oversight & board
+                              advisory</div>
                           </div>
                         </div>
 
@@ -2688,7 +2777,8 @@
                           <div class="fyncit-row-index">02</div>
                           <div class="fyncit-row-info">
                             <div class="fyncit-row-title">Strategic FP&A & Forecasting</div>
-                            <div class="fyncit-row-desc">Rolling budgets, 3-statement modeling & runway forecasting</div>
+                            <div class="fyncit-row-desc">Rolling budgets, 3-statement modeling & runway forecasting
+                            </div>
                           </div>
                         </div>
 
@@ -2704,14 +2794,16 @@
                           <div class="fyncit-row-index">04</div>
                           <div class="fyncit-row-info">
                             <div class="fyncit-row-title">Capital & Investor Readiness</div>
-                            <div class="fyncit-row-desc">Due diligence data rooms, cap tables & investor presentations</div>
+                            <div class="fyncit-row-desc">Due diligence data rooms, cap tables & investor presentations
+                            </div>
                           </div>
                         </div>
                       </div>
 
                       <div class="fyncit-matrix-footer">
                         <div class="fyncit-footer-badge">✦ Institutional Pedigree</div>
-                        <div class="fyncit-footer-text">Backed by 25+ years advisory heritage of P. Bhatia & Associates</div>
+                        <div class="fyncit-footer-text">Backed by 25+ years advisory heritage of P. Bhatia & Associates
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -2738,10 +2830,15 @@
                   <div class="about-parent-grid">
                     <div class="about-story-text">
                       <p>
-                        <strong>FyncIt is proud to be a company of P. Bhatia & Associates</strong>, carrying forward a legacy backed by <strong>25+ years of distinguished experience</strong> in audit, accounting, taxation, corporate finance, and strategic business consulting.
+                        <strong>FyncIt is proud to be a company of P. Bhatia & Associates</strong>, carrying forward a
+                        legacy backed by <strong>25+ years of distinguished experience</strong> in audit, accounting,
+                        taxation, corporate finance, and strategic business consulting.
                       </p>
                       <p>
-                        By marrying the regulatory rigor, audit-readiness, and institutional wisdom of P. Bhatia & Associates with FyncIt’s modern analytical toolsets, automated financial models, and strategic forecasting frameworks, our clients receive an unmatched blend of dependable stability and forward-looking financial momentum.
+                        By marrying the regulatory rigor, audit-readiness, and institutional wisdom of P. Bhatia &
+                        Associates with FyncIt’s modern analytical toolsets, automated financial models, and strategic
+                        forecasting frameworks, our clients receive an unmatched blend of dependable stability and
+                        forward-looking financial momentum.
                       </p>
                     </div>
                     <div class="parent-stats-box">
@@ -2766,7 +2863,8 @@
         </div>
       </section>
 
-      <!-- PANEL 3: ABOUT US - EXECUTIVE TEAM -->
+      <!-- PANEL 3: ABOUT US - EXECUTIVE TEAM (COMMENTED OUT) -->
+      <!--
       <section class="horizontal-panel" id="panel-about-team" data-panel="3">
         <div class="panel-scrollable" id="scroll-about-3">
           <div class="inner-page-content">
@@ -2829,6 +2927,7 @@
           </div>
         </div>
       </section>
+      -->
 
       <!-- PANEL 4: ABOUT US - WORK PROCESS -->
       <section class="horizontal-panel" id="panel-about-process" data-panel="4">
@@ -2847,21 +2946,24 @@
                     <span class="process-step-number">01</span>
                     <h4 class="process-step-title">Diagnostic & Discovery</h4>
                     <p class="process-step-desc">
-                      We analyze your historical financials, unit economics, revenue streams, and cost drivers to uncover hidden bottlenecks and opportunities.
+                      We analyze your historical financials, unit economics, revenue streams, and cost drivers to
+                      uncover hidden bottlenecks and opportunities.
                     </p>
                   </div>
                   <div class="process-step-card scroll-reveal">
                     <span class="process-step-number">02</span>
                     <h4 class="process-step-title">Financial Modeling & Strategy</h4>
                     <p class="process-step-desc">
-                      We architect customized 3-statement models, rolling forecasts, cash flow runway projections, and dynamic scenario plans.
+                      We architect customized 3-statement models, rolling forecasts, cash flow runway projections, and
+                      dynamic scenario plans.
                     </p>
                   </div>
                   <div class="process-step-card scroll-reveal">
                     <span class="process-step-number">03</span>
                     <h4 class="process-step-title">Implementation & KPI Dashboards</h4>
                     <p class="process-step-desc">
-                      We integrate live reporting dashboards, define critical SaaS/business KPIs, and align budget allocations with leadership milestones.
+                      We integrate live reporting dashboards, define critical SaaS/business KPIs, and align budget
+                      allocations with leadership milestones.
                     </p>
                   </div>
                 </div>
@@ -2888,14 +2990,18 @@
                     <div class="vm-badge">Our Mission</div>
                     <h4 class="vm-title">Democratizing Tier-1 Financial Strategy</h4>
                     <p class="vm-desc">
-                      To empower high-growth startups and established enterprises with high-caliber financial leadership, data-driven foresight, and precision modeling—turning complex numbers into clear catalysts for profitability and sustained valuation growth.
+                      To empower high-growth startups and established enterprises with high-caliber financial
+                      leadership, data-driven foresight, and precision modeling—turning complex numbers into clear
+                      catalysts for profitability and sustained valuation growth.
                     </p>
                   </div>
                   <div class="vm-card highlight scroll-reveal">
                     <div class="vm-badge">Our Vision</div>
                     <h4 class="vm-title">The Global Standard for Modern Finance</h4>
                     <p class="vm-desc">
-                      To be the most trusted strategic financial partner for modern businesses globally, recognized for marrying deep accounting heritage with bleeding-edge analytical technology to create resilient, high-value enterprises.
+                      To be the most trusted strategic financial partner for modern businesses globally, recognized for
+                      marrying deep accounting heritage with bleeding-edge analytical technology to create resilient,
+                      high-value enterprises.
                     </p>
                   </div>
                 </div>
@@ -2925,7 +3031,9 @@
                     </button>
                     <div class="faq-answer-content">
                       <p class="faq-answer-text">
-                        While accountants and bookkeepers focus on recording historical data and compliance, a Fractional CFO is forward-looking. We design growth strategies, forecast cash flow runway, model scenario outcomes, prepare investor decks, and guide strategic capital allocation.
+                        While accountants and bookkeepers focus on recording historical data and compliance, a
+                        Fractional CFO is forward-looking. We design growth strategies, forecast cash flow runway, model
+                        scenario outcomes, prepare investor decks, and guide strategic capital allocation.
                       </p>
                     </div>
                   </div>
@@ -2937,7 +3045,9 @@
                     </button>
                     <div class="faq-answer-content">
                       <p class="faq-answer-text">
-                        Our parent firm P. Bhatia & Associates brings over 25 years of mastery in taxation, statutory compliance, audit, and commercial consulting. FyncIt infuses this bedrock of reliability with modern FP&A, tech-enabled financial modeling, and proactive fractional leadership.
+                        Our parent firm P. Bhatia & Associates brings over 25 years of mastery in taxation, statutory
+                        compliance, audit, and commercial consulting. FyncIt infuses this bedrock of reliability with
+                        modern FP&A, tech-enabled financial modeling, and proactive fractional leadership.
                       </p>
                     </div>
                   </div>
@@ -2949,7 +3059,9 @@
                     </button>
                     <div class="faq-answer-content">
                       <p class="faq-answer-text">
-                        We partner with early-stage founders seeking seed/Series A modeling, venture-backed scaleups needing ongoing FP&A and unit economics optimization, as well as mature SMBs looking to improve operating margins and plan strategic exits.
+                        We partner with early-stage founders seeking seed/Series A modeling, venture-backed scaleups
+                        needing ongoing FP&A and unit economics optimization, as well as mature SMBs looking to improve
+                        operating margins and plan strategic exits.
                       </p>
                     </div>
                   </div>
@@ -2961,7 +3073,9 @@
                     </button>
                     <div class="faq-answer-content">
                       <p class="faq-answer-text">
-                        Our onboarding and diagnostic audit typically takes 5 to 7 business days. Within the first two weeks, you receive an initial diagnostic scorecard, foundational financial model, and clear roadmap of high-impact strategic recommendations.
+                        Our onboarding and diagnostic audit typically takes 5 to 7 business days. Within the first two
+                        weeks, you receive an initial diagnostic scorecard, foundational financial model, and clear
+                        roadmap of high-impact strategic recommendations.
                       </p>
                     </div>
                   </div>
@@ -2989,7 +3103,8 @@
                     <div>
                       <div class="testimonial-stars">★★★★★</div>
                       <p class="testimonial-quote">
-                        "FyncIt completely transformed how we view our cash flow. Their dynamic forecasting model helped us extend our runway by 8 months and gave our board immense confidence."
+                        "FyncIt completely transformed how we view our cash flow. Their dynamic forecasting model helped
+                        us extend our runway by 8 months and gave our board immense confidence."
                       </p>
                     </div>
                     <div class="testimonial-author-box">
@@ -3005,7 +3120,8 @@
                     <div>
                       <div class="testimonial-stars">★★★★★</div>
                       <p class="testimonial-quote">
-                        "Having Fractional CFO expertise from FyncIt backed by the 25-year institutional wisdom of P. Bhatia & Associates gives us the exact high-level strategy we needed without hiring full-time."
+                        "Having Fractional CFO expertise from FyncIt backed by the 25-year institutional wisdom of P.
+                        Bhatia & Associates gives us the exact high-level strategy we needed without hiring full-time."
                       </p>
                     </div>
                     <div class="testimonial-author-box">
@@ -3021,7 +3137,8 @@
                     <div>
                       <div class="testimonial-stars">★★★★★</div>
                       <p class="testimonial-quote">
-                        "Their unit economics analysis and financial modeling directly enabled us to secure our latest funding round. Their rigor and speed of execution are second to none."
+                        "Their unit economics analysis and financial modeling directly enabled us to secure our latest
+                        funding round. Their rigor and speed of execution are second to none."
                       </p>
                     </div>
                     <div class="testimonial-author-box">
@@ -3043,258 +3160,279 @@
       <section class="horizontal-panel" id="panel-services" data-panel="8">
         <div class="panel-scrollable" id="scroll-services">
           <div class="inner-page-content">
-      
-      
-      <div class="page-header-block rise" style="animation-delay: 100ms;">
-        <h2 class="page-heading">Executive Finance & Planning</h2>
-        
-      </div>
 
-      
-      <div class="services-stack">
-        
-        
-        <article class="service-card scroll-reveal" id="service-fpa">
-          <div class="service-card-top">
-            <div>
-              <h3 class="service-title">Financial Planning & Analysis (FP&A)</h3>
-              <p class="service-tagline">
-                Institutional-grade 3-statement models, rolling forecasts, sensitivity matrices, and operational budget architectures.
-              </p>
+
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Executive Finance & Planning</h2>
+
             </div>
-            <div class="service-meta-pill">
-              <span style="color: var(--violet);">●</span> Dynamic Modeling & Forecasting
+
+
+            <div class="services-stack">
+
+
+              <article class="service-card scroll-reveal" id="service-fpa">
+                <div class="service-card-top">
+                  <div>
+                    <h3 class="service-title">Financial Planning & Analysis (FP&A)</h3>
+                    <p class="service-tagline">
+                      Institutional-grade 3-statement models, rolling forecasts, sensitivity matrices, and operational
+                      budget architectures.
+                    </p>
+                  </div>
+                  <div class="service-meta-pill">
+                    <span style="color: var(--violet);">●</span> Dynamic Modeling & Forecasting
+                  </div>
+                </div>
+
+                <div class="service-body-grid">
+                  <div class="service-deliverables-col">
+                    <h4>What We Deliver</h4>
+                    <ul class="service-list">
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>3-Statement Financial Models:</strong> Fully dynamic Income Statement, Balance
+                          Sheet, and Cash Flow interconnected models.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Scenario & Sensitivity Analysis:</strong> Best-case, base-case, and downside
+                          stress-testing for revenue and hiring plans.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Budget vs. Actual (BvA) Cadence:</strong> Monthly variance analysis by department
+                          to pinpoint overspending and opportunities.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>SaaS & Unit Economics Metrics:</strong> CAC, LTV, Magic Number, Net Revenue
+                          Retention (NRR), and Payback Periods.</span>
+                      </li>
+                    </ul>
+                    <div class="service-action-row" style="margin-top: 24px;">
+                      <button type="button" class="btn-service-inquire" data-service="Financial Planning & Analysis">
+                        <span>Inquire for FP&A</span>
+                        <span>→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+
+              <article class="service-card scroll-reveal" id="service-fractional-cfo">
+                <div class="service-card-top">
+                  <div>
+                    <h3 class="service-title">Fractional CFO</h3>
+                    <p class="service-tagline">
+                      Executive-level financial stewardship and strategic roadmap direction without the commitment of a
+                      full-time executive salary.
+                    </p>
+                  </div>
+                  <div class="service-meta-pill">
+                    <span style="color: var(--violet);">●</span> Executive Advisory Retainer
+                  </div>
+                </div>
+
+                <div class="service-body-grid">
+                  <div class="service-deliverables-col">
+                    <h4>What We Deliver</h4>
+                    <ul class="service-list">
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Fundraising & Investor Readiness:</strong> Data room construction, cap table
+                          modeling, deck financial slides, and board deck preparation.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Runway & Cash Optimization:</strong> Dynamic 13-week cash flow forecasting and
+                          burn rate governance.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Strategic Capital Allocation:</strong> M&A advisory, debt vs. equity structuring,
+                          and unit economics validation.</span>
+                      </li>
+                      <li class="service-list-item">
+                        <span class="check-icon">✓</span>
+                        <span><strong>Executive & Board Meetings:</strong> Regular partner-level attendance in
+                          leadership meetings and board discussions.</span>
+                      </li>
+                    </ul>
+                    <div class="service-action-row" style="margin-top: 24px;">
+                      <button type="button" class="btn-service-inquire" data-service="Fractional CFO">
+                        <span>Inquire for Fractional CFO</span>
+                        <span>→</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </article>
             </div>
           </div>
-
-          <div class="service-body-grid">
-            <div class="service-deliverables-col">
-              <h4>What We Deliver</h4>
-              <ul class="service-list">
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>3-Statement Financial Models:</strong> Fully dynamic Income Statement, Balance Sheet, and Cash Flow interconnected models.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Scenario & Sensitivity Analysis:</strong> Best-case, base-case, and downside stress-testing for revenue and hiring plans.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Budget vs. Actual (BvA) Cadence:</strong> Monthly variance analysis by department to pinpoint overspending and opportunities.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>SaaS & Unit Economics Metrics:</strong> CAC, LTV, Magic Number, Net Revenue Retention (NRR), and Payback Periods.</span>
-                </li>
-              </ul>
-              <div class="service-action-row" style="margin-top: 24px;">
-                <button type="button" class="btn-service-inquire" data-service="Financial Planning & Analysis">
-                  <span>Inquire for FP&A</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        
-        <article class="service-card scroll-reveal" id="service-fractional-cfo">
-          <div class="service-card-top">
-            <div>
-              <h3 class="service-title">Fractional CFO</h3>
-              <p class="service-tagline">
-                Executive-level financial stewardship and strategic roadmap direction without the commitment of a full-time executive salary.
-              </p>
-            </div>
-            <div class="service-meta-pill">
-              <span style="color: var(--violet);">●</span> Executive Advisory Retainer
-            </div>
-          </div>
-
-          <div class="service-body-grid">
-            <div class="service-deliverables-col">
-              <h4>What We Deliver</h4>
-              <ul class="service-list">
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Fundraising & Investor Readiness:</strong> Data room construction, cap table modeling, deck financial slides, and board deck preparation.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Runway & Cash Optimization:</strong> Dynamic 13-week cash flow forecasting and burn rate governance.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Strategic Capital Allocation:</strong> M&A advisory, debt vs. equity structuring, and unit economics validation.</span>
-                </li>
-                <li class="service-list-item">
-                  <span class="check-icon">✓</span>
-                  <span><strong>Executive & Board Meetings:</strong> Regular partner-level attendance in leadership meetings and board discussions.</span>
-                </li>
-              </ul>
-              <div class="service-action-row" style="margin-top: 24px;">
-                <button type="button" class="btn-service-inquire" data-service="Fractional CFO">
-                  <span>Inquire for Fractional CFO</span>
-                  <span>→</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </article>
-      </div>
-    </div>
-  </div>
-</section>
+        </div>
+      </section>
 
       <!-- PANEL 9: GET IN TOUCH / CONTACT -->
       <section class="horizontal-panel" id="panel-contact" data-panel="9">
         <div class="panel-scrollable" id="scroll-contact">
           <div class="inner-page-content">
-      
-      
-      <div class="page-header-block rise" style="animation-delay: 100ms;">
-        <h2 class="page-heading">Start a Conversation</h2>
-        <p class="page-subheading">
-          Tell us about your business and requirements. We'll assemble the right team for you.
-        </p>
-      </div>
 
-      
-      <div class="form-container-card rise" style="animation-delay: 200ms;">
-        
-      
 
-          
-        
-        <form id="financial-inquiry-form" novalidate>
-          
-          
-          <div class="form-section">
-            <div class="form-section-title">
-              <span>Which services do you need?<span class="req">*</span></span>
+            <div class="page-header-block rise" style="animation-delay: 100ms;">
+              <h2 class="page-heading">Start a Conversation</h2>
+              <p class="page-subheading">
+                Tell us about your business and requirements. We'll assemble the right team for you.
+              </p>
             </div>
-            <p class="form-section-subtitle">Select all services applicable to your current roadmap.</p>
-            
-            <div class="chip-grid">
-              <label class="chip-option">
-                <input type="checkbox" name="services" value="Fractional CFO" id="chk-cfo" checked>
-                <span class="chip-label">
-                  <span>Fractional CFO</span>
-                </span>
-              </label>
 
-              <label class="chip-option">
-                <input type="checkbox" name="services" value="Financial Planning & Analysis" id="chk-fpa">
-                <span class="chip-label">
-                  <span>Financial Planning & Analysis (FP&A)</span>
-                </span>
-              </label>
-            </div>
-          </div>
 
-          
-          <div class="form-section">
-            <div class="form-section-title">
-              <span>Contact & Company Details</span>
-            </div>
-            <p class="form-section-subtitle">Who should we contact regarding this engagement?</p>
+            <div class="form-container-card rise" style="animation-delay: 200ms;">
 
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="input-fullname">Full Name <span class="req">*</span></label>
-                <input type="text" id="input-fullname" class="form-control" placeholder="e.g. Sarah Jenkins" required>
+
+
+
+
+              <form id="financial-inquiry-form" novalidate>
+
+
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span>Which services do you need?<span class="req">*</span></span>
+                  </div>
+                  <p class="form-section-subtitle">Select all services applicable to your current roadmap.</p>
+
+                  <div class="chip-grid">
+                    <label class="chip-option">
+                      <input type="checkbox" name="services" value="Fractional CFO" id="chk-cfo" checked>
+                      <span class="chip-label">
+                        <span>Fractional CFO</span>
+                      </span>
+                    </label>
+
+                    <label class="chip-option">
+                      <input type="checkbox" name="services" value="Financial Planning & Analysis" id="chk-fpa">
+                      <span class="chip-label">
+                        <span>Financial Planning & Analysis (FP&A)</span>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+
+                <div class="form-section">
+                  <div class="form-section-title">
+                    <span>Contact & Company Details</span>
+                  </div>
+                  <p class="form-section-subtitle">Who should we contact regarding this engagement?</p>
+
+                  <div class="form-grid-2">
+                    <div class="form-group">
+                      <label for="input-fullname">Full Name <span class="req">*</span></label>
+                      <input type="text" id="input-fullname" class="form-control" placeholder="e.g. Sarah Jenkins"
+                        required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="input-email">Work Email <span class="req">*</span></label>
+                      <input type="email" id="input-email" class="form-control" placeholder="sarah@company.com"
+                        required>
+                    </div>
+                  </div>
+
+                  <div class="form-grid-2">
+                    <div class="form-group">
+                      <label for="input-phone">Contact Number <span class="req">*</span></label>
+                      <input type="tel" id="input-phone" class="form-control" placeholder="e.g. +91 9785609675"
+                        required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="input-company">Company Name <span class="req">*</span></label>
+                      <input type="text" id="input-company" class="form-control" placeholder="e.g. Fyncit" required>
+                    </div>
+                  </div>
+
+                  <div class="form-grid-center">
+                    <div class="form-group">
+                      <label for="input-website">Website or LinkedIn URL</label>
+                      <input type="url" id="input-website" class="form-control" placeholder="https://fyncit.com">
+                    </div>
+                  </div>
+                </div>
+
+
+                <div id="form-error-msg"
+                  style="display: none; background: #D9E1EC; border: 1px solid #4169E1; color: #0B1628; padding: 12px 16px; border-radius: 12px; font-size: 13.5px; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
+                  Please complete the required fields (Full Name, Work Email, Contact Number, Company Name, and at least
+                  one service).
+                </div>
+
+
+                <button type="submit" class="btn-submit-form" id="btn-submit-inquiry">
+                  <span>Submit Financial Services Inquiry</span>
+                  <span style="font-size: 18px;">→</span>
+                </button>
+              </form>
+
+
+              <div id="form-success-receipt" class="success-receipt-card">
+                <div class="success-icon-badge">
+                  <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 6L9 17l-5-5" />
+                  </svg>
+                </div>
+
+                <h3
+                  style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 8px;">
+                  Inquiry Successfully Received
+                </h3>
+                <p
+                  style="font-family: 'Inter', sans-serif; font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto 20px;">
+                  Thank you, <strong id="receipt-user-name" style="color: var(--ink);">there</strong>. One of our Senior
+                  Financial Partners will review your company profile and respond within 24 business hours.
+                </p>
+
+                <div class="receipt-summary-box">
+                  <div
+                    style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px;">
+                    Engagement Request Summary
+                  </div>
+                  <div class="receipt-row">
+                    <span class="receipt-label">Reference ID:</span>
+                    <span class="receipt-val" id="receipt-ref-id">#FYN-84920</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="receipt-label">Company:</span>
+                    <span class="receipt-val" id="receipt-company-name">Acme Corp</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="receipt-label">Contact Number:</span>
+                    <span class="receipt-val" id="receipt-phone">+1 (555) 019-2834</span>
+                  </div>
+                  <div class="receipt-row">
+                    <span class="receipt-label">Requested Services:</span>
+                    <span class="receipt-val" id="receipt-services-list">Fractional CFO</span>
+                  </div>
+                </div>
+
+                <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
+                  <a href="#home" class="btn-primary" style="display: inline-flex;"
+                    onclick="window.goToPanel(0); return false;">
+                    <span>Return to Home</span>
+                  </a>
+                  <button type="button" id="btn-reset-form" class="back-btn">
+                    <span>Submit Another Request</span>
+                  </button>
+                </div>
               </div>
 
-              <div class="form-group">
-                <label for="input-email">Work Email <span class="req">*</span></label>
-                <input type="email" id="input-email" class="form-control" placeholder="sarah@company.com" required>
-              </div>
             </div>
-
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="input-phone">Contact Number <span class="req">*</span></label>
-                <input type="tel" id="input-phone" class="form-control" placeholder="e.g. +1 (555) 019-2834" required>
-              </div>
-
-              <div class="form-group">
-                <label for="input-company">Company Name <span class="req">*</span></label>
-                <input type="text" id="input-company" class="form-control" placeholder="e.g. Acme Technologies" required>
-              </div>
-            </div>
-
-            <div class="form-grid-center">
-              <div class="form-group">
-                <label for="input-website">Website or LinkedIn URL</label>
-                <input type="url" id="input-website" class="form-control" placeholder="https://acme.io">
-              </div>
-            </div>
-          </div>
-
-          
-          <div id="form-error-msg" style="display: none; background: #D9E1EC; border: 1px solid #4169E1; color: #0B1628; padding: 12px 16px; border-radius: 12px; font-size: 13.5px; margin-bottom: 20px; font-family: 'Inter', sans-serif;">
-            Please complete the required fields (Full Name, Work Email, Contact Number, Company Name, and at least one service).
-          </div>
-
-          
-          <button type="submit" class="btn-submit-form" id="btn-submit-inquiry">
-            <span>Submit Financial Services Inquiry</span>
-            <span style="font-size: 18px;">→</span>
-          </button>
-        </form>
-
-        
-        <div id="form-success-receipt" class="success-receipt-card">
-          <div class="success-icon-badge">
-            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M20 6L9 17l-5-5"/>
-            </svg>
-          </div>
-
-          <h3 style="font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 700; color: var(--ink); margin-bottom: 8px;">
-            Inquiry Successfully Received
-          </h3>
-          <p style="font-family: 'Inter', sans-serif; font-size: 15px; color: var(--muted); max-width: 500px; margin: 0 auto 20px;">
-            Thank you, <strong id="receipt-user-name" style="color: var(--ink);">there</strong>. One of our Senior Financial Partners will review your company profile and respond within 24 business hours.
-          </p>
-
-          <div class="receipt-summary-box">
-            <div style="font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 14px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--violet); margin-bottom: 12px;">
-              Engagement Request Summary
-            </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Reference ID:</span>
-              <span class="receipt-val" id="receipt-ref-id">#FYN-84920</span>
-            </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Company:</span>
-              <span class="receipt-val" id="receipt-company-name">Acme Corp</span>
-            </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Contact Number:</span>
-              <span class="receipt-val" id="receipt-phone">+1 (555) 019-2834</span>
-            </div>
-            <div class="receipt-row">
-              <span class="receipt-label">Requested Services:</span>
-              <span class="receipt-val" id="receipt-services-list">Fractional CFO</span>
-            </div>
-          </div>
-
-          <div style="display: flex; justify-content: center; gap: 16px; margin-top: 24px; flex-wrap: wrap;">
-            <a href="#home" class="btn-primary" style="display: inline-flex;" onclick="window.goToPanel(0); return false;">
-              <span>Return to Home</span>
-            </a>
-            <button type="button" id="btn-reset-form" class="back-btn">
-              <span>Submit Another Request</span>
-            </button>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-</section>
+      </section>
 
     </div>
   </div>
@@ -3306,60 +3444,63 @@
       if (video) {
         video.muted = true;
         video.defaultMuted = true;
-        const playVideo = () => { video.play().catch(() => {}); };
+        const playVideo = () => { video.play().catch(() => { }); };
         video.addEventListener('canplay', playVideo, { once: true });
         window.addEventListener('load', playVideo, { once: true });
         playVideo();
       }
 
-      // 2. Horizontal Slider Core Engine (10 Panels)
-      // Panel Map: 0: Home, 1..7: About Us (7 subsections), 8: Services, 9: Contact
+      // 2. Dynamic Horizontal Slider Core Engine
       const track = document.getElementById('horizontal-track');
-      const totalPanels = 10;
       let currentPanel = 0;
       let isTransitioning = false;
-      const panelCategoryMap = [0, 1, 1, 1, 1, 1, 1, 1, 2, 3];
-      const panelHashes = [
-        '#home',
-        '#about',
-        '#about-parent',
-        '#about-team',
-        '#about-process',
-        '#about-vision',
-        '#about-faq',
-        '#about-testimonials',
-        '#services',
-        '#contact'
-      ];
+
+      const panelElements = Array.from(document.querySelectorAll('.horizontal-panel'));
+      const totalPanels = panelElements.length;
+      const scrollContainers = panelElements.map(p => p.querySelector('.panel-scrollable'));
+
+      // Mapping panel id or hash to category (0: home, 1: about, 2: services, 3: contact)
+      const getCategoryForPanel = (panelEl) => {
+        if (!panelEl) return 0;
+        const id = panelEl.id || '';
+        if (id.includes('home')) return 0;
+        if (id.includes('about')) return 1;
+        if (id.includes('services')) return 2;
+        if (id.includes('contact')) return 3;
+        return 0;
+      };
+
+      const panelCategoryMap = panelElements.map(p => getCategoryForPanel(p));
+      const panelHashes = panelElements.map(p => {
+        const id = p.id || '';
+        if (id === 'panel-home') return '#home';
+        if (id === 'panel-about-fyncit') return '#about';
+        if (id === 'panel-about-parent') return '#about-parent';
+        if (id === 'panel-about-team') return '#about-team';
+        if (id === 'panel-about-process') return '#about-process';
+        if (id === 'panel-about-vision') return '#about-vision';
+        if (id === 'panel-about-faq') return '#about-faq';
+        if (id === 'panel-about-testimonials') return '#about-testimonials';
+        if (id === 'panel-services') return '#services';
+        if (id === 'panel-contact') return '#contact';
+        return '#' + id.replace('panel-', '');
+      });
       const navLinks = document.querySelectorAll('.nav-link');
 
-      const scrollContainers = [
-        document.getElementById('scroll-home'),
-        document.getElementById('scroll-about-1'),
-        document.getElementById('scroll-about-2'),
-        document.getElementById('scroll-about-3'),
-        document.getElementById('scroll-about-4'),
-        document.getElementById('scroll-about-5'),
-        document.getElementById('scroll-about-6'),
-        document.getElementById('scroll-about-7'),
-        document.getElementById('scroll-services'),
-        document.getElementById('scroll-contact')
-      ];
+      window.goToPanelById = function (panelId, smooth = true) {
+        const cleanId = panelId.replace(/^#/, '');
+        const idx = panelElements.findIndex(p => p.id === cleanId || p.id === 'panel-' + cleanId);
+        if (idx !== -1) {
+          window.goToPanel(idx, smooth);
+        } else {
+          window.goToPanel(0, smooth);
+        }
+      };
 
-      const panelElements = [
-        document.getElementById('panel-home'),
-        document.getElementById('panel-about-fyncit'),
-        document.getElementById('panel-about-parent'),
-        document.getElementById('panel-about-team'),
-        document.getElementById('panel-about-process'),
-        document.getElementById('panel-about-vision'),
-        document.getElementById('panel-about-faq'),
-        document.getElementById('panel-about-testimonials'),
-        document.getElementById('panel-services'),
-        document.getElementById('panel-contact')
-      ];
-
-      window.goToPanel = function(index, smooth = true) {
+      window.goToPanel = function (index, smooth = true) {
+        if (typeof index === 'string') {
+          return window.goToPanelById(index, smooth);
+        }
         if (index < 0) index = 0;
         if (index >= totalPanels) index = totalPanels - 1;
         if (index === currentPanel && isTransitioning) return;
@@ -3368,7 +3509,7 @@
         currentPanel = index;
 
         // Apply hardware-accelerated horizontal translation
-        track.style.transition = smooth ? 'transform 0.75s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
+        track.style.transition = smooth ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
         track.style.transform = `translate3d(-${currentPanel * 100}vw, 0, 0)`;
 
         // Update URL hash without jump
@@ -3393,11 +3534,11 @@
           targetContainer.scrollTo({ top: 0, behavior: 'instant' });
         }
 
-        // Trigger in-view animations for newly active panel
+        // Trigger in-view animations immediately
+        triggerPanelReveals(currentPanel);
         setTimeout(() => {
           isTransitioning = false;
-          triggerPanelReveals(currentPanel);
-        }, 750);
+        }, 450);
       };
 
       // 3. Wheel & Scroll Detection on Section Boundaries
@@ -3424,13 +3565,13 @@
           e.preventDefault();
           wheelCooldown = true;
           window.goToPanel(currentPanel + 1);
-          setTimeout(() => { wheelCooldown = false; }, 850);
+          setTimeout(() => { wheelCooldown = false; }, 480);
         } else if (delta < 0 && isAtTop && currentPanel > 0) {
           // Scrolling up -> transition horizontally to prev panel immediately
           e.preventDefault();
           wheelCooldown = true;
           window.goToPanel(currentPanel - 1);
-          setTimeout(() => { wheelCooldown = false; }, 850);
+          setTimeout(() => { wheelCooldown = false; }, 480);
         }
       }
 
@@ -3485,28 +3626,26 @@
         if (!panel) return;
 
         const reveals = panel.querySelectorAll('.scroll-reveal');
-        reveals.forEach((el, i) => {
-          setTimeout(() => {
-            el.classList.add('in-view');
-          }, Math.min(i * 45, 220));
+        reveals.forEach((el) => {
+          el.classList.add('in-view');
         });
       }
 
-      // Initial Reveal on load
-      triggerPanelReveals(0);
+      // Pre-render reveals for all panels on initial load
+      panelElements.forEach((_, idx) => triggerPanelReveals(idx));
 
       // 7. Home Action Buttons
       const btnSeeOurWork = document.getElementById('btn-see-our-work');
       if (btnSeeOurWork) {
         btnSeeOurWork.addEventListener('click', () => {
-          window.goToPanel(8); // Services
+          window.goToPanelById('panel-services');
         });
       }
 
       const btnGetInTouch = document.getElementById('btn-get-in-touch');
       if (btnGetInTouch) {
         btnGetInTouch.addEventListener('click', () => {
-          window.goToPanel(9); // Contact
+          window.goToPanelById('panel-contact');
         });
       }
 
@@ -3514,7 +3653,7 @@
       if (heroScrollCue) {
         heroScrollCue.addEventListener('click', (e) => {
           e.preventDefault();
-          window.goToPanel(1); // About Us
+          window.goToPanelById('panel-about-fyncit');
         });
       }
 
@@ -3522,7 +3661,7 @@
       document.querySelectorAll('.btn-service-inquire').forEach(btn => {
         btn.addEventListener('click', () => {
           const serviceName = btn.getAttribute('data-service');
-          window.goToPanel(9); // Contact
+          window.goToPanelById('panel-contact');
 
           setTimeout(() => {
             if (serviceName && serviceName.includes('CFO')) {
@@ -3609,22 +3748,19 @@
 
       // 11. Initial Hash Route Support
       const initialHash = window.location.hash;
-      if (initialHash.startsWith('#about')) {
-        const hashToPanel = {
-          '#about': 1,
-          '#about-us': 1,
-          '#about-parent': 2,
-          '#about-team': 3,
-          '#about-process': 4,
-          '#about-vision': 5,
-          '#about-faq': 6,
-          '#about-testimonials': 7
-        };
-        window.goToPanel(hashToPanel[initialHash] || 1, false);
-      } else if (initialHash === '#services' || initialHash === '#work') {
-        window.goToPanel(8, false);
-      } else if (initialHash === '#contact' || initialHash === '#touch') {
-        window.goToPanel(9, false);
+      if (initialHash) {
+        const targetIdx = panelHashes.indexOf(initialHash);
+        if (targetIdx !== -1) {
+          window.goToPanel(targetIdx, false);
+        } else if (initialHash.startsWith('#about')) {
+          window.goToPanelById('panel-about-fyncit', false);
+        } else if (initialHash === '#services' || initialHash === '#work') {
+          window.goToPanelById('panel-services', false);
+        } else if (initialHash === '#contact' || initialHash === '#touch') {
+          window.goToPanelById('panel-contact', false);
+        } else {
+          window.goToPanel(0, false);
+        }
       } else {
         window.goToPanel(0, false);
       }
@@ -3632,4 +3768,5 @@
   </script>
 
 </body>
+
 </html>
