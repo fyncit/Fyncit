@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FyncIt</title>
-  <link rel="icon" type="image/png" href="/Fynclt-logo.png">
+  <link rel="icon" type="image/png" href="/favicon.png">
 
   <!-- Google Fonts: Plus Jakarta Sans, Inter, IBM Plex Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -660,10 +660,27 @@
     }
 
     /* Services Grid */
+    #panel-services .panel-scrollable {
+      padding: 10px clamp(20px, 4vw, 48px);
+    }
+
+    #panel-services .inner-page-content {
+      padding-top: 2px;
+      padding-bottom: 6px;
+    }
+
+    #panel-services .page-header-block {
+      margin: 0 auto 10px;
+    }
+
+    #panel-services .page-heading {
+      margin-bottom: 0;
+    }
+
     .services-stack {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 24px;
+      gap: 16px;
       margin-bottom: 0;
       align-items: stretch;
     }
@@ -671,7 +688,7 @@
     @media (min-width: 860px) {
       .services-stack {
         grid-template-columns: repeat(2, 1fr);
-        gap: 24px;
+        gap: 16px;
       }
     }
 
@@ -679,7 +696,7 @@
       background: rgba(247, 246, 243, 0.96);
       border: 1px solid rgba(11, 22, 40, 0.08);
       border-radius: 20px;
-      padding: clamp(18px, 2.2vw, 26px);
+      padding: clamp(14px, 1.6vw, 18px);
       box-shadow: 0 8px 32px rgba(11, 22, 40, 0.04);
       transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
       position: relative;
@@ -702,10 +719,10 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 8px;
-      margin-bottom: 12px;
+      gap: 5px;
+      margin-bottom: 6px;
       border-bottom: 1px solid rgba(11, 22, 40, 0.06);
-      padding-bottom: 12px;
+      padding-bottom: 6px;
     }
 
     .service-num-badge {
@@ -733,9 +750,9 @@
       font-family: 'Inter', sans-serif;
       font-size: 13.5px;
       color: var(--muted);
-      margin-top: 4px;
+      margin-top: 2px;
       max-width: 100%;
-      line-height: 1.45;
+      line-height: 1.35;
     }
 
     .service-meta-pill {
@@ -776,7 +793,7 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--ink);
-      margin-bottom: 14px;
+      margin-bottom: 6px;
       display: flex;
       align-items: center;
       gap: 8px;
@@ -786,7 +803,7 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 5px;
     }
 
     .service-list-item {
@@ -795,8 +812,8 @@
       color: #0B1628;
       display: flex;
       align-items: flex-start;
-      gap: 10px;
-      line-height: 1.5;
+      gap: 8px;
+      line-height: 1.35;
     }
 
     .check-icon {
@@ -843,7 +860,7 @@
     }
 
     .service-action-row {
-      margin-top: 24px;
+      margin-top: 10px;
       display: flex;
       justify-content: stretch;
       align-items: center;
@@ -861,7 +878,7 @@
       font-weight: 600;
       color: #F7F6F3;
       background: var(--ink);
-      padding: 12px 22px;
+      padding: 8px 18px;
       border-radius: 999px;
       text-decoration: none;
       cursor: pointer;
@@ -1767,31 +1784,40 @@
        GET IN TOUCH / INQUIRY FORM PAGE STYLES
        ============================================================ */
     #panel-contact .panel-scrollable {
-      padding: 16px clamp(20px, 4vw, 48px);
+      padding: 8px clamp(20px, 4vw, 48px);
+    }
+
+    #panel-contact .inner-page-content {
+      padding-top: 2px;
+      padding-bottom: 4px;
     }
 
     #panel-contact .page-header-block {
-      margin: 0 auto 16px;
+      margin: 0 auto 8px;
     }
 
     #panel-contact .page-heading {
-      margin-bottom: 6px;
+      margin-bottom: 3px;
+    }
+
+    #panel-contact .page-subheading {
+      line-height: 1.32;
     }
 
     .form-container-card {
       background: rgba(247, 246, 243, 0.96);
       border: 1px solid rgba(11, 22, 40, 0.08);
-      border-radius: 24px;
-      padding: clamp(20px, 3.2vw, 30px) clamp(24px, 4vw, 40px);
+      border-radius: 20px;
+      padding: 12px clamp(20px, 3.2vw, 30px);
       box-shadow: 0 12px 48px rgba(11, 22, 40, 0.06);
       max-width: 860px;
-      margin: 0 auto 20px;
+      margin: 0 auto 4px;
       width: 100%;
       transform: translate3d(0, 0, 0);
     }
 
     .form-section {
-      margin-bottom: 18px;
+      margin-bottom: 8px;
     }
 
     .form-section-title {
@@ -1799,15 +1825,15 @@
       font-size: 16px;
       font-weight: 700;
       color: var(--ink);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .form-section-step {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 6px;
       background: rgba(65, 105, 225, 0.12);
       color: var(--violet);
@@ -1823,14 +1849,14 @@
       font-family: 'Inter', sans-serif;
       font-size: 13.5px;
       color: var(--muted);
-      margin-bottom: 12px;
+      margin-bottom: 5px;
     }
 
     /* Interactive Chips / Multi-Select */
     .chip-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
+      gap: 8px;
     }
 
     .chip-option {
@@ -1855,7 +1881,7 @@
       color: var(--ink);
       background: #D9E1EC;
       border: 1px solid rgba(11, 22, 40, 0.07);
-      padding: 8px 16px;
+      padding: 5px 14px;
       border-radius: 12px;
       transition: all 0.2s ease;
       user-select: none;
@@ -1878,7 +1904,7 @@
     .form-grid-2 {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px 18px;
+      gap: 5px 14px;
     }
 
     @media (min-width: 640px) {
@@ -1899,15 +1925,15 @@
 
     @media (min-width: 640px) {
       .form-grid-center .form-group {
-        max-width: calc(50% - 9px);
+        max-width: calc(50% - 7px);
       }
     }
 
     .form-group {
       display: flex;
       flex-direction: column;
-      gap: 5px;
-      margin-bottom: 8px;
+      gap: 2px;
+      margin-bottom: 4px;
     }
 
     .form-group label {
@@ -1929,7 +1955,7 @@
       background: #F7F6F3;
       border: 1px solid rgba(11, 22, 40, 0.12);
       border-radius: 12px;
-      padding: 10px 14px;
+      padding: 6px 12px;
       transition: border-color 0.2s, box-shadow 0.2s;
       width: 100%;
     }
@@ -1971,24 +1997,24 @@
       font-weight: 700;
       font-size: 16px;
       color: #F7F6F3;
-      background: #4169E1;
+      background: var(--ink);
       border: none;
-      padding: 13px 26px;
+      padding: 9px 22px;
       border-radius: 999px;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(65, 105, 225, 0.25);
+      box-shadow: 0 8px 24px rgba(11, 22, 40, 0.16);
       transition: all 0.25s ease;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .btn-submit-form:hover {
-      background: #0B1628;
+      background: var(--brand);
       transform: translateY(-2px);
-      box-shadow: 0 14px 34px rgba(11, 22, 40, 0.24);
+      box-shadow: 0 14px 34px rgba(65, 105, 225, 0.28);
     }
 
     /* Direct Contact Details Strip */
@@ -3301,18 +3327,18 @@
                   <div class="form-section-title">
                     <span>Which services do you need?<span class="req">*</span></span>
                   </div>
-                  <p class="form-section-subtitle">Select all services applicable to your current roadmap.</p>
+                  <p class="form-section-subtitle">Select the service applicable to your current roadmap.</p>
 
                   <div class="chip-grid">
                     <label class="chip-option">
-                      <input type="checkbox" name="services" value="Fractional CFO" id="chk-cfo" checked>
+                      <input type="radio" name="services" value="Fractional CFO" id="chk-cfo" checked>
                       <span class="chip-label">
                         <span>Fractional CFO</span>
                       </span>
                     </label>
 
                     <label class="chip-option">
-                      <input type="checkbox" name="services" value="Financial Planning & Analysis" id="chk-fpa">
+                      <input type="radio" name="services" value="Financial Planning & Analysis" id="chk-fpa">
                       <span class="chip-label">
                         <span>Financial Planning & Analysis (FP&A)</span>
                       </span>
@@ -3512,9 +3538,9 @@
         track.style.transition = smooth ? 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1)' : 'none';
         track.style.transform = `translate3d(-${currentPanel * 100}vw, 0, 0)`;
 
-        // Update URL hash without jump
-        if (panelHashes[currentPanel]) {
-          history.replaceState(null, '', panelHashes[currentPanel]);
+        // Keep URL clean without exposing '#' or section hashes in address bar
+        if (window.location.hash) {
+          history.replaceState(null, '', window.location.pathname + window.location.search);
         }
 
         // Update Nav links according to active category
@@ -3689,12 +3715,10 @@
           const phone = document.getElementById('input-phone') ? document.getElementById('input-phone').value.trim() : '';
           const company = document.getElementById('input-company').value.trim();
 
-          const checkedServices = [];
-          document.querySelectorAll('input[name="services"]:checked').forEach(c => {
-            checkedServices.push(c.value);
-          });
+          const selectedServiceEl = document.querySelector('input[name="services"]:checked');
+          const selectedService = selectedServiceEl ? selectedServiceEl.value : '';
 
-          if (!name || !email || !phone || !company || checkedServices.length === 0) {
+          if (!name || !email || !phone || !company || !selectedService) {
             formErrorMsg.style.display = 'block';
             formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
@@ -3707,7 +3731,7 @@
           document.getElementById('receipt-company-name').textContent = company;
           const phoneEl = document.getElementById('receipt-phone');
           if (phoneEl) phoneEl.textContent = phone;
-          document.getElementById('receipt-services-list').textContent = checkedServices.join(', ');
+          document.getElementById('receipt-services-list').textContent = selectedService;
           document.getElementById('receipt-ref-id').textContent = refCode;
 
           inquiryForm.style.display = 'none';
@@ -3746,7 +3770,7 @@
         }
       });
 
-      // 11. Initial Hash Route Support
+      // 11. Initial Hash Route Support (navigates if loaded with hash, then hides/cleans hash from URL)
       const initialHash = window.location.hash;
       if (initialHash) {
         const targetIdx = panelHashes.indexOf(initialHash);
@@ -3761,9 +3785,18 @@
         } else {
           window.goToPanel(0, false);
         }
+        // Clean URL to hide hash from address bar
+        history.replaceState(null, '', window.location.pathname + window.location.search);
       } else {
         window.goToPanel(0, false);
       }
+
+      // Prevent any anchor clicks with '#' from adding hashes into the URL
+      document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+        });
+      });
     });
   </script>
 
