@@ -3705,20 +3705,23 @@
       const inquiryForm = document.getElementById('financial-inquiry-form');
       const formSuccessReceipt = document.getElementById('form-success-receipt');
       const formErrorMsg = document.getElementById('form-error-msg');
+      const btnSubmitInquiry = document.getElementById('btn-submit-inquiry');
 
       if (inquiryForm) {
-        inquiryForm.addEventListener('submit', (e) => {
+        inquiryForm.addEventListener('submit', async (e) => {
           e.preventDefault();
 
           const name = document.getElementById('input-fullname').value.trim();
           const email = document.getElementById('input-email').value.trim();
           const phone = document.getElementById('input-phone') ? document.getElementById('input-phone').value.trim() : '';
           const company = document.getElementById('input-company').value.trim();
+          const website = document.getElementById('input-website') ? document.getElementById('input-website').value.trim() : '';
 
           const selectedServiceEl = document.querySelector('input[name="services"]:checked');
           const selectedService = selectedServiceEl ? selectedServiceEl.value : '';
 
           if (!name || !email || !phone || !company || !selectedService) {
+            formErrorMsg.textContent = 'Please complete the required fields (Full Name, Work Email, Contact Number, Company Name, and at least one service).';
             formErrorMsg.style.display = 'block';
             formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
             return;
@@ -3727,16 +3730,67 @@
           formErrorMsg.style.display = 'none';
           const refCode = '#FYN-' + Math.floor(10000 + Math.random() * 90000);
 
-          document.getElementById('receipt-user-name').textContent = name;
-          document.getElementById('receipt-company-name').textContent = company;
-          const phoneEl = document.getElementById('receipt-phone');
-          if (phoneEl) phoneEl.textContent = phone;
-          document.getElementById('receipt-services-list').textContent = selectedService;
-          document.getElementById('receipt-ref-id').textContent = refCode;
+          // Update submit button state while sending
+          const originalBtnHtml = btnSubmitInquiry ? btnSubmitInquiry.innerHTML : '';
+          if (btnSubmitInquiry) {
+            btnSubmitInquiry.disabled = true;
+            btnSubmitInquiry.innerHTML = '<span>Sending Inquiry...</span> <span style="font-size: 16px;">⏳</span>';
+          }
 
-          inquiryForm.style.display = 'none';
-          formSuccessReceipt.style.display = 'block';
-          formSuccessReceipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          try {
+            const response = await fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+              },
+              body: JSON.stringify({
+                access_key: '8e38d759-5bc5-490c-9122-a29d22ca9df8',
+                subject: `New FyncIt Inquiry: ${company} (${name}) [${refCode}]`,
+                from_name: 'FyncIt Website Inquiry',
+                'Reference ID': refCode,
+                'Full Name': name,
+                'Company Name': company,
+                'Work Email': email,
+                'Contact Number': phone,
+                'Website or LinkedIn': website || 'Not provided',
+                'Service Requested': selectedService,
+                'Submitted At': new Date().toLocaleString()
+              })
+            });
+
+            const result = await response.json();
+
+            if (!result.success) {
+              console.error('Web3Forms submission failed:', result);
+              formErrorMsg.textContent = result.message || 'Something went wrong while submitting. Please try again.';
+              formErrorMsg.style.display = 'block';
+              formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              return;
+            }
+
+            // Only transition to success receipt if Web3Forms truly succeeded
+            document.getElementById('receipt-user-name').textContent = name;
+            document.getElementById('receipt-company-name').textContent = company;
+            const phoneEl = document.getElementById('receipt-phone');
+            if (phoneEl) phoneEl.textContent = phone;
+            document.getElementById('receipt-services-list').textContent = selectedService;
+            document.getElementById('receipt-ref-id').textContent = refCode;
+
+            inquiryForm.style.display = 'none';
+            formSuccessReceipt.style.display = 'block';
+            formSuccessReceipt.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          } catch (err) {
+            console.error('Error sending form submission email:', err);
+            formErrorMsg.textContent = 'Network error: Unable to submit your inquiry. Please check your internet connection.';
+            formErrorMsg.style.display = 'block';
+            formErrorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          } finally {
+            if (btnSubmitInquiry) {
+              btnSubmitInquiry.disabled = false;
+              btnSubmitInquiry.innerHTML = originalBtnHtml;
+            }
+          }
         });
       }
 
